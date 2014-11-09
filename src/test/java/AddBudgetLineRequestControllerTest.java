@@ -17,10 +17,6 @@ public class AddBudgetLineRequestControllerTest {
     private final String budgetLineName = "BudgetLineName";
     private final double budget = 2000;
 
-    AddBudgetLineRequestControllerTest ()
-    {
-
-    }
 
     @Test
     public void AddMonthlyBudgetLine(){
