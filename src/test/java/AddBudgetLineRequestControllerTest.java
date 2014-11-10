@@ -1,6 +1,5 @@
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,7 +21,6 @@ public class AddBudgetLineRequestControllerTest {
 
     private UseCaseFactory useCaseFactory;
 
-    @Ignore
     public class MonthlyBudgetContext {
 
         @Before
@@ -44,7 +42,6 @@ public class AddBudgetLineRequestControllerTest {
 
     }
 
-    @Ignore
     public class YearlyBudgetContext {
 
         @Before

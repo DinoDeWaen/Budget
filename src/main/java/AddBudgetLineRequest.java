@@ -5,6 +5,7 @@ public class AddBudgetLineRequest extends Request {
     private String categoryName;
     private String budgetLineName;
     private double budget;
+    //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer id;
 
     private AddBudgetLineRequest(Builder builder) {
