@@ -5,12 +5,20 @@ public abstract class AddBudgetLineUseCase implements UseCase {
 
     protected abstract BudgetLineFrequency getBudgetLineFrequency(double budget);
 
-    public void Execute(Request request) {
+    public void execute(Request request) {
         BudgetDataBase db = BudgetDataBase.budgetDataBase;
-        AddBudgetLineRequest BudgetLine = (AddBudgetLineRequest) request;
-        BudgetLine budgetLine = new BudgetLine(BudgetLine.getId(), BudgetLine.getBudgetLineName(), BudgetLine.getCategoryName());
-        BudgetLineFrequency frequencyBL = getBudgetLineFrequency(BudgetLine.getBudget());
-        budgetLine.setBudgetLineFrequency(frequencyBL);
-        db.addBudgetLine(BudgetLine.getId(), budgetLine);
+        AddBudgetLineRequest addBudgetLineRequest = (AddBudgetLineRequest) request;
+        final BudgetLine budgetLine = buildBudgetLine(addBudgetLineRequest);
+        db.addBudgetLine(budgetLine);
+    }
+
+    private BudgetLine buildBudgetLine(AddBudgetLineRequest addBudgetLineRequest) {
+        final BudgetLineFrequency frequencyBL = getBudgetLineFrequency(addBudgetLineRequest.getBudget());
+        return BudgetLine.newBuilder()
+                .withId(addBudgetLineRequest.getId())
+                .withBudgetLineName(addBudgetLineRequest.getBudgetLineName())
+                .withCategoryName(addBudgetLineRequest.getCategoryName())
+                .withBudgetLineFrequency(frequencyBL)
+                .build();
     }
 }

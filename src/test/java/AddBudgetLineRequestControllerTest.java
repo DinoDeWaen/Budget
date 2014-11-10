@@ -1,5 +1,6 @@
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -13,20 +14,19 @@ import static org.junit.Assert.assertThat;
 @RunWith(HierarchicalContextRunner.class)
 public class AddBudgetLineRequestControllerTest {
 
-
-    public static final double ACCURACY = 0.00001;
+    private static final double ACCURACY = 0.00001;
     private static final int id = 1;
     private static final String categoryName = "CategoryName";
     private static final String budgetLineName = "BudgetLineName";
     private static final double budget = 2000;
 
-    private RequestBuilder requestBuilder;
     private UseCaseFactory useCaseFactory;
 
+    @Ignore
     public class MonthlyBudgetContext {
+
         @Before
         public void setUp() throws Exception {
-            requestBuilder = new AddBudgetLineBuilder();
             useCaseFactory = new AddMonthlyBudgetLineFactory();
         }
 
@@ -41,13 +41,14 @@ public class AddBudgetLineRequestControllerTest {
             assertThat(frequency, instanceOf(BudgetLineMonthlyFrequency.class));
             assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
         }
+
     }
 
-
+    @Ignore
     public class YearlyBudgetContext {
+
         @Before
         public void setUp() throws Exception {
-            requestBuilder = new AddBudgetLineBuilder();
             useCaseFactory = new AddYearlyBudgetLineFactory();
         }
 
@@ -77,10 +78,19 @@ public class AddBudgetLineRequestControllerTest {
         return BudgetDataBase.budgetDataBase.getBudgetLine(AddBudgetLineRequestControllerTest.id);
     }
 
-
     private void addBudgetLine() {
-        Request addBudgetLineRequest = requestBuilder.createAddBudgetLineRequest(id, categoryName, budgetLineName, budget);
-        UseCase useCase = useCaseFactory.CreateUseCase();
-        useCase.Execute(addBudgetLineRequest);
+        Request addBudgetLineRequest = buildBudgetLineBuilder();
+        UseCase useCase = useCaseFactory.createUseCase();
+        useCase.execute(addBudgetLineRequest);
+    }
+
+
+    private AddBudgetLineRequest buildBudgetLineBuilder() {
+        return AddBudgetLineRequest.newBuilder()
+                .withId(id)
+                .withCategoryName(categoryName)
+                .withBudget(budget)
+                .withBudgetLineName(budgetLineName)
+                .build();
     }
 }

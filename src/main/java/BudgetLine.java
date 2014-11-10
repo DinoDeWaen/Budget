@@ -5,45 +5,71 @@ public class BudgetLine {
     private Integer id;
     private String categoryName;
     private String budgetLineName;
+    private BudgetLineFrequency budgetLineFrequency;
 
-    private BudgetLineFrequency BudgetLineFrequency;
-
-
-    public BudgetLine(Integer id,String budgetLineName, String categoryName) {
-        this.setId(id);
-        this.setCategoryName(categoryName);
-        this.setBudgetLineName(budgetLineName);
+    private BudgetLine(Builder builder) {
+        this.id = builder.id;
+        this.categoryName = builder.categoryName;
+        this.budgetLineName = builder.budgetLineName;
+        this.budgetLineFrequency = builder.BudgetLineFrequency;
     }
+
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
 
     public BudgetLineFrequency getBudgetLineFrequency() {
-        return BudgetLineFrequency;
+        return budgetLineFrequency;
     }
 
-    public void setBudgetLineFrequency(BudgetLineFrequency budgetLineFrequency) {
-        BudgetLineFrequency = budgetLineFrequency;
-    }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCategoryName() {
         return categoryName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
 
     public String getBudgetLineName() {
         return budgetLineName;
     }
 
-    public void setBudgetLineName(String budgetLineName) {
-        this.budgetLineName = budgetLineName;
+
+    public static final class Builder {
+        private Integer id;
+        private String categoryName;
+        private String budgetLineName;
+        private BudgetLineFrequency BudgetLineFrequency;
+
+        private Builder() {
+        }
+
+        public Builder withId(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withCategoryName(String categoryName) {
+            this.categoryName = categoryName;
+            return this;
+        }
+
+        public Builder withBudgetLineName(String budgetLineName) {
+            this.budgetLineName = budgetLineName;
+            return this;
+        }
+
+        public Builder withBudgetLineFrequency(BudgetLineFrequency BudgetLineFrequency) {
+            this.BudgetLineFrequency = BudgetLineFrequency;
+            return this;
+        }
+
+        public BudgetLine build() {
+            return new BudgetLine(this);
+        }
     }
 }

@@ -9,8 +9,8 @@ public class BudgetDataBase {
 
     private Map<Integer, BudgetLine> budgetLines = new HashMap<Integer, BudgetLine>();
 
-    public void addBudgetLine (int id, BudgetLine budgetLine){
-        budgetLines.put(id, budgetLine);
+    public void addBudgetLine (BudgetLine budgetLine){
+        budgetLines.put(budgetLine.getId(), budgetLine);
     }
 
     public BudgetLine getBudgetLine (int BudgetLineId){
