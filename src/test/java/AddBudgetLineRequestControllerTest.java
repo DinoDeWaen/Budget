@@ -18,41 +18,44 @@ public class AddBudgetLineRequestControllerTest {
     private final double budget = 2000;
 
 
-    @Test
-    public void AddMonthlyBudgetLine(){
+    @Before
+    public void setUp() throws Exception {
         requestBuilder = new AddBudgetLineBuilder();
         useCaseFactory = new AddMonthlyBudgetLineFactory();
+    }
 
-        AddBudgetLine();
+    @Test
+    public void addMonthlyBudgetLine() {
+
+
+        addBudgetLine();
 
         BudgetLine budgetLine = BudgetDataBase.budgetDataBase.getBudgetLine(id);
         assertEquals(categoryName, budgetLine.getCategoryName());
         assertEquals(budgetLineName, budgetLine.getBudgetLineName());
 
-        BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency ();
+        BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
         assertThat(frequency, instanceOf(BudgetLineMonthlyFrequency.class));
         assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
     }
 
     @Test
-    public void AddYearlyBudgetLine(){
-        requestBuilder = new AddBudgetLineBuilder();
-        useCaseFactory = new AddYearlyBudgetLineFactory();
+    public void addYearlyBudgetLine() {
 
-        AddBudgetLine();
+        addBudgetLine();
 
         BudgetLine budgetLine = BudgetDataBase.budgetDataBase.getBudgetLine(id);
         assertEquals(categoryName, budgetLine.getCategoryName());
         assertEquals(budgetLineName, budgetLine.getBudgetLineName());
 
-        BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency ();
+        BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
         assertThat(frequency, instanceOf(BudgetLineYearlyFrequency.class));
 
         assertEquals(budgetLineName, budgetLine.getBudgetLineName());
-        assertEquals(budget/12, frequency.getMonthlyBudget(), ACCURACY);
+        assertEquals(budget / 12, frequency.getMonthlyBudget(), ACCURACY);
     }
 
-    private void AddBudgetLine() {
+    private void addBudgetLine() {
         Request request = requestBuilder.createAddBudgetLineRequest(id, categoryName, budgetLineName, budget);
         UseCase useCase = useCaseFactory.CreateUseCase();
         useCase.Execute(request);
