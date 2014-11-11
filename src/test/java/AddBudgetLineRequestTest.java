@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
  * Created by dino on 07/11/14.
  */
 @RunWith(HierarchicalContextRunner.class)
-public class AddBudgetLineRequestControllerTest {
+public class AddBudgetLineRequestTest {
 
     private static final double ACCURACY = 0.00001;
     private static final int id = 1;
@@ -70,7 +70,7 @@ public class AddBudgetLineRequestControllerTest {
     }
 
     private BudgetLine loadBudgetLine() {
-        return BudgetDataBase.budgetDataBase.getBudgetLine(AddBudgetLineRequestControllerTest.id);
+        return BudgetDataBase.budgetDataBase.getBudgetLine(AddBudgetLineRequestTest.id);
     }
 
     private void addBudgetLine() {
@@ -82,6 +82,7 @@ public class AddBudgetLineRequestControllerTest {
 
     private AddBudgetLineRequest buildBudgetLineBuilder() {
         return AddBudgetLineRequest.newBuilder()
+                .withId(id)
                 .withCategoryId(categoryId)
                 .withBudget(budget)
                 .withBudgetLineName(budgetLineName)
