@@ -16,7 +16,7 @@ public class AddCategoryRequestTest {
     private static UseCaseFactory useCaseFactory;
     private Request request;
 
-    private static final int id = 0;
+    private static final Integer id = 0;
     private static final String CategoryName = "CategoryName";
 
     @Before
@@ -26,18 +26,33 @@ public class AddCategoryRequestTest {
 
     @Test
     public void TestCategoryBuilderAndFactory(){
-        UseCase AddCategory = useCaseFactory.createUseCase();
-        assertThat(AddCategory, instanceOf(AddCategoryUseCase.class));
+        addCategory();
 
+        Category category = loadCategory();
+
+        validateCategory(category);
+    }
+
+    private void validateCategory(Category category) {
+        assertEquals(id, category.getId());
+        assertEquals(CategoryName, category.getCategoryName());
+    }
+
+    private Category loadCategory() {
+        return BudgetDataBase.budgetDataBase.getCategory(id);
+    }
+
+    private void addCategory() {
+        UseCase AddCategory = useCaseFactory.createUseCase();
         request = buildAddCategoryBuilder();
-        assertThat(request, instanceOf(AddCategoryRequest.class));
+        AddCategory.execute(request);
     }
 
     private AddCategoryRequest buildAddCategoryBuilder() {
-        return new AddCategoryRequest.Builder()
-                      .withCategoryId(id)
-                      .withCategoryName(CategoryName)
-                      .build();
+        return  AddCategoryRequest.newBuilder()
+                 .withCategoryId(id)
+                 .withCategoryName(CategoryName)
+                 .build();
     }
 
 }

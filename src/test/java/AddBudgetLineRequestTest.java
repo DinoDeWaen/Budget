@@ -14,8 +14,8 @@ import static org.junit.Assert.assertThat;
 public class AddBudgetLineRequestTest {
 
     private static final double ACCURACY = 0.00001;
-    private static final int id = 1;
-    private static final int categoryId = 3;
+    private static final Integer id = 1;
+    private static final Integer categoryId = 3;
     private static final String budgetLineName = "BudgetLineName";
     private static final double budget = 2000;
 

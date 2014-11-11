@@ -2,7 +2,7 @@
  * Created by dino on 07/11/14.
  */
 public class AddBudgetLineRequest extends Request {
-    private int categoryId;
+    private Integer categoryId;
     private String budgetLineName;
     private double budget;
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
@@ -19,7 +19,7 @@ public class AddBudgetLineRequest extends Request {
         return new Builder();
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
@@ -40,7 +40,7 @@ public class AddBudgetLineRequest extends Request {
 
 
     public static final class Builder {
-        private int categoryId;
+        private Integer categoryId;
         private String budgetLineName;
         private double budget;
         private Integer id;
@@ -48,7 +48,7 @@ public class AddBudgetLineRequest extends Request {
         private Builder() {
         }
 
-        public Builder withCategoryId(int categoryId) {
+        public Builder withCategoryId(Integer categoryId) {
             this.categoryId = categoryId;
             return this;
         }

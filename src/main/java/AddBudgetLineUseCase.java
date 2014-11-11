@@ -6,10 +6,9 @@ public abstract class AddBudgetLineUseCase implements UseCase {
     protected abstract BudgetLineFrequency getBudgetLineFrequency(double budget);
 
     public void execute(Request request) {
-        BudgetDataBase db = BudgetDataBase.budgetDataBase;
         AddBudgetLineRequest addBudgetLineRequest = (AddBudgetLineRequest) request;
         final BudgetLine budgetLine = buildBudgetLine(addBudgetLineRequest);
-        db.addBudgetLine(budgetLine);
+        BudgetDataBase.budgetDataBase.addBudgetLine(budgetLine);
     }
 
     private BudgetLine buildBudgetLine(AddBudgetLineRequest addBudgetLineRequest) {

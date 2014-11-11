@@ -1,25 +1,21 @@
 /**
  * Created by dino on 11/11/14.
  */
-public class AddCategoryRequest extends Request {
-    private Integer categoryId;
+public class Category {
+    private Integer id;
     private String categoryName;
 
-    private AddCategoryRequest(Builder builder) {
-        setCategoryId(builder.categoryId);
-        setCategoryName(builder.categoryName);
+    private Category(Builder builder) {
+        this.id = builder.categoryId;
+        this.categoryName = builder.categoryName;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCategoryName() {
@@ -28,6 +24,10 @@ public class AddCategoryRequest extends Request {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public static Builder newBuilder() {
+        return new Builder();
     }
 
     public static final class Builder {
@@ -47,8 +47,8 @@ public class AddCategoryRequest extends Request {
             return this;
         }
 
-        public AddCategoryRequest build() {
-            return new AddCategoryRequest(this);
+        public Category build() {
+            return new Category(this);
         }
     }
 }
