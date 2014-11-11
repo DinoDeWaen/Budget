@@ -2,14 +2,14 @@
  * Created by dino on 07/11/14.
  */
 public class AddBudgetLineRequest extends Request {
-    private String categoryName;
+    private int categoryId;
     private String budgetLineName;
     private double budget;
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer id;
 
     private AddBudgetLineRequest(Builder builder) {
-        this.categoryName = builder.categoryName;
+        this.categoryId = builder.categoryId;
         this.budgetLineName = builder.budgetLineName;
         this.budget = builder.budget;
         this.id = builder.id;
@@ -19,8 +19,8 @@ public class AddBudgetLineRequest extends Request {
         return new Builder();
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public int getCategoryId() {
+        return categoryId;
     }
 
 
@@ -40,7 +40,7 @@ public class AddBudgetLineRequest extends Request {
 
 
     public static final class Builder {
-        private String categoryName;
+        private int categoryId;
         private String budgetLineName;
         private double budget;
         private Integer id;
@@ -48,8 +48,8 @@ public class AddBudgetLineRequest extends Request {
         private Builder() {
         }
 
-        public Builder withCategoryName(String categoryName) {
-            this.categoryName = categoryName;
+        public Builder withCategoryId(int categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
@@ -71,5 +71,7 @@ public class AddBudgetLineRequest extends Request {
         public AddBudgetLineRequest build() {
             return new AddBudgetLineRequest(this);
         }
+
+
     }
 }

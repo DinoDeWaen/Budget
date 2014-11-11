@@ -17,7 +17,7 @@ public abstract class AddBudgetLineUseCase implements UseCase {
         return BudgetLine.newBuilder()
                 .withId(addBudgetLineRequest.getId())
                 .withBudgetLineName(addBudgetLineRequest.getBudgetLineName())
-                .withCategoryName(addBudgetLineRequest.getCategoryName())
+                .withCategoryId(addBudgetLineRequest.getCategoryId())
                 .withBudgetLineFrequency(frequencyBL)
                 .build();
     }

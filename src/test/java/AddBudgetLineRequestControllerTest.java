@@ -15,7 +15,7 @@ public class AddBudgetLineRequestControllerTest {
 
     private static final double ACCURACY = 0.00001;
     private static final int id = 1;
-    private static final String categoryName = "CategoryName";
+    private static final int categoryId = 3;
     private static final String budgetLineName = "BudgetLineName";
     private static final double budget = 2000;
 
@@ -65,7 +65,7 @@ public class AddBudgetLineRequestControllerTest {
     }
 
     private void validateBudgetContent(BudgetLine budgetLine) {
-        assertEquals(categoryName, budgetLine.getCategoryName());
+        assertEquals(categoryId, budgetLine.getCategoryId());
         assertEquals(budgetLineName, budgetLine.getBudgetLineName());
     }
 
@@ -82,8 +82,7 @@ public class AddBudgetLineRequestControllerTest {
 
     private AddBudgetLineRequest buildBudgetLineBuilder() {
         return AddBudgetLineRequest.newBuilder()
-                .withId(id)
-                .withCategoryName(categoryName)
+                .withCategoryId(categoryId)
                 .withBudget(budget)
                 .withBudgetLineName(budgetLineName)
                 .build();
