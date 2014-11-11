@@ -59,8 +59,6 @@ public class AddBudgetLineRequestControllerTest {
 
             BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
             assertThat(frequency, instanceOf(BudgetLineYearlyFrequency.class));
-
-            assertEquals(budgetLineName, budgetLine.getBudgetLineName());
             assertEquals(budget / 12, frequency.getMonthlyBudget(), ACCURACY);
         }
 
