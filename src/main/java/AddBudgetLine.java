@@ -7,7 +7,8 @@ public abstract class AddBudgetLine implements BudgetLineTransactions {
 
     public void add(BudgetLineDTO budgetLineDTO) {
         final BudgetLine budgetLine = buildBudgetLine(budgetLineDTO);
-        DataBase.dataBase.addBudgetLine(budgetLine);
+        Category category = DataBase.dataBase.getCategory(budgetLineDTO.getCategoryId());
+        category.addBudgetLine(budgetLine);
     }
 
     private BudgetLine buildBudgetLine(BudgetLineDTO budgetLineDTO) {

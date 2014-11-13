@@ -14,7 +14,7 @@ public class AddCategoryTest {
     private CategoryTransactions categoryTransactions;
     private CategoryDTO categoryDTO;
 
-    private static final Integer id = 0;
+    private static final Integer id = 1;
     private static final String CategoryName = "CategoryName";
 
     @Before
