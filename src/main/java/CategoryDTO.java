@@ -1,11 +1,11 @@
 /**
  * Created by dino on 11/11/14.
  */
-public class AddCategoryRequest extends Request {
+public class CategoryDTO {
     private Integer categoryId;
     private String categoryName;
 
-    private AddCategoryRequest(Builder builder) {
+    private CategoryDTO(Builder builder) {
         setCategoryId(builder.categoryId);
         setCategoryName(builder.categoryName);
     }
@@ -47,8 +47,8 @@ public class AddCategoryRequest extends Request {
             return this;
         }
 
-        public AddCategoryRequest build() {
-            return new AddCategoryRequest(this);
+        public CategoryDTO build() {
+            return new CategoryDTO(this);
         }
     }
 }

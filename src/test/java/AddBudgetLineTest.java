@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
  * Created by dino on 07/11/14.
  */
 @RunWith(HierarchicalContextRunner.class)
-public class AddBudgetLineRequestTest {
+public class AddBudgetLineTest {
 
     private static final double ACCURACY = 0.00001;
     private static final Integer id = 1;
@@ -19,13 +19,13 @@ public class AddBudgetLineRequestTest {
     private static final String budgetLineName = "BudgetLineName";
     private static final double budget = 2000;
 
-    private UseCaseFactory useCaseFactory;
+    private BudgetLineTransactions addBudgetLine;
 
     public class MonthlyBudgetContext {
 
         @Before
         public void setUp() throws Exception {
-            useCaseFactory = new AddMonthlyBudgetLineFactory();
+            addBudgetLine = new AddMonthlyBudgetLine();
         }
 
         @Test
@@ -46,7 +46,7 @@ public class AddBudgetLineRequestTest {
 
         @Before
         public void setUp() throws Exception {
-            useCaseFactory = new AddYearlyBudgetLineFactory();
+            addBudgetLine = new AddYearlyBudgetLine();
         }
 
         @Test
@@ -70,18 +70,17 @@ public class AddBudgetLineRequestTest {
     }
 
     private BudgetLine loadBudgetLine() {
-        return BudgetDataBase.budgetDataBase.getBudgetLine(AddBudgetLineRequestTest.id);
+        return DataBase.dataBase.getBudgetLine(AddBudgetLineTest.id);
     }
 
     private void addBudgetLine() {
-        Request addBudgetLineRequest = buildBudgetLineBuilder();
-        UseCase useCase = useCaseFactory.createUseCase();
-        useCase.execute(addBudgetLineRequest);
+        BudgetLineDTO budgetLineDTO = buildBudgetLineDTO();
+        addBudgetLine.add(budgetLineDTO);
     }
 
 
-    private AddBudgetLineRequest buildBudgetLineBuilder() {
-        return AddBudgetLineRequest.newBuilder()
+    private BudgetLineDTO buildBudgetLineDTO() {
+        return BudgetLineDTO.newBuilder()
                 .withId(id)
                 .withCategoryId(categoryId)
                 .withBudget(budget)

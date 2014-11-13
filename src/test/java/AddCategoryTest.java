@@ -1,10 +1,8 @@
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -12,16 +10,16 @@ import static org.junit.Assert.assertThat;
  * Created by dino on 11/11/14.
  */
 @RunWith(HierarchicalContextRunner.class)
-public class AddCategoryRequestTest {
-    private static UseCaseFactory useCaseFactory;
-    private Request request;
+public class AddCategoryTest {
+    private CategoryTransactions categoryTransactions;
+    private CategoryDTO categoryDTO;
 
     private static final Integer id = 0;
     private static final String CategoryName = "CategoryName";
 
     @Before
     public void setUp() throws Exception {
-        useCaseFactory = new AddCategoryFactory();
+        categoryTransactions = new AddCategory();
     }
 
     @Test
@@ -39,17 +37,16 @@ public class AddCategoryRequestTest {
     }
 
     private Category loadCategory() {
-        return BudgetDataBase.budgetDataBase.getCategory(id);
+        return DataBase.dataBase.getCategory(id);
     }
 
     private void addCategory() {
-        UseCase AddCategory = useCaseFactory.createUseCase();
-        request = buildAddCategoryBuilder();
-        AddCategory.execute(request);
+        categoryDTO = buildCategoryDTO();
+        categoryTransactions.add(categoryDTO);
     }
 
-    private AddCategoryRequest buildAddCategoryBuilder() {
-        return  AddCategoryRequest.newBuilder()
+    private CategoryDTO buildCategoryDTO() {
+        return  CategoryDTO.newBuilder()
                  .withCategoryId(id)
                  .withCategoryName(CategoryName)
                  .build();

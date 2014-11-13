@@ -1,7 +1,7 @@
 /**
  * Created by dino on 08/11/14.
  */
-public class AddYearlyBudgetLineUseCase extends AddBudgetLineUseCase implements UseCase {
+public class AddYearlyBudgetLine extends AddBudgetLine implements BudgetLineTransactions {
 
     @Override
     protected BudgetLineFrequency getBudgetLineFrequency(double budget) {

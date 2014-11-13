@@ -1,14 +1,14 @@
 /**
  * Created by dino on 07/11/14.
  */
-public class AddBudgetLineRequest extends Request {
+public class BudgetLineDTO {
     private Integer categoryId;
     private String budgetLineName;
     private double budget;
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer id;
 
-    private AddBudgetLineRequest(Builder builder) {
+    private BudgetLineDTO(Builder builder) {
         this.categoryId = builder.categoryId;
         this.budgetLineName = builder.budgetLineName;
         this.budget = builder.budget;
@@ -68,8 +68,8 @@ public class AddBudgetLineRequest extends Request {
             return this;
         }
 
-        public AddBudgetLineRequest build() {
-            return new AddBudgetLineRequest(this);
+        public BudgetLineDTO build() {
+            return new BudgetLineDTO(this);
         }
 
 

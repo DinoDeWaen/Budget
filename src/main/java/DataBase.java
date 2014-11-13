@@ -4,8 +4,8 @@ import java.util.Map;
 /**
  * Created by dino on 07/11/14.
  */
-public class BudgetDataBase {
-    public static BudgetDataBase budgetDataBase = new BudgetDataBase();
+public class DataBase {
+    public static DataBase dataBase = new DataBase();
 
     private Map<Integer, BudgetLine> budgetLines = new HashMap<Integer, BudgetLine>();
     private Map<Integer, Category> categories = new HashMap<Integer, Category>();
