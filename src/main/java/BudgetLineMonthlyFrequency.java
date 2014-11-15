@@ -10,4 +10,9 @@ public class BudgetLineMonthlyFrequency extends BudgetLineFrequency {
     public double getMonthlyBudget() {
         return budget;
     }
+
+    @Override
+    public double getYearlyBudget() {
+        return budget * 12;
+    }
 }

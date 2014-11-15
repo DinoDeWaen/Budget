@@ -50,6 +50,7 @@ public class AddBudgetLineTest {
             BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
             assertThat(frequency, instanceOf(BudgetLineMonthlyFrequency.class));
             assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
+            assertEquals(budget * 12,  frequency.getYearlyBudget(), ACCURACY);
         }
 
     }
@@ -72,6 +73,7 @@ public class AddBudgetLineTest {
             BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
             assertThat(frequency, instanceOf(BudgetLineYearlyFrequency.class));
             assertEquals(budget / 12, frequency.getMonthlyBudget(), ACCURACY);
+            assertEquals(budget,  frequency.getYearlyBudget(), ACCURACY);
         }
 
     }

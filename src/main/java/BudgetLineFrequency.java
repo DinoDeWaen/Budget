@@ -8,4 +8,5 @@ public abstract class BudgetLineFrequency {
         this.budget = budget;
     }
     public abstract double getMonthlyBudget();
+    public abstract double getYearlyBudget();
 }
