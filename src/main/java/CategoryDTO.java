@@ -2,6 +2,7 @@
  * Created by dino on 11/11/14.
  */
 public class CategoryDTO {
+    //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer categoryId;
     private String categoryName;
 

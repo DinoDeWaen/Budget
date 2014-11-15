@@ -41,7 +41,7 @@ public class BudgetLine {
 
     public static final class Builder {
         private Integer id;
-        private Category category;
+        private Category category = Category.emptyCategory;
         private String budgetLineName;
         private BudgetLineFrequency BudgetLineFrequency;
 
@@ -54,7 +54,9 @@ public class BudgetLine {
         }
 
         public Builder withCategory(Category category) {
-            this.category = category;
+            if (category != null) {
+                this.category = category;
+            }
             return this;
         }
 

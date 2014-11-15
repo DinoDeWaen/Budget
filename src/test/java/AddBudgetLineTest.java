@@ -4,8 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /**
  * Created by dino on 07/11/14.
@@ -45,13 +44,32 @@ public class AddBudgetLineTest {
             addBudgetLine();
 
             BudgetLine budgetLine = loadBudgetLine();
-            validateBudgetContent(budgetLine);
 
-            BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
-            assertThat(frequency, instanceOf(BudgetLineMonthlyFrequency.class));
-            assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
-            assertEquals(budget * 12,  frequency.getYearlyBudget(), ACCURACY);
+            validateMonthlyBudgetLine(budgetLine);
+
+            validateCategoryContent(budgetLine);
         }
+
+        @Test
+        public void addedBudgetLineWithoutCategory_canBeRetrieved() {
+            addBudgetLineWithoutCategory();
+
+            BudgetLine budgetLine = loadBudgetLine();
+
+            validateMonthlyBudgetLine(budgetLine);
+
+            validateEmptyCategoryContent(budgetLine);
+        }
+    }
+
+    private void validateMonthlyBudgetLine(BudgetLine budgetLine) {
+
+        validateBudgetContent(budgetLine);
+
+        BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
+        assertThat(frequency, instanceOf(BudgetLineMonthlyFrequency.class));
+        assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
+        assertEquals(budget * 12,  frequency.getYearlyBudget(), ACCURACY);
     }
 
     public class YearlyBudgetContext {
@@ -67,6 +85,25 @@ public class AddBudgetLineTest {
             addBudgetLine();
 
             BudgetLine budgetLine = loadBudgetLine();
+
+            validateYearlyBudgetLine(budgetLine);
+
+            validateCategoryContent(budgetLine);
+        }
+
+        @Test
+        public void addedBudgetLineWithoutCategory_canBeRetrieved() {
+
+            addBudgetLineWithoutCategory();
+
+            BudgetLine budgetLine = loadBudgetLine();
+
+            validateYearlyBudgetLine(budgetLine);
+
+            validateEmptyCategoryContent(budgetLine);
+        }
+
+        private void validateYearlyBudgetLine(BudgetLine budgetLine) {
             validateBudgetContent(budgetLine);
 
             BudgetLineFrequency frequency = budgetLine.getBudgetLineFrequency();
@@ -76,22 +113,15 @@ public class AddBudgetLineTest {
         }
 
     }
-
-    private void validateBudgetContent(BudgetLine budgetLine) {
-        assertEquals(categoryId, budgetLine.getCategory().getId());
-        assertEquals(categoryName, budgetLine.getCategory().getCategoryName());
-        assertEquals(budgetLineName, budgetLine.getBudgetLineName());
-    }
-
-    private BudgetLine loadBudgetLine() {
-        return BudgetDataBase.budgetDataBase.getBudgetLine(id);
-    }
-
     private void addBudgetLine() {
         BudgetLineDTO budgetLineDTO = buildBudgetLineDTO();
         addBudgetLineTransaction.add(budgetLineDTO);
     }
 
+    private void addBudgetLineWithoutCategory() {
+        BudgetLineDTO budgetLineDTO = buildBudgetLineWithoutCategoryDTO();
+        addBudgetLineTransaction.add(budgetLineDTO);
+    }
 
     private BudgetLineDTO buildBudgetLineDTO() {
         return BudgetLineDTO.newBuilder()
@@ -100,5 +130,35 @@ public class AddBudgetLineTest {
                 .withBudget(budget)
                 .withBudgetLineName(budgetLineName)
                 .build();
+    }
+
+    private BudgetLineDTO buildBudgetLineWithoutCategoryDTO() {
+        return BudgetLineDTO.newBuilder()
+                .withId(id)
+                .withBudget(budget)
+                .withBudgetLineName(budgetLineName)
+                .build();
+    }
+
+    private BudgetLine loadBudgetLine() {
+        return BudgetDataBase.budgetDataBase.getBudgetLine(id);
+    }
+
+    private void validateBudgetContent(BudgetLine budgetLine) {
+        assertEquals(budgetLineName, budgetLine.getBudgetLineName());
+    }
+
+    private void validateCategoryContent(BudgetLine budgetLine) {
+        assertNotNull("category is null",budgetLine.getCategory());
+
+        assertEquals(categoryId, budgetLine.getCategory().getId());
+        assertEquals(categoryName, budgetLine.getCategory().getCategoryName());
+    }
+
+    private void validateEmptyCategoryContent(BudgetLine budgetLine) {
+        assertNotNull("category is null",budgetLine.getCategory());
+
+        assertEquals(Category.emptyCategory.getId(),budgetLine.getCategory().getId());
+        assertEquals(Category.emptyCategory.getCategoryName(),budgetLine.getCategory().getCategoryName() );
     }
 }

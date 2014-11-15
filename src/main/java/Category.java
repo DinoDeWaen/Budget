@@ -5,6 +5,8 @@ public class Category {
     private Integer id;
     private String categoryName;
 
+    public static final Category emptyCategory = Category.newBuilder().withCategoryName("Not assigned").withCategoryId(1).build();
+
     private Category(Builder builder) {
         this.id = builder.categoryId;
         this.categoryName = builder.categoryName;
