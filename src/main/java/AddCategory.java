@@ -10,7 +10,6 @@ public class AddCategory implements CategoryTransactions {
 
     private Category buildCategory(CategoryDTO categoryDTO) {
         return Category.newBuilder()
-               .withCategoryId(categoryDTO.getId())
                .withCategoryName(categoryDTO.getName())
                .build();
     }

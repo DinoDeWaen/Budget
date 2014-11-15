@@ -14,7 +14,6 @@ import static org.junit.Assert.*;
 public class AddBudgetTest {
 
     private static final double ACCURACY = 0.00001;
-    private static final Integer id = 1;
     private static final String name = "BudgetLineName";
     private static final double amount = 2000;
 
@@ -126,7 +125,6 @@ public class AddBudgetTest {
 
     private BudgetDTO buildBudgetLineDTO() {
         return BudgetDTO.newBuilder()
-                .withId(id)
                 .withCategory(category)
                 .withAmount(amount)
                 .withName(name)
@@ -135,14 +133,13 @@ public class AddBudgetTest {
 
     private BudgetDTO buildBudgetLineWithoutCategoryDTO() {
         return BudgetDTO.newBuilder()
-                .withId(id)
                 .withAmount(amount)
                 .withName(name)
                 .build();
     }
 
     private Budget loadBudget() {
-        return BudgetDataBase.budgetDataBase.getBudget(id);
+        return BudgetDataBase.budgetDataBase.getBudget(name);
     }
 
     private void validateBudgetContent(Budget budget) {

@@ -14,7 +14,6 @@ public class AddCategoryTest {
     private CategoryTransactions categoryTransactions;
     private CategoryDTO categoryDTO;
 
-    private static final Integer id = 1;
     private static final String CategoryName = "CategoryName";
 
     @Before
@@ -32,12 +31,11 @@ public class AddCategoryTest {
     }
 
     private void validateCategory(Category category) {
-        assertEquals(id, category.getId());
         assertEquals(CategoryName, category.getName());
     }
 
     private Category loadCategory() {
-        return BudgetDataBase.budgetDataBase.getCategory(id);
+        return BudgetDataBase.budgetDataBase.getCategory(CategoryName);
     }
 
     private void addCategory() {
@@ -47,7 +45,6 @@ public class AddCategoryTest {
 
     private CategoryDTO buildCategoryDTO() {
         return  CategoryDTO.newBuilder()
-                 .withCategoryId(id)
                  .withCategoryName(CategoryName)
                  .build();
     }

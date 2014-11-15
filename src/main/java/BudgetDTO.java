@@ -5,14 +5,11 @@ public class BudgetDTO {
     private Category category;
     private String name;
     private double amount;
-    //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
-    private Integer id;
 
     private BudgetDTO(Builder builder) {
         this.category = builder.category;
         this.name = builder.name;
         this.amount = builder.amount;
-        this.id = builder.id;
     }
 
     public static Builder newBuilder() {
@@ -34,16 +31,10 @@ public class BudgetDTO {
     }
 
 
-    public Integer getId() {
-        return id;
-    }
-
-
     public static final class Builder {
         private Category category;
         private String name;
         private double amount;
-        private Integer id;
 
         private Builder() {
         }
@@ -60,11 +51,6 @@ public class BudgetDTO {
 
         public Builder withAmount(double amount) {
             this.amount = amount;
-            return this;
-        }
-
-        public Builder withId(Integer id) {
-            this.id = id;
             return this;
         }
 

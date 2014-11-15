@@ -13,7 +13,6 @@ public abstract class AddBudget implements BudgetTransactions {
     private Budget buildBudget(BudgetDTO budgetDTO) {
         final Frequency frequencyBL = getBudgetLineFrequency(budgetDTO.getAmount());
         return Budget.newBuilder()
-                .withId(budgetDTO.getId())
                 .withName(budgetDTO.getName())
                 .withCategory(budgetDTO.getCategory())
                 .withFrequency(frequencyBL)
