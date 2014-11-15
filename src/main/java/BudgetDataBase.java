@@ -4,13 +4,13 @@ import java.util.Map;
 /**
  * Created by dino on 07/11/14.
  */
-public class DataBase {
-    public static DataBase dataBase = new DataBase();
+public class BudgetDataBase {
+    public static BudgetDataBase budgetDataBase = new BudgetDataBase();
 
     private Map<Integer, BudgetLine> budgetLines = new HashMap<Integer, BudgetLine>();
-    private Map<Integer, Category> categories = new HashMap<Integer, Category>();
+    private Map<Integer, Category> categories = new HashMap<Integer, Category >();
 
-    public void addBudgetLine (BudgetLine budgetLine){
+    public void addBudgetLine(BudgetLine budgetLine){
         budgetLines.put(budgetLine.getId(), budgetLine);
     }
 

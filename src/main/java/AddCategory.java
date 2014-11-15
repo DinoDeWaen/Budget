@@ -5,7 +5,7 @@ public class AddCategory implements CategoryTransactions {
     @Override
     public void add(CategoryDTO categoryDTO) {
         final Category category = buildCategory(categoryDTO);
-        DataBase.dataBase.addCategory(category);
+        BudgetDataBase.budgetDataBase.addCategory(category);
     }
 
     private Category buildCategory(CategoryDTO categoryDTO) {

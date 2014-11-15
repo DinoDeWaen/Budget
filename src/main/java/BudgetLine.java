@@ -3,13 +3,13 @@
  */
 public class BudgetLine {
     private Integer id;
-    private Integer categoryId;
+    private Category category;
     private String budgetLineName;
     private BudgetLineFrequency budgetLineFrequency;
 
     private BudgetLine(Builder builder) {
         this.id = builder.id;
-        this.categoryId = builder.categoryId;
+        this.category = builder.category;
         this.budgetLineName = builder.budgetLineName;
         this.budgetLineFrequency = builder.BudgetLineFrequency;
     }
@@ -29,8 +29,8 @@ public class BudgetLine {
     }
 
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
 
@@ -41,7 +41,7 @@ public class BudgetLine {
 
     public static final class Builder {
         private Integer id;
-        private Integer categoryId;
+        private Category category;
         private String budgetLineName;
         private BudgetLineFrequency BudgetLineFrequency;
 
@@ -53,8 +53,8 @@ public class BudgetLine {
             return this;
         }
 
-        public Builder withCategoryId(Integer categoryId) {
-            this.categoryId = categoryId;
+        public Builder withCategory(Category category) {
+            this.category = category;
             return this;
         }
 

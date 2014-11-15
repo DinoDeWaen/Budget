@@ -7,8 +7,7 @@ public abstract class AddBudgetLine implements BudgetLineTransactions {
 
     public void add(BudgetLineDTO budgetLineDTO) {
         final BudgetLine budgetLine = buildBudgetLine(budgetLineDTO);
-        Category category = DataBase.dataBase.getCategory(budgetLineDTO.getCategoryId());
-        category.addBudgetLine(budgetLine);
+        BudgetDataBase.budgetDataBase.addBudgetLine(budgetLine);
     }
 
     private BudgetLine buildBudgetLine(BudgetLineDTO budgetLineDTO) {
@@ -16,7 +15,7 @@ public abstract class AddBudgetLine implements BudgetLineTransactions {
         return BudgetLine.newBuilder()
                 .withId(budgetLineDTO.getId())
                 .withBudgetLineName(budgetLineDTO.getBudgetLineName())
-                .withCategoryId(budgetLineDTO.getCategoryId())
+                .withCategory(budgetLineDTO.getCategory())
                 .withBudgetLineFrequency(frequencyBL)
                 .build();
     }

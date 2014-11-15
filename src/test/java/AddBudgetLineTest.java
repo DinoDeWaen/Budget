@@ -21,22 +21,22 @@ public class AddBudgetLineTest {
     private static final Integer categoryId = 3;
     private static final String categoryName = "CategoryName";
 
-    private CategoryTransactions addCategoryTransaction;
-    private CategoryDTO categoryDTO;
+    private Category category;
 
     private BudgetLineTransactions addBudgetLineTransaction;
 
     @Before
     public void setUp() throws Exception {
-        addCategoryTransaction = new AddCategory();
-        addCategory();
+        category = Category.newBuilder()
+                           .withCategoryName(categoryName)
+                           .withCategoryId(categoryId)
+                           .build();
     }
 
     public class MonthlyBudgetContext {
 
         @Before
         public void setUp() throws Exception {
-            addCategoryTransaction = new AddCategory();
             addBudgetLineTransaction = new AddMonthlyBudgetLine();
         }
 
@@ -52,7 +52,6 @@ public class AddBudgetLineTest {
             assertEquals(budget, frequency.getMonthlyBudget(), ACCURACY);
             assertEquals(budget * 12,  frequency.getYearlyBudget(), ACCURACY);
         }
-
     }
 
     public class YearlyBudgetContext {
@@ -78,26 +77,14 @@ public class AddBudgetLineTest {
 
     }
 
-    private void addCategory() {
-        categoryDTO = buildCategoryDTO();
-        addCategoryTransaction.add(categoryDTO);
-    }
-
-    private CategoryDTO buildCategoryDTO() {
-        return  CategoryDTO.newBuilder()
-                .withCategoryId(categoryId)
-                .withCategoryName(categoryName)
-                .build();
-    }
-
     private void validateBudgetContent(BudgetLine budgetLine) {
-        assertEquals(categoryId, budgetLine.getCategoryId());
+        assertEquals(categoryId, budgetLine.getCategory().getId());
+        assertEquals(categoryName, budgetLine.getCategory().getCategoryName());
         assertEquals(budgetLineName, budgetLine.getBudgetLineName());
     }
 
     private BudgetLine loadBudgetLine() {
-        Category category = DataBase.dataBase.getCategory(categoryId);
-        return category.getBudgetLine(id);
+        return BudgetDataBase.budgetDataBase.getBudgetLine(id);
     }
 
     private void addBudgetLine() {
@@ -109,7 +96,7 @@ public class AddBudgetLineTest {
     private BudgetLineDTO buildBudgetLineDTO() {
         return BudgetLineDTO.newBuilder()
                 .withId(id)
-                .withCategoryId(categoryId)
+                .withCategory(category)
                 .withBudget(budget)
                 .withBudgetLineName(budgetLineName)
                 .build();

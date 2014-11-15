@@ -37,7 +37,7 @@ public class AddCategoryTest {
     }
 
     private Category loadCategory() {
-        return DataBase.dataBase.getCategory(id);
+        return BudgetDataBase.budgetDataBase.getCategory(id);
     }
 
     private void addCategory() {

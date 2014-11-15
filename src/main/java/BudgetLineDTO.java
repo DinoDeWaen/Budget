@@ -2,14 +2,14 @@
  * Created by dino on 07/11/14.
  */
 public class BudgetLineDTO {
-    private Integer categoryId;
+    private Category category;
     private String budgetLineName;
     private double budget;
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer id;
 
     private BudgetLineDTO(Builder builder) {
-        this.categoryId = builder.categoryId;
+        this.category = builder.category;
         this.budgetLineName = builder.budgetLineName;
         this.budget = builder.budget;
         this.id = builder.id;
@@ -19,8 +19,8 @@ public class BudgetLineDTO {
         return new Builder();
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
 
@@ -40,7 +40,7 @@ public class BudgetLineDTO {
 
 
     public static final class Builder {
-        private Integer categoryId;
+        private Category category;
         private String budgetLineName;
         private double budget;
         private Integer id;
@@ -48,8 +48,8 @@ public class BudgetLineDTO {
         private Builder() {
         }
 
-        public Builder withCategoryId(Integer categoryId) {
-            this.categoryId = categoryId;
+        public Builder withCategory(Category category) {
+            this.category = category;
             return this;
         }
 
