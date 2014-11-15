@@ -3,15 +3,15 @@
  */
 public class AddCategory implements CategoryTransactions {
     @Override
-    public void add(CategoryDTO categoryDTO) {
+    public void addCategory(CategoryDTO categoryDTO) {
         final Category category = buildCategory(categoryDTO);
         BudgetDataBase.budgetDataBase.addCategory(category);
     }
 
     private Category buildCategory(CategoryDTO categoryDTO) {
         return Category.newBuilder()
-               .withCategoryId(categoryDTO.getCategoryId())
-               .withCategoryName(categoryDTO.getCategoryName())
+               .withCategoryId(categoryDTO.getId())
+               .withCategoryName(categoryDTO.getName())
                .build();
     }
 }

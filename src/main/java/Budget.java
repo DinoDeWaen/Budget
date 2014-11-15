@@ -1,17 +1,17 @@
 /**
  * Created by dino on 07/11/14.
  */
-public class BudgetLine {
+public class Budget {
     private Integer id;
     private Category category;
-    private String budgetLineName;
-    private BudgetLineFrequency budgetLineFrequency;
+    private String name;
+    private Frequency frequency;
 
-    private BudgetLine(Builder builder) {
+    private Budget(Builder builder) {
         this.id = builder.id;
         this.category = builder.category;
-        this.budgetLineName = builder.budgetLineName;
-        this.budgetLineFrequency = builder.BudgetLineFrequency;
+        this.name = builder.name;
+        this.frequency = builder.Frequency;
     }
 
     public static Builder newBuilder() {
@@ -19,8 +19,8 @@ public class BudgetLine {
     }
 
 
-    public BudgetLineFrequency getBudgetLineFrequency() {
-        return budgetLineFrequency;
+    public Frequency getFrequency() {
+        return frequency;
     }
 
 
@@ -34,16 +34,16 @@ public class BudgetLine {
     }
 
 
-    public String getBudgetLineName() {
-        return budgetLineName;
+    public String getName() {
+        return name;
     }
 
 
     public static final class Builder {
         private Integer id;
         private Category category = Category.emptyCategory;
-        private String budgetLineName;
-        private BudgetLineFrequency BudgetLineFrequency;
+        private String name;
+        private Frequency Frequency;
 
         private Builder() {
         }
@@ -60,18 +60,18 @@ public class BudgetLine {
             return this;
         }
 
-        public Builder withBudgetLineName(String budgetLineName) {
-            this.budgetLineName = budgetLineName;
+        public Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public Builder withBudgetLineFrequency(BudgetLineFrequency BudgetLineFrequency) {
-            this.BudgetLineFrequency = BudgetLineFrequency;
+        public Builder withFrequency(Frequency Frequency) {
+            this.Frequency = Frequency;
             return this;
         }
 
-        public BudgetLine build() {
-            return new BudgetLine(this);
+        public Budget build() {
+            return new Budget(this);
         }
     }
 }

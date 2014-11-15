@@ -1,17 +1,17 @@
 /**
  * Created by dino on 07/11/14.
  */
-public class BudgetLineDTO {
+public class BudgetDTO {
     private Category category;
-    private String budgetLineName;
-    private double budget;
+    private String name;
+    private double amount;
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
     private Integer id;
 
-    private BudgetLineDTO(Builder builder) {
+    private BudgetDTO(Builder builder) {
         this.category = builder.category;
-        this.budgetLineName = builder.budgetLineName;
-        this.budget = builder.budget;
+        this.name = builder.name;
+        this.amount = builder.amount;
         this.id = builder.id;
     }
 
@@ -24,13 +24,13 @@ public class BudgetLineDTO {
     }
 
 
-    public String getBudgetLineName() {
-        return budgetLineName;
+    public String getName() {
+        return name;
     }
 
 
-    public double getBudget() {
-        return budget;
+    public double getAmount() {
+        return amount;
     }
 
 
@@ -41,8 +41,8 @@ public class BudgetLineDTO {
 
     public static final class Builder {
         private Category category;
-        private String budgetLineName;
-        private double budget;
+        private String name;
+        private double amount;
         private Integer id;
 
         private Builder() {
@@ -53,13 +53,13 @@ public class BudgetLineDTO {
             return this;
         }
 
-        public Builder withBudgetLineName(String budgetLineName) {
-            this.budgetLineName = budgetLineName;
+        public Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public Builder withBudget(double budget) {
-            this.budget = budget;
+        public Builder withAmount(double amount) {
+            this.amount = amount;
             return this;
         }
 
@@ -68,8 +68,8 @@ public class BudgetLineDTO {
             return this;
         }
 
-        public BudgetLineDTO build() {
-            return new BudgetLineDTO(this);
+        public BudgetDTO build() {
+            return new BudgetDTO(this);
         }
 
 

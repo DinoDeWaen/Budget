@@ -3,48 +3,48 @@
  */
 public class CategoryDTO {
     //TODO Je Id meegeven vanit je request is wel erg raar/gevaarlijk
-    private Integer categoryId;
-    private String categoryName;
+    private Integer id;
+    private String name;
 
     private CategoryDTO(Builder builder) {
-        setCategoryId(builder.categoryId);
-        setCategoryName(builder.categoryName);
+        setId(builder.id);
+        setName(builder.name);
     }
 
     public static Builder newBuilder() {
         return new Builder();
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public static final class Builder {
-        private Integer categoryId;
-        private String categoryName;
+        private Integer id;
+        private String name;
 
         private Builder() {
         }
 
-        public Builder withCategoryId(Integer categoryId) {
-            this.categoryId = categoryId;
+        public Builder withCategoryId(Integer id) {
+            this.id = id;
             return this;
         }
 
-        public Builder withCategoryName(String categoryName) {
-            this.categoryName = categoryName;
+        public Builder withCategoryName(String name) {
+            this.name = name;
             return this;
         }
 

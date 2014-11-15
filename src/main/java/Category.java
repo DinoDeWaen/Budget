@@ -3,21 +3,21 @@
  */
 public class Category {
     private Integer id;
-    private String categoryName;
+    private String name;
 
     public static final Category emptyCategory = Category.newBuilder().withCategoryName("Not assigned").withCategoryId(1).build();
 
     private Category(Builder builder) {
-        this.id = builder.categoryId;
-        this.categoryName = builder.categoryName;
+        this.id = builder.id;
+        this.name = builder.name;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
     public static Builder newBuilder() {
@@ -25,19 +25,19 @@ public class Category {
     }
 
     public static final class Builder {
-        private Integer categoryId;
-        private String categoryName;
+        private Integer id;
+        private String name;
 
         private Builder() {
         }
 
-        public Builder withCategoryId(Integer categoryId) {
-            this.categoryId = categoryId;
+        public Builder withCategoryId(Integer id) {
+            this.id = id;
             return this;
         }
 
-        public Builder withCategoryName(String categoryName) {
-            this.categoryName = categoryName;
+        public Builder withCategoryName(String name) {
+            this.name = name;
             return this;
         }
 

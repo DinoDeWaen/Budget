@@ -33,7 +33,7 @@ public class AddCategoryTest {
 
     private void validateCategory(Category category) {
         assertEquals(id, category.getId());
-        assertEquals(CategoryName, category.getCategoryName());
+        assertEquals(CategoryName, category.getName());
     }
 
     private Category loadCategory() {
@@ -42,7 +42,7 @@ public class AddCategoryTest {
 
     private void addCategory() {
         categoryDTO = buildCategoryDTO();
-        categoryTransactions.add(categoryDTO);
+        categoryTransactions.addCategory(categoryDTO);
     }
 
     private CategoryDTO buildCategoryDTO() {
