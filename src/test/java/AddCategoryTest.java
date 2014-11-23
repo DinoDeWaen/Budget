@@ -1,15 +1,11 @@
-import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 /**
  * Created by dino on 11/11/14.
  */
-@RunWith(HierarchicalContextRunner.class)
 public class AddCategoryTest {
     private CategoryTransactions categoryTransactions;
     private CategoryDTO categoryDTO;
@@ -22,7 +18,7 @@ public class AddCategoryTest {
     }
 
     @Test
-    public void TestCategoryBuilderAndFactory(){
+    public void testCategoryBuilderAndFactory() {
         addCategory();
 
         Category category = loadCategory();
@@ -44,9 +40,9 @@ public class AddCategoryTest {
     }
 
     private CategoryDTO buildCategoryDTO() {
-        return  CategoryDTO.newBuilder()
-                 .withCategoryName(CategoryName)
-                 .build();
+        return CategoryDTO.newBuilder()
+                .withCategoryName(CategoryName)
+                .build();
     }
 
 }

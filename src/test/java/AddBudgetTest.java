@@ -24,12 +24,11 @@ public class AddBudgetTest {
 
     private BudgetTransactions addBudgetTransaction;
 
-    @Before
-    public void setUp() throws Exception {
+    public  AddBudgetTest() {
         category = Category.newBuilder()
-                           .withCategoryName(categoryName)
-                           .withCategoryId(categoryId)
-                           .build();
+                .withCategoryName(categoryName)
+                .withCategoryId(categoryId)
+                .build();
     }
 
     public class MonthlyBudgetContext {
@@ -60,17 +59,19 @@ public class AddBudgetTest {
 
             validateEmptyCategoryContent(budget);
         }
+
+        private void validateMonthlyBudgetLine(Budget budget) {
+
+            validateBudgetContent(budget);
+
+            Frequency frequency = budget.getFrequency();
+            assertThat(frequency, instanceOf(MonthlyFrequency.class));
+            Assert.assertEquals(amount, frequency.getMonthlyAmount(), ACCURACY);
+            Assert.assertEquals(amount * 12, frequency.getYearlyAmount(), ACCURACY);
+        }
+
     }
 
-    private void validateMonthlyBudgetLine(Budget budget) {
-
-        validateBudgetContent(budget);
-
-        Frequency frequency = budget.getFrequency();
-        assertThat(frequency, instanceOf(MonthlyFrequency.class));
-        Assert.assertEquals(amount, frequency.getMonthlyAmount(), ACCURACY);
-        Assert.assertEquals(amount * 12, frequency.getYearlyAmount(), ACCURACY);
-    }
 
     public class YearlyBudgetContext {
 
@@ -108,11 +109,12 @@ public class AddBudgetTest {
 
             Frequency frequency = budget.getFrequency();
             assertThat(frequency, instanceOf(YearlyFrequency.class));
-            Assert.assertEquals(amount/ 12, frequency.getMonthlyAmount(), ACCURACY);
+            Assert.assertEquals(amount / 12, frequency.getMonthlyAmount(), ACCURACY);
             Assert.assertEquals(amount, frequency.getYearlyAmount(), ACCURACY);
         }
 
     }
+
     private void addBudgetLine() {
         BudgetDTO budgetDTO = buildBudgetLineDTO();
         addBudgetTransaction.addBudget(budgetDTO);
@@ -157,6 +159,6 @@ public class AddBudgetTest {
         assertNotNull("category is null", budget.getCategory());
 
         assertEquals(Category.emptyCategory.getId(), budget.getCategory().getId());
-        assertEquals(Category.emptyCategory.getName(), budget.getCategory().getName() );
+        assertEquals(Category.emptyCategory.getName(), budget.getCategory().getName());
     }
 }
