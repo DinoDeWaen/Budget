@@ -1,4 +1,5 @@
 package budget;
+import category.Category;
 import frequency.Frequency;
 import util.BudgetDataBase;
 
@@ -7,7 +8,7 @@ import util.BudgetDataBase;
  */
 public abstract class AddBudgetService implements BudgetServices {
 
-    protected abstract Frequency getBudgetLineFrequency(double budget);
+    protected abstract Frequency getBudgetLineFrequency();
 
     public Integer addBudget(BudgetDTO budgetDTO) {
         final Budget budget = buildBudget(budgetDTO);
@@ -15,10 +16,12 @@ public abstract class AddBudgetService implements BudgetServices {
     }
 
     private Budget buildBudget(BudgetDTO budgetDTO) {
-        final Frequency frequencyBL = getBudgetLineFrequency(budgetDTO.getAmount());
+        final Frequency frequencyBL = getBudgetLineFrequency();
+        final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
         return Budget.newBuilder()
+        		.withbudgetAmount(budgetDTO.getAmount())
                 .withName(budgetDTO.getName())
-                .withCategory(budgetDTO.getCategory())
+                .withCategory(category)
                 .withFrequency(frequencyBL)
                 .build();
     }

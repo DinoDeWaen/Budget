@@ -28,7 +28,7 @@ public class AddBudgetTest {
     private static final String name = "BudgetLineName";
     private static final double amount = 2000;
 
-    private static final Integer categoryId = 3;
+    private static Integer categoryId;
     private static final String categoryName = "CategoryName";
 
     private Category category;
@@ -38,8 +38,8 @@ public class AddBudgetTest {
     public  AddBudgetTest() {
         category = Category.newBuilder()
                 .withCategoryName(categoryName)
-                .withCategoryId(categoryId)
                 .build();
+        categoryId = BudgetDataBase.budgetDataBase.addCategory(category);
     }
 
     public class MonthlyBudgetContext {
@@ -77,8 +77,8 @@ public class AddBudgetTest {
 
             Frequency frequency = budget.getFrequency();
             assertThat(frequency, instanceOf(MonthlyFrequency.class));
-            Assert.assertEquals(amount, frequency.getMonthlyAmount(), ACCURACY);
-            Assert.assertEquals(amount * 12, frequency.getYearlyAmount(), ACCURACY);
+            Assert.assertEquals(amount, budget.getMonthlyBudgetAmount(), ACCURACY);
+            Assert.assertEquals(amount * 12, budget.getYearlyBudgetAmount(), ACCURACY);
         }
 
     }
@@ -120,8 +120,8 @@ public class AddBudgetTest {
 
             Frequency frequency = budget.getFrequency();
             assertThat(frequency, instanceOf(YearlyFrequency.class));
-            Assert.assertEquals(amount / 12, frequency.getMonthlyAmount(), ACCURACY);
-            Assert.assertEquals(amount, frequency.getYearlyAmount(), ACCURACY);
+            Assert.assertEquals(amount / 12, budget.getMonthlyBudgetAmount(), ACCURACY);
+            Assert.assertEquals(amount, budget.getYearlyBudgetAmount(), ACCURACY);
         }
 
     }
@@ -138,7 +138,7 @@ public class AddBudgetTest {
 
     private BudgetDTO buildBudgetLineDTO() {
         return BudgetDTO.newBuilder()
-                .withCategory(category)
+                .withCategory(categoryId)
                 .withAmount(amount)
                 .withName(name)
                 .build();
@@ -162,14 +162,12 @@ public class AddBudgetTest {
     private void validateCategoryContent(Budget budget) {
         assertNotNull("category is null", budget.getCategory());
 
-        assertEquals(categoryId, budget.getCategory().getId());
         assertEquals(categoryName, budget.getCategory().getName());
     }
 
     private void validateEmptyCategoryContent(Budget budget) {
         assertNotNull("category is null", budget.getCategory());
 
-        assertEquals(Category.emptyCategory.getId(), budget.getCategory().getId());
         assertEquals(Category.emptyCategory.getName(), budget.getCategory().getName());
     }
 }

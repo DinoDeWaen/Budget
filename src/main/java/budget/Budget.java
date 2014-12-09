@@ -9,15 +9,17 @@ import frequency.Frequency;
  */
 public class Budget {
     private Integer id;
+    private double budgetAmount;    
     private Category category;
     private String name;
     private Frequency frequency;
 
     private Budget(Builder builder) {
         this.id = builder.id;
+        this.budgetAmount = builder.budgetAmount;        
         this.category = builder.category;
         this.name = builder.name;
-        this.frequency = builder.Frequency;
+        this.frequency = builder.frequency;
     }
 
     public static Builder newBuilder() {
@@ -45,11 +47,24 @@ public class Budget {
     }
 
 
-    public static final class Builder {
-        private Integer id;
+    public double getBudgetAmount() {
+		return budgetAmount;
+	}
+    
+    public double getMonthlyBudgetAmount() {
+		return frequency.getMonthlyAmount(budgetAmount);
+	}
+    
+    public double getYearlyBudgetAmount() {
+		return frequency.getYearlyAmount(budgetAmount);
+	}
+
+	public static final class Builder {
+		private Integer id;
+    	private double budgetAmount;
         private Category category = Category.emptyCategory;
         private String name;
-        private Frequency Frequency;
+        private Frequency frequency;
 
         private Builder() {
         }
@@ -58,6 +73,11 @@ public class Budget {
             this.id = id;
             return this;
         }
+       
+        public Builder withbudgetAmount(double budgetAmount) {
+            this.budgetAmount= budgetAmount;
+            return this;
+        }         
 
         public Builder withCategory(Category category) {
             if (category != null) {
@@ -71,10 +91,10 @@ public class Budget {
             return this;
         }
 
-        public Builder withFrequency(Frequency Frequency) {
-            this.Frequency = Frequency;
+        public Builder withFrequency(Frequency frequency) {
+            this.frequency = frequency;
             return this;
-        }
+        }       
 
         public Budget build() {
             return new Budget(this);

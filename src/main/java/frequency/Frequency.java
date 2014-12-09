@@ -3,11 +3,9 @@ package frequency;
  * Created by dino on 08/11/14.
  */
 public abstract class Frequency {
-    protected double amount;
 
-    protected Frequency(double amount) {
-        this.amount = amount;
+    protected Frequency() {
     }
-    public abstract double getMonthlyAmount();
-    public abstract double getYearlyAmount();
+    public abstract double getMonthlyAmount(double amount);
+    public abstract double getYearlyAmount(double amount);
 }

@@ -27,6 +27,7 @@ public class BudgetDataBase {
     }    
 
     public Integer addCategory (Category category){
+    	
         categories.put(++categoryId, category);
         return categoryId;
     }

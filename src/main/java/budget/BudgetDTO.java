@@ -1,16 +1,15 @@
 package budget;
-import category.Category;
 
 /**
  * Created by dino on 07/11/14.
  */
 public class BudgetDTO {
-    private Category category;
+    private Integer categoryId;
     private String name;
     private double amount;
 
     private BudgetDTO(Builder builder) {
-        this.category = builder.category;
+        this.categoryId = builder.categoryId;
         this.name = builder.name;
         this.amount = builder.amount;
     }
@@ -19,8 +18,8 @@ public class BudgetDTO {
         return new Builder();
     }
 
-    public Category getCategory() {
-        return category;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
 
@@ -35,15 +34,15 @@ public class BudgetDTO {
 
 
     public static final class Builder {
-        private Category category;
+        private Integer categoryId;
         private String name;
         private double amount;
 
         private Builder() {
         }
 
-        public Builder withCategory(Category category) {
-            this.category = category;
+        public Builder withCategory(Integer categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
