@@ -51,9 +51,9 @@ public class AddBudgetTest {
 
         @Test
         public void addedBudgetLine_canBeRetrieved() {
-            addBudgetLine();
+            Integer id = addBudgetLine();
 
-            Budget budget = loadBudget();
+            Budget budget = loadBudget(id);
 
             validateMonthlyBudgetLine(budget);
 
@@ -62,9 +62,9 @@ public class AddBudgetTest {
 
         @Test
         public void addedBudgetLineWithoutCategory_canBeRetrieved() {
-            addBudgetLineWithoutCategory();
+            Integer id = addBudgetLineWithoutCategory();
 
-            Budget budget = loadBudget();
+            Budget budget = loadBudget(id);
 
             validateMonthlyBudgetLine(budget);
 
@@ -94,9 +94,9 @@ public class AddBudgetTest {
         @Test
         public void addedBudgetLine_canBeRetrieved() {
 
-            addBudgetLine();
+            Integer id = addBudgetLine();
 
-            Budget budget = loadBudget();
+            Budget budget = loadBudget(id);
 
             validateYearlyBudgetLine(budget);
 
@@ -106,9 +106,9 @@ public class AddBudgetTest {
         @Test
         public void addedBudgetLineWithoutCategory_canBeRetrieved() {
 
-            addBudgetLineWithoutCategory();
+            Integer id = addBudgetLineWithoutCategory();
 
-            Budget budget = loadBudget();
+            Budget budget = loadBudget(id);
 
             validateYearlyBudgetLine(budget);
 
@@ -126,14 +126,14 @@ public class AddBudgetTest {
 
     }
 
-    private void addBudgetLine() {
+    private Integer addBudgetLine() {
         BudgetDTO budgetDTO = buildBudgetLineDTO();
-        addBudgetTransaction.addBudget(budgetDTO);
+        return addBudgetTransaction.addBudget(budgetDTO);
     }
 
-    private void addBudgetLineWithoutCategory() {
+    private Integer addBudgetLineWithoutCategory() {
         BudgetDTO budgetDTO = buildBudgetLineWithoutCategoryDTO();
-        addBudgetTransaction.addBudget(budgetDTO);
+        return addBudgetTransaction.addBudget(budgetDTO);
     }
 
     private BudgetDTO buildBudgetLineDTO() {
@@ -151,8 +151,8 @@ public class AddBudgetTest {
                 .build();
     }
 
-    private Budget loadBudget() {
-        return BudgetDataBase.budgetDataBase.getBudget(name);
+    private Budget loadBudget(Integer id) {
+        return BudgetDataBase.budgetDataBase.getBudget(id);
     }
 
     private void validateBudgetContent(Budget budget) {

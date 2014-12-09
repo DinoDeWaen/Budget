@@ -8,9 +8,9 @@ import util.BudgetDataBase;
  */
 public class AddCategoryService implements CategoryServices {
     @Override
-    public void addCategory(CategoryDTO categoryDTO) {
+    public Integer addCategory(CategoryDTO categoryDTO) {
         final Category category = buildCategory(categoryDTO);
-        BudgetDataBase.budgetDataBase.addCategory(category);
+        return BudgetDataBase.budgetDataBase.addCategory(category);
     }
 
     private Category buildCategory(CategoryDTO categoryDTO) {

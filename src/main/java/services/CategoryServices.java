@@ -6,5 +6,5 @@ import dto.CategoryDTO;
  * Created by dino on 13/11/14.
  */
 public interface CategoryServices {
-    public void addCategory(CategoryDTO categoryDTO);
+    public Integer addCategory(CategoryDTO categoryDTO);
 }

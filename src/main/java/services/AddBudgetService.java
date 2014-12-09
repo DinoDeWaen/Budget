@@ -11,9 +11,9 @@ public abstract class AddBudgetService implements BudgetServices {
 
     protected abstract Frequency getBudgetLineFrequency(double budget);
 
-    public void addBudget(BudgetDTO budgetDTO) {
+    public Integer addBudget(BudgetDTO budgetDTO) {
         final Budget budget = buildBudget(budgetDTO);
-        BudgetDataBase.budgetDataBase.addBudget(budget);
+        return BudgetDataBase.budgetDataBase.addBudget(budget);
     }
 
     private Budget buildBudget(BudgetDTO budgetDTO) {

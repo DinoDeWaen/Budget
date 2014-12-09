@@ -10,22 +10,28 @@ import model.Category;
  */
 public class BudgetDataBase {
     public static BudgetDataBase budgetDataBase = new BudgetDataBase();
+    private static Integer budgetId = 0;
+    private static Integer categoryId = 0;
 
-    private Map<String, Budget> budgets = new HashMap<String, Budget>();
-    private Map<String, Category> categories = new HashMap<String, Category >();
+    private Map<Integer, Budget> budgets = new HashMap<Integer, Budget>();
+    private Map<Integer, Category> categories = new HashMap<Integer, Category >();
 
 
-    public void addBudget(Budget budget){this.budgets.put(budget.getName(), budget);}
+    public Integer addBudget(Budget budget){
+    	this.budgets.put(++budgetId, budget);
+    	return budgetId;
+    	}
 
-    public Budget getBudget(String budgetName){
-        return budgets.get(budgetName);
+    public Budget getBudget(Integer id){
+        return budgets.get(id);
+    }    
+
+    public Integer addCategory (Category category){
+        categories.put(++categoryId, category);
+        return categoryId;
     }
 
-    public void addCategory (Category category){
-        categories.put(category.getName(), category);
-    }
-
-    public Category getCategory (String categoryName){
-        return categories.get(categoryName);
+    public Category getCategory (Integer id){
+        return categories.get(id);
     }
 }

@@ -25,9 +25,9 @@ public class AddCategoryTest {
 
     @Test
     public void testCategoryBuilderAndFactory() {
-        addCategory();
+        Integer id = addCategory();
 
-        Category category = loadCategory();
+        Category category = loadCategory(id);
 
         validateCategory(category);
     }
@@ -36,13 +36,13 @@ public class AddCategoryTest {
         assertEquals(CategoryName, category.getName());
     }
 
-    private Category loadCategory() {
-        return BudgetDataBase.budgetDataBase.getCategory(CategoryName);
+    private Category loadCategory(Integer id) {
+        return BudgetDataBase.budgetDataBase.getCategory(id);
     }
 
-    private void addCategory() {
+    private Integer  addCategory() {
         categoryDTO = buildCategoryDTO();
-        categoryTransactions.addCategory(categoryDTO);
+        return categoryTransactions.addCategory(categoryDTO);
     }
 
     private CategoryDTO buildCategoryDTO() {
