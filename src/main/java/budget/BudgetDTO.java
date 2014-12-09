@@ -1,5 +1,5 @@
-package dto;
-import model.Category;
+package budget;
+import category.Category;
 
 /**
  * Created by dino on 07/11/14.

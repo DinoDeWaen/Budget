@@ -1,5 +1,8 @@
-package model;
+package budget;
 
+
+import category.Category;
+import frequency.Frequency;
 
 /**
  * Created by dino on 07/11/14.

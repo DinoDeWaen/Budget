@@ -1,4 +1,4 @@
-package dto;
+package category;
 /**
  * Created by dino on 11/11/14.
  */

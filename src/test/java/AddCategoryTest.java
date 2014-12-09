@@ -1,11 +1,11 @@
-import model.Category;
+import category.Category;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dto.CategoryDTO;
-import services.AddCategoryService;
-import services.CategoryServices;
+import category.CategoryDTO;
+import category.AddCategoryService;
+import category.CategoryServices;
 import util.BudgetDataBase;
 import static org.junit.Assert.assertEquals;
 

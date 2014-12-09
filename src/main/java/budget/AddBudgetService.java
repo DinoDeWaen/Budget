@@ -1,7 +1,5 @@
-package services;
-import model.Budget;
-import model.Frequency;
-import dto.BudgetDTO;
+package budget;
+import frequency.Frequency;
 import util.BudgetDataBase;
 
 /**

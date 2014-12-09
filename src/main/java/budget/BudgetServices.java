@@ -1,6 +1,6 @@
-package services;
+package budget;
 
-import dto.BudgetDTO;
+import budget.BudgetDTO;
 
 
 /**

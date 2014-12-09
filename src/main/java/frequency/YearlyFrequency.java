@@ -1,4 +1,7 @@
-package model;
+package frequency;
+
+import frequency.Frequency;
+
 /**
  * Created by dino on 08/11/14.
  */

@@ -1,6 +1,6 @@
-package services;
+package category;
 
-import dto.CategoryDTO;
+import category.CategoryDTO;
 
 /**
  * Created by dino on 13/11/14.

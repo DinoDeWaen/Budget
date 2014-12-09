@@ -1,4 +1,4 @@
-package model;
+package frequency;
 /**
  * Created by dino on 08/11/14.
  */

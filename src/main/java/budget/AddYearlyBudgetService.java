@@ -1,7 +1,7 @@
-package services;
+package budget;
 
-import model.Frequency;
-import model.YearlyFrequency;
+import frequency.Frequency;
+import frequency.YearlyFrequency;
 
 
 /**

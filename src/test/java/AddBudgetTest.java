@@ -1,19 +1,19 @@
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import dto.BudgetDTO;
-import model.Budget;
-import model.Category;
-import model.Frequency;
-import model.MonthlyFrequency;
-import model.YearlyFrequency;
+import budget.BudgetDTO;
+import budget.Budget;
+import category.Category;
+import frequency.Frequency;
+import frequency.MonthlyFrequency;
+import frequency.YearlyFrequency;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import services.AddMonthlyBudgetService;
-import services.AddYearlyBudgetService;
-import services.BudgetServices;
+import budget.AddMonthlyBudgetService;
+import budget.AddYearlyBudgetService;
+import budget.BudgetServices;
 import util.BudgetDataBase;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;

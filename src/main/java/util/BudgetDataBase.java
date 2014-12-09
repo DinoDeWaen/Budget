@@ -2,8 +2,8 @@ package util;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.Budget;
-import model.Category;
+import budget.Budget;
+import category.Category;
 
 /**
  * Created by dino on 07/11/14.
