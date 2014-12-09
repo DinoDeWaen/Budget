@@ -1,3 +1,4 @@
+package model;
 /**
  * Created by dino on 11/11/14.
  */

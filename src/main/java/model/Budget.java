@@ -1,3 +1,6 @@
+package model;
+
+
 /**
  * Created by dino on 07/11/14.
  */

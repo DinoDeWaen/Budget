@@ -1,18 +1,19 @@
+package model;
 /**
  * Created by dino on 08/11/14.
  */
-public class YearlyFrequency extends Frequency {
-    public YearlyFrequency(double amount) {
+public class MonthlyFrequency extends Frequency {
+    public MonthlyFrequency(double amount) {
         super(amount);
     }
 
     @Override
     public double getMonthlyAmount() {
-        return amount /12;
+        return amount;
     }
 
     @Override
     public double getYearlyAmount() {
-        return amount;
+        return amount * 12;
     }
 }

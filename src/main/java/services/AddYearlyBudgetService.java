@@ -1,7 +1,13 @@
+package services;
+
+import model.Frequency;
+import model.YearlyFrequency;
+
+
 /**
  * Created by dino on 08/11/14.
  */
-public class AddYearlyBudget extends AddBudget implements BudgetTransactions {
+public class AddYearlyBudgetService extends AddBudgetService implements BudgetServices {
 
     @Override
     protected Frequency getBudgetLineFrequency(double budget) {

@@ -1,3 +1,6 @@
+package dto;
+import model.Category;
+
 /**
  * Created by dino on 07/11/14.
  */

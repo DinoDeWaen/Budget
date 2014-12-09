@@ -1,7 +1,13 @@
+package services;
+import model.Budget;
+import model.Frequency;
+import dto.BudgetDTO;
+import util.BudgetDataBase;
+
 /**
  * Created by dino on 08/11/14.
  */
-public abstract class AddBudget implements BudgetTransactions {
+public abstract class AddBudgetService implements BudgetServices {
 
     protected abstract Frequency getBudgetLineFrequency(double budget);
 
