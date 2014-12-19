@@ -1,4 +1,4 @@
-package model;
+package expense;
 
 /**
  * Created by dino on 15/11/14.

@@ -2,20 +2,15 @@ import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import budget.BudgetDTO;
 import budget.Budget;
 import category.Category;
-import frequency.Frequency;
-import frequency.MonthlyFrequency;
-import frequency.YearlyFrequency;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import budget.AddMonthlyBudgetService;
-import budget.AddYearlyBudgetService;
+import budget.AddBudgetService;
 import budget.BudgetServices;
 import util.BudgetDataBase;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.*;
 
 /**
@@ -27,6 +22,8 @@ public class AddBudgetTest {
     private static final double ACCURACY = 0.00001;
     private static final String name = "BudgetLineName";
     private static final double amount = 2000;
+    private static Integer paymentFrequency;   
+    
 
     private static Integer categoryId;
     private static final String categoryName = "CategoryName";
@@ -46,7 +43,8 @@ public class AddBudgetTest {
 
         @Before
         public void setUp() throws Exception {
-            addBudgetTransaction = new AddMonthlyBudgetService();
+            addBudgetTransaction = new AddBudgetService();
+        	paymentFrequency = 12;
         }
 
         @Test
@@ -75,8 +73,6 @@ public class AddBudgetTest {
 
             validateBudgetContent(budget);
 
-            Frequency frequency = budget.getFrequency();
-            assertThat(frequency, instanceOf(MonthlyFrequency.class));
             Assert.assertEquals(amount, budget.getMonthlyBudgetAmount(), ACCURACY);
             Assert.assertEquals(amount * 12, budget.getYearlyBudgetAmount(), ACCURACY);
         }
@@ -88,7 +84,8 @@ public class AddBudgetTest {
 
         @Before
         public void setUp() throws Exception {
-            addBudgetTransaction = new AddYearlyBudgetService();
+            addBudgetTransaction = new AddBudgetService();
+        	paymentFrequency = 1;
         }
 
         @Test
@@ -118,8 +115,6 @@ public class AddBudgetTest {
         private void validateYearlyBudgetLine(Budget budget) {
             validateBudgetContent(budget);
 
-            Frequency frequency = budget.getFrequency();
-            assertThat(frequency, instanceOf(YearlyFrequency.class));
             Assert.assertEquals(amount / 12, budget.getMonthlyBudgetAmount(), ACCURACY);
             Assert.assertEquals(amount, budget.getYearlyBudgetAmount(), ACCURACY);
         }
@@ -138,9 +133,10 @@ public class AddBudgetTest {
 
     private BudgetDTO buildBudgetLineDTO() {
         return BudgetDTO.newBuilder()
-                .withCategory(categoryId)
+                .withName(name)        		
                 .withAmount(amount)
-                .withName(name)
+                .withPaymentFrequency(paymentFrequency)
+        		.withCategory(categoryId)
                 .build();
     }
 
@@ -148,6 +144,7 @@ public class AddBudgetTest {
         return BudgetDTO.newBuilder()
                 .withAmount(amount)
                 .withName(name)
+                .withPaymentFrequency(paymentFrequency)
                 .build();
     }
 

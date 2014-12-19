@@ -1,14 +1,11 @@
 package budget;
 import category.Category;
-import frequency.Frequency;
 import util.BudgetDataBase;
 
 /**
  * Created by dino on 08/11/14.
  */
-public abstract class AddBudgetService implements BudgetServices {
-
-    protected abstract Frequency getBudgetLineFrequency();
+public  class AddBudgetService implements BudgetServices {
 
     public Integer addBudget(BudgetDTO budgetDTO) {
         final Budget budget = buildBudget(budgetDTO);
@@ -16,13 +13,15 @@ public abstract class AddBudgetService implements BudgetServices {
     }
 
     private Budget buildBudget(BudgetDTO budgetDTO) {
-        final Frequency frequencyBL = getBudgetLineFrequency();
         final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
         return Budget.newBuilder()
-        		.withbudgetAmount(budgetDTO.getAmount())
-                .withName(budgetDTO.getName())
+                .withName(budgetDTO.getName())        		
+        		.withBudgetAmount(budgetDTO.getAmount())
+        		.withBeginDate(budgetDTO.getBeginDate())
+        		.withEndDate(budgetDTO.getEndDate())
+        		.withDueDate(budgetDTO.getDueDate())        		
+                .withPaymentFrequency(budgetDTO.getPaymentFrequency())                
                 .withCategory(category)
-                .withFrequency(frequencyBL)
                 .build();
     }
 }
