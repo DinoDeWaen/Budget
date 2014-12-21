@@ -1,6 +1,6 @@
 package budget;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
 /**
  * Created by dino on 07/11/14.
@@ -8,9 +8,9 @@ import java.util.Date;
 public class BudgetDTO {
     private String name;
     private double amount;
-    private Date beginDate;
-    private Date endDate;    
-    private Date dueDate;   
+    private DateTime beginDate;
+    private DateTime endDate;    
+    private DateTime dueDate;   
     private Integer paymentFrequency;    
     private Integer categoryId;    
 
@@ -33,13 +33,13 @@ public class BudgetDTO {
     public double getAmount() {
         return amount;
     }
-    public Date getBeginDate() {
+    public DateTime getBeginDate() {
 		return beginDate;
 	}
-    public Date getEndDate() {
+    public DateTime getEndDate() {
 		return endDate;
 	}
-    public Date getDueDate() {
+    public DateTime getDueDate() {
 		return dueDate;
 	}    
     public Integer getPaymentFrequency() {
@@ -52,9 +52,9 @@ public class BudgetDTO {
     public static final class Builder {
         private String name;
         private double amount;
-        private Date beginDate;
-        private Date endDate;    
-        private Date dueDate;   
+        private DateTime beginDate;
+        private DateTime endDate;    
+        private DateTime dueDate;   
         private Integer paymentFrequency;         
         private Integer categoryId;
         
@@ -68,15 +68,15 @@ public class BudgetDTO {
             this.amount = amount;
             return this;
         }
-        public Builder withBeginDate(Date beginDate) {
-            this.beginDate = beginDate;
+        public Builder withBeginDate(DateTime begindate2) {
+            this.beginDate = begindate2;
             return this;
         }
-        public Builder withEndDate(Date endDate) {
+        public Builder withEndDate(DateTime endDate) {
             this.endDate = endDate;
             return this;
         }       
-        public Builder withDueDate(Date dueDate) {
+        public Builder withDueDate(DateTime dueDate) {
             this.dueDate = dueDate;
             return this;
         }       

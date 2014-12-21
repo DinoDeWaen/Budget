@@ -12,6 +12,7 @@ import budget.AddBudgetService;
 import budget.BudgetServices;
 import util.BudgetDataBase;
 import static org.junit.Assert.*;
+import org.joda.time.DateTime;
 
 /**
  * Created by dino on 07/11/14.
@@ -22,6 +23,10 @@ public class AddBudgetTest {
     private static final double ACCURACY = 0.00001;
     private static final String name = "BudgetLineName";
     private static final double amount = 2000;
+    private static final DateTime beginDate = new DateTime(2014, 1, 1, 0, 0);
+    private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
+    private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);    
+    
     private static Integer paymentFrequency;   
     
 
@@ -114,7 +119,6 @@ public class AddBudgetTest {
 
         private void validateYearlyBudgetLine(Budget budget) {
             validateBudgetContent(budget);
-
             Assert.assertEquals(amount / 12, budget.getMonthlyBudgetAmount(), ACCURACY);
             Assert.assertEquals(amount, budget.getYearlyBudgetAmount(), ACCURACY);
         }
@@ -135,6 +139,9 @@ public class AddBudgetTest {
         return BudgetDTO.newBuilder()
                 .withName(name)        		
                 .withAmount(amount)
+        		.withBeginDate(beginDate)
+        		.withEndDate(endDate)
+        		.withDueDate(dueDate)                
                 .withPaymentFrequency(paymentFrequency)
         		.withCategory(categoryId)
                 .build();
@@ -142,6 +149,9 @@ public class AddBudgetTest {
 
     private BudgetDTO buildBudgetLineWithoutCategoryDTO() {
         return BudgetDTO.newBuilder()
+        		.withBeginDate(beginDate)
+        		.withEndDate(endDate)
+        		.withDueDate(dueDate)
                 .withAmount(amount)
                 .withName(name)
                 .withPaymentFrequency(paymentFrequency)
@@ -154,6 +164,10 @@ public class AddBudgetTest {
 
     private void validateBudgetContent(Budget budget) {
         assertEquals(name, budget.getName());
+        assertEquals(beginDate, budget.getBeginDate());
+        assertEquals(endDate, budget.getEndDate());
+        assertEquals(dueDate, budget.getDueDate());
+        Assert.assertEquals(paymentFrequency, budget.getPaymentFrequency());        
     }
 
     private void validateCategoryContent(Budget budget) {

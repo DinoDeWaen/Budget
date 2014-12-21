@@ -1,7 +1,6 @@
 package budget;
 
-
-import java.util.Date;
+import org.joda.time.DateTime;
 
 import category.Category;
 
@@ -12,9 +11,9 @@ public class Budget {
     private Integer id;
     private String name;    
     private double budgetAmount;    
-    private Date beginDate;
-    private Date endDate;    
-    private Date dueDate;    
+    private DateTime beginDate;
+    private DateTime endDate;    
+    private DateTime dueDate;    
     private Integer paymentFrequency;
     private Category category;    
 
@@ -38,13 +37,13 @@ public class Budget {
     public double getBudgetAmount() {
 		return budgetAmount;
 	}    
-    private Date getBeginDate() {
+    public DateTime getBeginDate() {
 		return beginDate;
 	}
-    private Date getEndDate() {
+    public DateTime getEndDate() {
 		return endDate;
 	}
-    private Date getDueDate() {
+    public DateTime getDueDate() {
 		return dueDate;
 	}    
 	public Integer getPaymentFrequency() {
@@ -70,9 +69,9 @@ public class Budget {
 		private Integer id;
         private String name;		
     	private double budgetAmount;
-        private Date beginDate;
-        private Date endDate;
-        private Date dueDate;        
+        private DateTime beginDate;
+        private DateTime endDate;
+        private DateTime dueDate;        
         private Integer paymentFrequency;    	
         private Category category = Category.emptyCategory;
 
@@ -91,15 +90,15 @@ public class Budget {
             this.budgetAmount= budgetAmount;
             return this;
         }         
-        public Builder withBeginDate(Date beginDate) {
+        public Builder withBeginDate(DateTime beginDate) {
             this.beginDate = beginDate;
             return this;
         }
-        public Builder withEndDate(Date endDate) {
+        public Builder withEndDate(DateTime endDate) {
             this.endDate = endDate;
             return this;
         }       
-        public Builder withDueDate(Date dueDate) {
+        public Builder withDueDate(DateTime dueDate) {
             this.dueDate = dueDate;
             return this;
         }       
