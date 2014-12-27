@@ -20,7 +20,7 @@ public  class AddBudgetService implements BudgetServices {
         		.withBeginDate(budgetDTO.getBeginDate())
         		.withEndDate(budgetDTO.getEndDate())
         		.withDueDate(budgetDTO.getDueDate())        		
-                .withPaymentFrequency(budgetDTO.getPaymentFrequency())                
+                .withNumberOfMonthsBetweenDueDates(budgetDTO.getNumberOfMonthsBetweenDueDates())                
                 .withCategory(category)
                 .build();
     }

@@ -11,7 +11,7 @@ public class BudgetDTO {
     private DateTime beginDate;
     private DateTime endDate;    
     private DateTime dueDate;   
-    private Integer paymentFrequency;    
+    private Integer numberOfMonthsBetweenDueDates;    
     private Integer categoryId;    
 
     private BudgetDTO(Builder builder) {
@@ -20,7 +20,7 @@ public class BudgetDTO {
         this.beginDate = builder.beginDate;
         this.endDate = builder.endDate;
         this.dueDate = builder.dueDate;
-        this.paymentFrequency = builder.paymentFrequency;         
+        this.numberOfMonthsBetweenDueDates = builder.numberOfMonthsBetweenDueDates;         
         this.categoryId = builder.categoryId;        
     }
 
@@ -42,8 +42,8 @@ public class BudgetDTO {
     public DateTime getDueDate() {
 		return dueDate;
 	}    
-    public Integer getPaymentFrequency() {
-		return paymentFrequency;
+    public Integer getNumberOfMonthsBetweenDueDates() {
+		return numberOfMonthsBetweenDueDates;
 	}      
     public Integer getCategoryId() {
         return categoryId;
@@ -55,7 +55,7 @@ public class BudgetDTO {
         private DateTime beginDate;
         private DateTime endDate;    
         private DateTime dueDate;   
-        private Integer paymentFrequency;         
+        private Integer numberOfMonthsBetweenDueDates;         
         private Integer categoryId;
         
         private Builder() {
@@ -80,8 +80,8 @@ public class BudgetDTO {
             this.dueDate = dueDate;
             return this;
         }       
-        public Builder withPaymentFrequency(Integer paymentFrequency) {
-            this.paymentFrequency = paymentFrequency;
+        public Builder withNumberOfMonthsBetweenDueDates(Integer paymentFrequency) {
+            this.numberOfMonthsBetweenDueDates = paymentFrequency;
             return this;
         }        
         public Builder withCategory(Integer categoryId) {

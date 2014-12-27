@@ -5,7 +5,6 @@ import category.Category;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -29,7 +28,7 @@ public class AddBudgetServiceTest {
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
     private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);    
     
-    private static Integer paymentFrequency;   
+    private static Integer numberOfMonthsBetweenDueDates;   
     
 
     private static Integer categoryId;
@@ -73,8 +72,8 @@ public class AddBudgetServiceTest {
                 .withAmount(amount)
         		.withBeginDate(beginDate)
         		.withEndDate(endDate)
-        		.withDueDate(dueDate)                
-                .withPaymentFrequency(paymentFrequency)
+        		.withDueDate(dueDate)  
+        		.withNumberOfMonthsBetweenDueDates(numberOfMonthsBetweenDueDates)
         		.withCategory(categoryId)
                 .build();
     }
@@ -86,10 +85,9 @@ public class AddBudgetServiceTest {
 
     private void validateBudgetContent(Budget budget) {
         assertEquals(name, budget.getName());
-        assertEquals(beginDate, budget.getBeginDate());
-        assertEquals(endDate, budget.getEndDate());
-        assertEquals(dueDate, budget.getDueDate());
-        Assert.assertEquals(paymentFrequency, budget.getPaymentFrequency());        
+        assertEquals(beginDate, budget.getBudgetInterval().getStart());
+        assertEquals(endDate, budget.getBudgetInterval().getEnd());
+        assertEquals(dueDate, budget.getDueDate());       
     }
     
     public class CategoryContext
@@ -117,7 +115,6 @@ public class AddBudgetServiceTest {
 	            		.withDueDate(dueDate)
 	                    .withAmount(amount)
 	                    .withName(name)
-	                    .withPaymentFrequency(paymentFrequency)
 	                    .build();
 	        }    	
 	    	
@@ -153,7 +150,7 @@ public class AddBudgetServiceTest {
 	
 	        @Before
 	        public void setUp(){
-	        	paymentFrequency = 1;
+	        	numberOfMonthsBetweenDueDates = 12;
 	        }
 	
 	        @Test
@@ -177,7 +174,7 @@ public class AddBudgetServiceTest {
 	    	
 	        @Before
 	        public void setUp() {
-	        	paymentFrequency = 2;
+	        	numberOfMonthsBetweenDueDates = 6;
 	        }
 	
 	        @Test
@@ -201,31 +198,7 @@ public class AddBudgetServiceTest {
 	    	
 	        @Before
 	        public void setUp() {
-	        	paymentFrequency = 4;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);         
-	            
-	            validateHalfYearlyBudgetLine(budget);
-	        }
-	
-	
-	        private void validateHalfYearlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount / 3, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount * 4, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }
-	    
-	    public class QuarterlyFrequencyContext {
-	    	
-	        @Before
-	        public void setUp() {
-	        	paymentFrequency = 3;
+	        	numberOfMonthsBetweenDueDates = 4;
 	        }
 	
 	        @Test
@@ -243,13 +216,37 @@ public class AddBudgetServiceTest {
 	            Assert.assertEquals(amount * 3, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }
 	
+	    }
+	    
+	    public class QuarterlyFrequencyContext {
+	    	
+	        @Before
+	        public void setUp() {
+	        	numberOfMonthsBetweenDueDates = 3;
+	        }
+	
+	        @Test
+	        public void addedBudgetLine_canBeRetrieved() {
+	            Integer id = addBudgetLine();
+	
+	            Budget budget = loadBudget(id);         
+	            
+	            validateHalfYearlyBudgetLine(budget);
+	        }
+	
+	
+	        private void validateHalfYearlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount / 3, budget.getMonthlyBudgetAmount(), ACCURACY);
+	            Assert.assertEquals(amount * 4, budget.getYearlyBudgetAmount(), ACCURACY);
+	        }
+	
 	    }	    
 	    
 	    public class MonthlyBudgetContext {
 	
 	        @Before
 	        public void setUp() throws Exception {
-	        	paymentFrequency = 12;
+	        	numberOfMonthsBetweenDueDates = 1;
 	        }
 	
 	        @Test

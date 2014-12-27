@@ -1,6 +1,8 @@
 package budget;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
+import org.joda.time.Period;
 
 import category.Category;
 
@@ -11,20 +13,18 @@ public class Budget {
     private Integer id;
     private String name;    
     private double budgetAmount;    
-    private DateTime beginDate;
-    private DateTime endDate;    
+    private Interval budgetInterval;
     private DateTime dueDate;    
-    private Integer paymentFrequency;
+    private Period periodBetweenDueDates;
     private Category category;    
 
     private Budget(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.budgetAmount = builder.budgetAmount; 
-        this.beginDate = builder.beginDate;
-        this.endDate = builder.endDate;  
+        this.budgetInterval = new Interval(builder.beginDate, builder.endDate);  
         this.dueDate = builder.dueDate;        
-        this.paymentFrequency = builder.paymentFrequency;        
+        this.periodBetweenDueDates = new Period().withMonths(builder.numberOfMonthsBetweenDueDates);        
         this.category = builder.category;
     }
 
@@ -36,29 +36,27 @@ public class Budget {
     }
     public double getBudgetAmount() {
 		return budgetAmount;
-	}    
-    public DateTime getBeginDate() {
-		return beginDate;
-	}
-    public DateTime getEndDate() {
-		return endDate;
-	}
+	} 
+    public Interval getBudgetInterval()
+    {
+    	return budgetInterval;
+    }
     public DateTime getDueDate() {
 		return dueDate;
 	}    
-	public Integer getPaymentFrequency() {
-        return paymentFrequency;
+	public Period getperiodBetweenDueDates() {
+        return periodBetweenDueDates;
     }
     public Category getCategory() {
         return category;
     }
     
     public double getMonthlyBudgetAmount() {
-		return budgetAmount * paymentFrequency / 12;
+		return budgetAmount / periodBetweenDueDates.getMonths();
 	}
     
     public double getYearlyBudgetAmount() {
-    	return budgetAmount * paymentFrequency;
+    	return getMonthlyBudgetAmount() * 12;
 	}
     
     public static Builder newBuilder() {
@@ -72,7 +70,7 @@ public class Budget {
         private DateTime beginDate;
         private DateTime endDate;
         private DateTime dueDate;        
-        private Integer paymentFrequency;    	
+        private Integer numberOfMonthsBetweenDueDates = 1;    	
         private Category category = Category.emptyCategory;
 
 
@@ -102,8 +100,10 @@ public class Budget {
             this.dueDate = dueDate;
             return this;
         }       
-        public Builder withPaymentFrequency(Integer paymentFrequency) {
-            this.paymentFrequency = paymentFrequency;
+        public Builder withNumberOfMonthsBetweenDueDates(Integer numberOfMonthsBetweenDueDates) {
+        	if (numberOfMonthsBetweenDueDates != null){
+	            this.numberOfMonthsBetweenDueDates = numberOfMonthsBetweenDueDates;
+	        }
             return this;
         }          
         public Builder withCategory(Category category) {
@@ -111,8 +111,7 @@ public class Budget {
                 this.category = category;
             }
             return this;
-        }  
-          
+        }        
         public Budget build() {
             return new Budget(this);
         }
