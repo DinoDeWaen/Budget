@@ -80,8 +80,8 @@ public class BudgetDTO {
             this.dueDate = dueDate;
             return this;
         }       
-        public Builder withNumberOfMonthsBetweenDueDates(Integer paymentFrequency) {
-            this.numberOfMonthsBetweenDueDates = paymentFrequency;
+        public Builder withNumberOfMonthsBetweenDueDates(Integer NumberOfMonthsBetweenDueDates) {
+            this.numberOfMonthsBetweenDueDates = NumberOfMonthsBetweenDueDates;
             return this;
         }        
         public Builder withCategory(Integer categoryId) {

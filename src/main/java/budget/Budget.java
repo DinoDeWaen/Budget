@@ -12,19 +12,13 @@ import category.Category;
 public class Budget {
     private Integer id;
     private String name;    
-    private double budgetAmount;    
-    private Interval budgetInterval;
-    private DateTime dueDate;    
-    private Period periodBetweenDueDates;
-    private Category category;    
+    private BudgetLine budgetLine;
+	private Category category;    
 
     private Budget(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
-        this.budgetAmount = builder.budgetAmount; 
-        this.budgetInterval = new Interval(builder.beginDate, builder.endDate);  
-        this.dueDate = builder.dueDate;        
-        this.periodBetweenDueDates = new Period().withMonths(builder.numberOfMonthsBetweenDueDates);        
+        this.budgetLine = builder.budgetLine;      
         this.category = builder.category;
     }
 
@@ -35,24 +29,24 @@ public class Budget {
         return name;
     }
     public double getBudgetAmount() {
-		return budgetAmount;
+		return budgetLine.getBudgetAmount();
 	} 
     public Interval getBudgetInterval()
     {
-    	return budgetInterval;
+    	return budgetLine.getBudgetInterval();
     }
     public DateTime getDueDate() {
-		return dueDate;
+		return budgetLine.getDueDate();
 	}    
 	public Period getperiodBetweenDueDates() {
-        return periodBetweenDueDates;
+        return budgetLine.periodBetweenDueDates;
     }
     public Category getCategory() {
         return category;
     }
     
     public double getMonthlyBudgetAmount() {
-		return budgetAmount / periodBetweenDueDates.getMonths();
+		return budgetLine.getBudgetAmount() / budgetLine.periodBetweenDueDates.getMonths();
 	}
     
     public double getYearlyBudgetAmount() {
@@ -66,11 +60,7 @@ public class Budget {
 	public static final class Builder {
 		private Integer id;
         private String name;		
-    	private double budgetAmount;
-        private DateTime beginDate;
-        private DateTime endDate;
-        private DateTime dueDate;        
-        private Integer numberOfMonthsBetweenDueDates = 1;    	
+    	private BudgetLine budgetLine;    	
         private Category category = Category.emptyCategory;
 
 
@@ -84,28 +74,12 @@ public class Budget {
             this.name = name;
             return this;
         }       
-        public Builder withBudgetAmount(double budgetAmount) {
-            this.budgetAmount= budgetAmount;
-            return this;
-        }         
-        public Builder withBeginDate(DateTime beginDate) {
-            this.beginDate = beginDate;
-            return this;
+        public Builder withBudgetLine(BudgetLine budgetLine){
+        	if (budgetLine != null){
+        		this.budgetLine = budgetLine;
+        	}
+            return this;       		
         }
-        public Builder withEndDate(DateTime endDate) {
-            this.endDate = endDate;
-            return this;
-        }       
-        public Builder withDueDate(DateTime dueDate) {
-            this.dueDate = dueDate;
-            return this;
-        }       
-        public Builder withNumberOfMonthsBetweenDueDates(Integer numberOfMonthsBetweenDueDates) {
-        	if (numberOfMonthsBetweenDueDates != null){
-	            this.numberOfMonthsBetweenDueDates = numberOfMonthsBetweenDueDates;
-	        }
-            return this;
-        }          
         public Builder withCategory(Category category) {
             if (category != null) {
                 this.category = category;

@@ -14,13 +14,17 @@ public  class AddBudgetService implements BudgetServices {
 
     private Budget buildBudget(BudgetDTO budgetDTO) {
         final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
-        return Budget.newBuilder()
-                .withName(budgetDTO.getName())        		
+        final BudgetLine budgetLine = BudgetLine.newBuilder()
         		.withBudgetAmount(budgetDTO.getAmount())
         		.withBeginDate(budgetDTO.getBeginDate())
         		.withEndDate(budgetDTO.getEndDate())
         		.withDueDate(budgetDTO.getDueDate())        		
-                .withNumberOfMonthsBetweenDueDates(budgetDTO.getNumberOfMonthsBetweenDueDates())                
+                .withNumberOfMonthsBetweenDueDates(budgetDTO.getNumberOfMonthsBetweenDueDates()) 
+                .build();
+        
+        return Budget.newBuilder()
+                .withName(budgetDTO.getName())  
+                .withBudgetLine(budgetLine)
                 .withCategory(category)
                 .build();
     }
