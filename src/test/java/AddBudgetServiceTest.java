@@ -14,6 +14,7 @@ import util.BudgetDataBase;
 import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 
 /**
  * Created by dino on 07/11/14.
@@ -164,6 +165,7 @@ public class AddBudgetServiceTest {
 	        }
 	
 	        private void validateYearlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);	        	
 	            Assert.assertEquals(amount / 12, budget.getMonthlyBudgetAmount(), ACCURACY);
 	            Assert.assertEquals(amount, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }
@@ -188,6 +190,7 @@ public class AddBudgetServiceTest {
 	
 	
 	        private void validateHalfYearlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount * 2, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
 	            Assert.assertEquals(amount / 6, budget.getMonthlyBudgetAmount(), ACCURACY);
 	            Assert.assertEquals(amount * 2, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }
@@ -212,6 +215,7 @@ public class AddBudgetServiceTest {
 	
 	
 	        private void validateHalfYearlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount * 3, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
 	            Assert.assertEquals(amount / 4, budget.getMonthlyBudgetAmount(), ACCURACY);
 	            Assert.assertEquals(amount * 3, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }
@@ -236,6 +240,7 @@ public class AddBudgetServiceTest {
 	
 	
 	        private void validateHalfYearlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount * 4, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
 	            Assert.assertEquals(amount / 3, budget.getMonthlyBudgetAmount(), ACCURACY);
 	            Assert.assertEquals(amount * 4, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }
@@ -260,6 +265,7 @@ public class AddBudgetServiceTest {
 	
 	
 	        private void validateMonthlyBudgetLine(Budget budget) {
+	            Assert.assertEquals(amount * 12, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
 	            Assert.assertEquals(amount, budget.getMonthlyBudgetAmount(), ACCURACY);
 	            Assert.assertEquals(amount * 12, budget.getYearlyBudgetAmount(), ACCURACY);
 	        }

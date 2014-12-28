@@ -43,14 +43,15 @@ public class Budget {
     }
     public Category getCategory() {
         return category;
-    }
-    
+    } 
     public double getMonthlyBudgetAmount() {
-		return budgetLine.getBudgetAmount() / budgetLine.periodBetweenDueDates.getMonths();
+		return budgetLine.getMonthlyBudgetAmount();
 	}
-    
     public double getYearlyBudgetAmount() {
-    	return getMonthlyBudgetAmount() * 12;
+    	return budgetLine.getYearlyBudgetAmount();
+	}
+    public double getBudgetAmount(Interval interval) {
+    	return budgetLine.getBudgetAmountInInterval(interval) ;
 	}
     
     public static Builder newBuilder() {
