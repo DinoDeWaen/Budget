@@ -1,3 +1,4 @@
+import DB.BudgetDataBase;
 import category.Category;
 
 import org.junit.Before;
@@ -6,7 +7,6 @@ import org.junit.Test;
 import category.CategoryDTO;
 import category.AddCategoryService;
 import category.CategoryServices;
-import util.BudgetDataBase;
 import static org.junit.Assert.assertEquals;
 
 /**

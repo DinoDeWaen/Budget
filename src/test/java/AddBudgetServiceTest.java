@@ -1,4 +1,5 @@
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
+import DB.BudgetDataBase;
 import budget.BudgetDTO;
 import budget.Budget;
 import category.Category;
@@ -10,7 +11,6 @@ import org.junit.runner.RunWith;
 
 import budget.AddBudgetService;
 import budget.BudgetServices;
-import util.BudgetDataBase;
 import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;

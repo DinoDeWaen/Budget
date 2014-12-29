@@ -1,5 +1,5 @@
 package category;
-import util.BudgetDataBase;
+import DB.BudgetDataBase;
 
 /**
  * Created by dino on 11/11/14.

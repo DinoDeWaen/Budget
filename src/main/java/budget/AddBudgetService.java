@@ -1,6 +1,6 @@
 package budget;
+import DB.BudgetDataBase;
 import category.Category;
-import util.BudgetDataBase;
 
 /**
  * Created by dino on 08/11/14.
