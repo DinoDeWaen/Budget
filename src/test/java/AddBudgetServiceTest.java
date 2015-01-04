@@ -17,7 +17,7 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 /**
- * Created by dino on 07/11/14.
+ * Created by Dino on 07/11/14.
  */
 @RunWith(HierarchicalContextRunner.class)
 public class AddBudgetServiceTest {
@@ -29,7 +29,7 @@ public class AddBudgetServiceTest {
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
     private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);    
     
-    private static Integer numberOfMonthsBetweenDueDates;   
+    private static final Integer numberOfMonthsBetweenDueDates = 1;   
     
 
     private static Integer categoryId;
@@ -53,21 +53,16 @@ public class AddBudgetServiceTest {
         categoryId = BudgetDataBase.budgetDataBase.addCategory(category);
     }
     
-    @Test
-    public void addedBudget_canBeRetrieved() {
-        Integer id = addBudgetLine();
-
-        Budget budget = loadBudget(id);
-
-        validateBudgetContent(budget);
-    }    
-
-    private Integer addBudgetLine() {
-        BudgetDTO budgetDTO = buildBudgetLineDTO();
+    private Budget loadBudget(Integer id) {
+        return BudgetDataBase.budgetDataBase.getBudget(id);
+    }
+    
+    private Integer addBudget() {
+        BudgetDTO budgetDTO = buildBudgetDTO();
         return addBudgetService.addBudget(budgetDTO);
     }
 
-    private BudgetDTO buildBudgetLineDTO() {
+    private BudgetDTO buildBudgetDTO() {
         return BudgetDTO.newBuilder()
                 .withName(name)        		
                 .withAmount(amount)
@@ -78,17 +73,27 @@ public class AddBudgetServiceTest {
         		.withCategory(categoryId)
                 .build();
     }
-   
-
-    private Budget loadBudget(Integer id) {
-        return BudgetDataBase.budgetDataBase.getBudget(id);
-    }
-
-    private void validateBudgetContent(Budget budget) {
-        assertEquals(name, budget.getName());
-        assertEquals(beginDate, budget.getBudgetInterval().getStart());
-        assertEquals(endDate, budget.getBudgetInterval().getEnd());
-        assertEquals(dueDate, budget.getDueDate());       
+    
+    public class IncomeExpenseContext{
+	    @Test
+	    public void addedIncomeBudget_canBeRetrieved() {
+	        Integer id = addBudget();
+	
+	        Budget budget = loadBudget(id);
+	
+	        validateBudgetContent(budget);
+	    }    
+	
+	    private void validateBudgetContent(Budget budget) {
+	        assertEquals(name, budget.getName());
+	        assertEquals(beginDate, budget.getBudgetInterval().getStart());
+	        assertEquals(endDate, budget.getBudgetInterval().getEnd());
+	        assertEquals(dueDate, budget.getDueDate()); 
+	        
+            assertEquals(amount * 12, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(amount, budget.getMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 12, budget.getYearlyBudgetAmount(), ACCURACY);
+	    }
     }
     
     public class CategoryContext
@@ -97,19 +102,19 @@ public class AddBudgetServiceTest {
     	{
 	        @Test
 	        public void addedBudgetWithoutCategory_canBeRetrieved() {
-	            Integer id = addBudgetLineWithoutCategory();
+	            Integer id = addBudgetWithoutCategory();
 	
 	            Budget budget = loadBudget(id);
 	
 	            validateEmptyCategoryContent(budget);
 	        }
 	        
-	        private Integer addBudgetLineWithoutCategory() {
-	            BudgetDTO budgetDTO = buildBudgetLineWithoutCategoryDTO();
+	        private Integer addBudgetWithoutCategory() {
+	            BudgetDTO budgetDTO = buildBudgetWithoutCategoryDTO();
 	            return addBudgetService.addBudget(budgetDTO);
 	        }
 	    	
-	        private BudgetDTO buildBudgetLineWithoutCategoryDTO() {
+	        private BudgetDTO buildBudgetWithoutCategoryDTO() {
 	            return BudgetDTO.newBuilder()
 	            		.withBeginDate(beginDate)
 	            		.withEndDate(endDate)
@@ -130,7 +135,7 @@ public class AddBudgetServiceTest {
     	{
 	        @Test
 	        public void addedBudgetWithCategory_canBeRetrieved() {
-	            Integer id = addBudgetLine();
+	            Integer id = addBudget();
 	
 	            Budget budget = loadBudget(id);
 	
@@ -144,132 +149,4 @@ public class AddBudgetServiceTest {
 	        }	
     	}    	
     }
-    
-	public class FrequencyContext
-	{   
-	    public class YearlyFrequencyContext {
-	
-	        @Before
-	        public void setUp(){
-	        	numberOfMonthsBetweenDueDates = 12;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);
-	            
-	            validateYearlyBudgetLine(budget);
-	        }
-	
-	        private void validateYearlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);	        	
-	            Assert.assertEquals(amount / 12, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }
-	    
-	    public class HalfYearlyFrequencyContext {
-	    	
-	        @Before
-	        public void setUp() {
-	        	numberOfMonthsBetweenDueDates = 6;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);         
-	            
-	            validateHalfYearlyBudgetLine(budget);
-	        }
-	
-	
-	        private void validateHalfYearlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount * 2, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
-	            Assert.assertEquals(amount / 6, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount * 2, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }	
-	    
-	    public class TrimesterFrequencyContext {
-	    	
-	        @Before
-	        public void setUp() {
-	        	numberOfMonthsBetweenDueDates = 4;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);         
-	            
-	            validateHalfYearlyBudgetLine(budget);
-	        }
-	
-	
-	        private void validateHalfYearlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount * 3, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
-	            Assert.assertEquals(amount / 4, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount * 3, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }
-	    
-	    public class QuarterlyFrequencyContext {
-	    	
-	        @Before
-	        public void setUp() {
-	        	numberOfMonthsBetweenDueDates = 3;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);         
-	            
-	            validateHalfYearlyBudgetLine(budget);
-	        }
-	
-	
-	        private void validateHalfYearlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount * 4, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
-	            Assert.assertEquals(amount / 3, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount * 4, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }	    
-	    
-	    public class MonthlyBudgetContext {
-	
-	        @Before
-	        public void setUp() throws Exception {
-	        	numberOfMonthsBetweenDueDates = 1;
-	        }
-	
-	        @Test
-	        public void addedBudgetLine_canBeRetrieved() {
-	            Integer id = addBudgetLine();
-	
-	            Budget budget = loadBudget(id);         
-	            
-	            validateMonthlyBudgetLine(budget);
-	        }
-	
-	
-	        private void validateMonthlyBudgetLine(Budget budget) {
-	            Assert.assertEquals(amount * 12, budget.getBudgetAmount(new Interval(beginDate, endDate)), ACCURACY);
-	            Assert.assertEquals(amount, budget.getMonthlyBudgetAmount(), ACCURACY);
-	            Assert.assertEquals(amount * 12, budget.getYearlyBudgetAmount(), ACCURACY);
-	        }
-	
-	    }
-	}
 }
