@@ -1,13 +1,18 @@
-
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
+import budget.BudgetLine;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import budget.BudgetLine;
 
+
+@RunWith(HierarchicalContextRunner.class)
 public class BudgetLineTest {
     private static final double ACCURACY = 0.00001;
     private static final double amount = 2000;
