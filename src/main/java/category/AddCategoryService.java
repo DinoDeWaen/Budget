@@ -1,5 +1,5 @@
 package category;
-import DB.BudgetDataBase;
+import gateway.BudgetDataBase;
 
 /**
  * Created by dino on 11/11/14.

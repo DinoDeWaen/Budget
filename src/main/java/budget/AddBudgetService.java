@@ -1,5 +1,5 @@
 package budget;
-import DB.BudgetDataBase;
+import gateway.BudgetDataBase;
 import category.Category;
 
 /**

@@ -1,4 +1,4 @@
-package DB;
+package gateway;
 import java.util.HashMap;
 import java.util.Map;
 

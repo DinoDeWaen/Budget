@@ -1,4 +1,4 @@
-import DB.BudgetDataBase;
+import gateway.BudgetDataBase;
 import category.Category;
 
 import org.junit.Before;

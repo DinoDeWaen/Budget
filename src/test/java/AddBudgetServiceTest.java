@@ -1,5 +1,5 @@
+import gateway.BudgetDataBase;
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import DB.BudgetDataBase;
 import budget.BudgetDTO;
 import budget.Budget;
 import category.Category;
