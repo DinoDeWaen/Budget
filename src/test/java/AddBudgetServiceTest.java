@@ -1,20 +1,19 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import gateway.BudgetDataBase;
-import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import budget.BudgetDTO;
-import budget.Budget;
-import category.Category;
 
-import org.junit.Assert;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import budget.AddBudgetService;
+import budget.Budget;
+import budget.BudgetDTO;
 import budget.BudgetServices;
-import static org.junit.Assert.*;
-
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
+import category.Category;
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 /**
  * Created by Dino on 07/11/14.
@@ -23,13 +22,13 @@ import org.joda.time.Interval;
 public class AddBudgetServiceTest {
 
     private static final double ACCURACY = 0.00001;
+    private static final double amount = 2000;    
     private static final String name = "BudgetLineName";
-    private static final double amount = 2000;
     private static final DateTime beginDate = new DateTime(2014, 1, 1, 0, 0);
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
     private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);    
     
-    private static final Integer numberOfMonthsBetweenDueDates = 1;   
+    private static final int numberOfMonthsBetweenDueDates = 1;   
     
 
     private static Integer categoryId;

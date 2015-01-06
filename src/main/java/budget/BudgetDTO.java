@@ -11,7 +11,7 @@ public class BudgetDTO {
     private DateTime beginDate;
     private DateTime endDate;    
     private DateTime dueDate;   
-    private Integer numberOfMonthsBetweenDueDates;    
+    private int numberOfMonthsBetweenDueDates;    
     private Integer categoryId;    
 
     private BudgetDTO(Builder builder) {
@@ -42,7 +42,7 @@ public class BudgetDTO {
     public DateTime getDueDate() {
 		return dueDate;
 	}    
-    public Integer getNumberOfMonthsBetweenDueDates() {
+    public int getNumberOfMonthsBetweenDueDates() {
 		return numberOfMonthsBetweenDueDates;
 	}      
     public Integer getCategoryId() {
@@ -55,7 +55,7 @@ public class BudgetDTO {
         private DateTime beginDate;
         private DateTime endDate;    
         private DateTime dueDate;   
-        private Integer numberOfMonthsBetweenDueDates;         
+        private int numberOfMonthsBetweenDueDates;         
         private Integer categoryId;
         
         private Builder() {
@@ -80,7 +80,7 @@ public class BudgetDTO {
             this.dueDate = dueDate;
             return this;
         }       
-        public Builder withNumberOfMonthsBetweenDueDates(Integer NumberOfMonthsBetweenDueDates) {
+        public Builder withNumberOfMonthsBetweenDueDates(int NumberOfMonthsBetweenDueDates) {
             this.numberOfMonthsBetweenDueDates = NumberOfMonthsBetweenDueDates;
             return this;
         }        

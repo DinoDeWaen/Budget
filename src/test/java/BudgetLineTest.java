@@ -20,7 +20,7 @@ public class BudgetLineTest {
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
     private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);  
 	
-    private static Integer numberOfMonthsBetweenDueDates;  
+    private static int numberOfMonthsBetweenDueDates;  
     private static BudgetLine budgetLine;
     
     private BudgetLine buildBudgetLine() {
@@ -32,6 +32,12 @@ public class BudgetLineTest {
 	            .withNumberOfMonthsBetweenDueDates(numberOfMonthsBetweenDueDates) 
 	            .build();
     }
+    
+	private void validateDates(BudgetLine budgetLine) {
+		assertEquals(numberOfMonthsBetweenDueDates, budgetLine.getPeriodBetweenDueDates().getMonths());
+        assertEquals(beginDate, budgetLine.getBudgetInterval().getStart());
+        assertEquals(endDate, budgetLine.getBudgetInterval().getEnd());
+	}    
   
     public class YearlyFrequencyContext {
 
@@ -43,6 +49,9 @@ public class BudgetLineTest {
         @Test
         public void TestYearlyIncome () {
         	budgetLine = buildBudgetLine();
+        	
+            validateDates(budgetLine);
+            
         	validateYearlyBudgetLine (budgetLine);
         }
 
@@ -51,6 +60,8 @@ public class BudgetLineTest {
             assertEquals(amount / 12, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
             assertEquals(amount, budgetLine.getYearlyBudgetAmount(), ACCURACY);
         }
+
+
 
     }
     
@@ -62,8 +73,10 @@ public class BudgetLineTest {
         }
 
         @Test
-        public void addedBudgetLine_canBeRetrieved() {
-        	budgetLine = buildBudgetLine();       
+        public void testHalfYearlyIncome() {
+        	budgetLine = buildBudgetLine();  
+        	
+            validateDates(budgetLine);
             
             validateHalfYearlyBudgetLine(budgetLine);
         }
@@ -85,8 +98,10 @@ public class BudgetLineTest {
         }
 
         @Test
-        public void addedBudgetLine_canBeRetrieved() {
-        	budgetLine = buildBudgetLine();        
+        public void testTrimesterIncome() {
+        	budgetLine = buildBudgetLine();    
+        	
+            validateDates(budgetLine);
             
             validateHalfYearlyBudgetLine(budgetLine);
         }
@@ -108,8 +123,10 @@ public class BudgetLineTest {
         }
 
         @Test
-        public void addedBudgetLine_canBeRetrieved() {
-        	budgetLine = buildBudgetLine();         
+        public void testQuarterlyIncome() {
+        	budgetLine = buildBudgetLine();    
+        	
+            validateDates(budgetLine);
             
             validateHalfYearlyBudgetLine(budgetLine);
         }
@@ -131,8 +148,10 @@ public class BudgetLineTest {
         }
 
         @Test
-        public void addedBudgetLine_canBeRetrieved() {
-        	budgetLine = buildBudgetLine();         
+        public void testMonthlyIncome() {
+        	budgetLine = buildBudgetLine();  
+        	
+            validateDates(budgetLine);
             
             validateMonthlyBudgetLine(budgetLine);
         }

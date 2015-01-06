@@ -39,7 +39,7 @@ public class Budget {
 		return budgetLine.getDueDate();
 	}    
 	public Period getperiodBetweenDueDates() {
-        return budgetLine.periodBetweenDueDates;
+        return budgetLine.getPeriodBetweenDueDates();
     }
     public Category getCategory() {
         return category;

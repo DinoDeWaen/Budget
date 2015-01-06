@@ -1,17 +1,17 @@
-package moneyTransactionTypes;
+package cashFlowTypes;
 
 import java.awt.Color;
 
-public class Income implements MoneyTransactionType  {
-	
+public class Expense implements CashFlowType {
 
 	@Override
 	public double getTransactionAmount(double amount) {
-		return amount;
+		return -1 * amount;
 	}
 
 	@Override
 	public Color getColor() {
-		return Color.GREEN;
+		return Color.RED;
 	}
+
 }

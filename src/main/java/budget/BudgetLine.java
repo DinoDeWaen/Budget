@@ -2,24 +2,19 @@ package budget;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import org.joda.time.MutableDateTime;
 import org.joda.time.Period;
-
-import budget.Budget.Builder;
-import category.Category;
 
 public class BudgetLine {
 	private double budgetAmount;
 	private Interval budgetInterval;
 	private DateTime dueDate;
-	public Period periodBetweenDueDates;
+	private Period periodBetweenDueDates;
 
 	private BudgetLine(Builder builder) {
 		this.budgetAmount = builder.budgetAmount;
 		this.budgetInterval = new Interval(builder.beginDate, builder.endDate);
 		this.dueDate = builder.dueDate;
-		this.periodBetweenDueDates = new Period()
-				.withMonths(builder.numberOfMonthsBetweenDueDates);
+		this.periodBetweenDueDates = new Period().withMonths(builder.numberOfMonthsBetweenDueDates);
 	}
 
 	public double getBudgetAmount() {
@@ -34,12 +29,16 @@ public class BudgetLine {
 		return dueDate;
 	}
 
+	public Period getPeriodBetweenDueDates() {
+		return periodBetweenDueDates;
+	}
+
 	public double getMonthlyBudgetAmount() {
-		return budgetAmount / periodBetweenDueDates.getMonths();
+		return budgetAmount / getPeriodBetweenDueDates().getMonths();
 	}
 
 	public double getYearlyBudgetAmount() {
-		return budgetAmount * 12 / periodBetweenDueDates.getMonths() ;
+		return budgetAmount * 12 / getPeriodBetweenDueDates().getMonths() ;
 	}
 
 	public double getBudgetAmountInInterval(Interval interval) {
@@ -54,7 +53,7 @@ public class BudgetLine {
 			if (interval.contains(dd))
 				numberOfDueDates++;
 
-			dd = dd.plus(periodBetweenDueDates);
+			dd = dd.plus(getPeriodBetweenDueDates());
 		}
 
 		return numberOfDueDates;

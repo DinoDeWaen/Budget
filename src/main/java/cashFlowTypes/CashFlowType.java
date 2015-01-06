@@ -1,8 +1,8 @@
-package moneyTransactionTypes;
+package cashFlowTypes;
 
 import java.awt.Color;
 
-public interface MoneyTransactionType {
+public interface CashFlowType {
 	double getTransactionAmount (double amount);
 	Color getColor();
 	
