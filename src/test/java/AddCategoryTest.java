@@ -31,7 +31,10 @@ public class AddCategoryTest {
 
         validateCategory(category);
     }
-
+    private Integer  addCategory() {
+        categoryDTO = buildCategoryDTO();
+        return categoryTransactions.addCategory(categoryDTO);
+    }
     private void validateCategory(Category category) {
         assertEquals(CategoryName, category.getName());
     }
@@ -40,10 +43,6 @@ public class AddCategoryTest {
         return BudgetDataBase.budgetDataBase.getCategory(id);
     }
 
-    private Integer  addCategory() {
-        categoryDTO = buildCategoryDTO();
-        return categoryTransactions.addCategory(categoryDTO);
-    }
 
     private CategoryDTO buildCategoryDTO() {
         return CategoryDTO.newBuilder()
