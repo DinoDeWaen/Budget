@@ -12,16 +12,18 @@ public class BudgetDTO {
     private DateTime endDate;    
     private DateTime dueDate;   
     private int numberOfMonthsBetweenDueDates;    
-    private Integer categoryId;    
+    private Integer categoryId;  
+    private boolean incomeCashFlow;
 
-    private BudgetDTO(Builder builder) {
+	private BudgetDTO(Builder builder) {
         this.name = builder.name;
         this.amount = builder.amount;
         this.beginDate = builder.beginDate;
         this.endDate = builder.endDate;
         this.dueDate = builder.dueDate;
         this.numberOfMonthsBetweenDueDates = builder.numberOfMonthsBetweenDueDates;         
-        this.categoryId = builder.categoryId;        
+        this.categoryId = builder.categoryId;
+        this.incomeCashFlow = builder.incomeCashFlow; 
     }
 
     public static Builder newBuilder() {
@@ -48,6 +50,9 @@ public class BudgetDTO {
     public Integer getCategoryId() {
         return categoryId;
     }
+    public boolean isIncomeCashFlow() {
+		return incomeCashFlow;
+	}
     
     public static final class Builder {
         private String name;
@@ -57,6 +62,7 @@ public class BudgetDTO {
         private DateTime dueDate;   
         private int numberOfMonthsBetweenDueDates;         
         private Integer categoryId;
+        private boolean incomeCashFlow;
         
         private Builder() {
         }
@@ -87,11 +93,13 @@ public class BudgetDTO {
         public Builder withCategory(Integer categoryId) {
             this.categoryId = categoryId;
             return this;
+        } 
+        public Builder withIncomeCashFlow(boolean incomeCashFlow) {
+            this.incomeCashFlow = incomeCashFlow;
+            return this;
         }        
         public BudgetDTO build() {
             return new BudgetDTO(this);
         }
-
-
     }
 }

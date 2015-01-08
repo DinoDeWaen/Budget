@@ -1,5 +1,8 @@
 package budget;
 import gateway.BudgetDataBase;
+import cashFlowTypes.CashFlowType;
+import cashFlowTypes.Expense;
+import cashFlowTypes.Income;
 import category.Category;
 
 /**
@@ -14,12 +17,14 @@ public  class AddBudgetService implements BudgetServices {
 
     private Budget buildBudget(BudgetDTO budgetDTO) {
         final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
+        final CashFlowType type = getCashFlowType (budgetDTO);
         final BudgetLine budgetLine = BudgetLine.newBuilder()
         		.withBudgetAmount(budgetDTO.getAmount())
         		.withBeginDate(budgetDTO.getBeginDate())
         		.withEndDate(budgetDTO.getEndDate())
         		.withDueDate(budgetDTO.getDueDate())        		
                 .withNumberOfMonthsBetweenDueDates(budgetDTO.getNumberOfMonthsBetweenDueDates()) 
+                .withCashFlowType(type)
                 .build();
         
         return Budget.newBuilder()
@@ -28,4 +33,11 @@ public  class AddBudgetService implements BudgetServices {
                 .withCategory(category)
                 .build();
     }
+
+	private CashFlowType getCashFlowType(BudgetDTO budgetDTO) {
+		if (budgetDTO.isIncomeCashFlow())
+			return new Income();
+		else
+			return new Expense();
+	}
 }

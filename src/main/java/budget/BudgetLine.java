@@ -4,17 +4,21 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.Period;
 
+import cashFlowTypes.CashFlowType;
+
 public class BudgetLine {
 	private double budgetAmount;
 	private Interval budgetInterval;
 	private DateTime dueDate;
 	private Period periodBetweenDueDates;
+	private CashFlowType cashFlowType;
 
 	private BudgetLine(Builder builder) {
 		this.budgetAmount = builder.budgetAmount;
 		this.budgetInterval = new Interval(builder.beginDate, builder.endDate);
 		this.dueDate = builder.dueDate;
 		this.periodBetweenDueDates = new Period().withMonths(builder.numberOfMonthsBetweenDueDates);
+		this.cashFlowType = builder.cashFlowType;
 	}
 
 	public double getBudgetAmount() {
@@ -44,6 +48,18 @@ public class BudgetLine {
 	public double getBudgetAmountInInterval(Interval interval) {
 		return budgetAmount * getNumberOfDueDatesInInterval(interval);
 	}
+	
+	public double getMonthlyCashFlowAmount() {
+		return cashFlowType.addSignToCashFlowAmount(getMonthlyBudgetAmount());
+	}
+
+	public double getYearlyCashFlowAmount() {
+		return cashFlowType.addSignToCashFlowAmount(getYearlyBudgetAmount());
+	}
+
+	public double getCashFlowAmountInInterval(Interval interval) {
+		return cashFlowType.addSignToCashFlowAmount(getBudgetAmountInInterval(interval));
+	}
 
 	private double getNumberOfDueDatesInInterval(Interval interval) {
 		int numberOfDueDates = 0;
@@ -68,7 +84,8 @@ public class BudgetLine {
 		private DateTime beginDate;
 		private DateTime endDate;
 		private DateTime dueDate;
-		private Integer numberOfMonthsBetweenDueDates = 1;
+		private int numberOfMonthsBetweenDueDates = 1;
+		private CashFlowType cashFlowType; 		
 
 		private Builder() {
 		}
@@ -93,13 +110,17 @@ public class BudgetLine {
 			return this;
 		}
 
-		public Builder withNumberOfMonthsBetweenDueDates(
-				Integer numberOfMonthsBetweenDueDates) {
-			if (numberOfMonthsBetweenDueDates != null) {
+		public Builder withNumberOfMonthsBetweenDueDates(int numberOfMonthsBetweenDueDates) {
+			if (numberOfMonthsBetweenDueDates > 0) {
 				this.numberOfMonthsBetweenDueDates = numberOfMonthsBetweenDueDates;
 			}
 			return this;
 		}
+		
+		public Builder withCashFlowType(CashFlowType type) {
+			this.cashFlowType = type;
+			return this;
+		}		
 
 		public BudgetLine build() {
 			return new BudgetLine(this);
