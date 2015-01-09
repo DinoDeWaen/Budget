@@ -1,11 +1,13 @@
 package cashFlow;
 
+import org.joda.time.DateTime;
+
 import category.CategoryDTO.Builder;
 
 public class CashFlowDTO {
 	private double amount;
 	private boolean income;
-	private long date;
+	private DateTime date;
 	private Integer budgetLineid;
 	
     public static Builder newBuilder() {
@@ -21,13 +23,13 @@ public class CashFlowDTO {
 	public static final class Builder {
 		private double amount;
 		private boolean income;
-		private long date;
+		private DateTime date;
 		private Integer budgetLineid;
 		
         private Builder() {
         }		
 
-		public Builder withValue(double amount) {
+		public Builder withAmount(double amount) {
 			this.amount = amount;
 			return this;
 		}
@@ -37,7 +39,7 @@ public class CashFlowDTO {
 			return this;
 		}
 
-		public Builder withDate(long date) {
+		public Builder withDate(DateTime date) {
 			this.date = date;
 			return this;
 		}

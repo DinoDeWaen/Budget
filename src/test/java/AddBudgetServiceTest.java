@@ -34,7 +34,7 @@ public class AddBudgetServiceTest {
     private static Integer categoryId;
     private static final String categoryName = "CategoryName";
 
-    private Category category;
+    private static final Category category = Category.newBuilder().withCategoryName(categoryName).build();
 
     private BudgetServices addBudgetService;
 
@@ -45,10 +45,7 @@ public class AddBudgetServiceTest {
     @Before
     public void setUp () throws Exception{
         addBudgetService = new AddBudgetService();
-        
-        category = Category.newBuilder()
-                .withCategoryName(categoryName)
-                .build();
+
         categoryId = BudgetDataBase.budgetDataBase.addCategory(category);
     }
     
