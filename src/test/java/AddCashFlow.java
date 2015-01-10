@@ -35,14 +35,27 @@ public class AddCashFlow {
 	}
 	
 	@Test
-	public void addCashFlow_CanBeRetrieved(){
+	public void addCashFlowIncome_CanBeRetrieved(){
+		incomeCashFlow = true;
+		
 		cashFlowId = addCashFlow();
 		
 		cashFlow = BudgetDataBase.budgetDataBase.getCashFlow(cashFlowId);
 		
 		assertEquals(cashFlow.getAmount(), amount,ACCURACY);
+		assertEquals(cashFlow.getDate(), date);
+		assertEquals(cashFlow.getCashFlowAmount(), amount,ACCURACY);
 	}
-
+	@Test
+	public void addCashFlowExpense_CanBeRetrieved(){
+		cashFlowId = addCashFlow();
+		
+		cashFlow = BudgetDataBase.budgetDataBase.getCashFlow(cashFlowId);
+		
+		assertEquals(cashFlow.getAmount(), amount,ACCURACY);
+		assertEquals(cashFlow.getDate(), date);
+		assertEquals(cashFlow.getCashFlowAmount(), amount * -1,ACCURACY);
+	}
 	private Integer addCashFlow (){
         cashFlowDTO = buildCashFlowDTO();	
 		

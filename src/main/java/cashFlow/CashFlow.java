@@ -7,15 +7,17 @@ import cashFlowTypes.CashFlowType;
 public class CashFlow {
 	private Integer id;	
 	private double amount;
-	private CashFlowType type;
+	private CashFlowType cashFlowType;
 	private DateTime date;
 
 	public double getAmount() {
 		return amount;
 	}
-
-	public CashFlowType getType() {
-		return type;
+	public double getCashFlowAmount() {
+		return cashFlowType.addSignToCashFlowAmount(getAmount());
+	}
+	public CashFlowType getCashFlowType() {
+		return cashFlowType;
 	}
 
 	public DateTime getDate() {
@@ -28,7 +30,7 @@ public class CashFlow {
 	
 	private CashFlow(Builder builder) {
 		this.amount = builder.amount;
-		this.type = builder.type;
+		this.cashFlowType = builder.cashFlowType;
 		this.date = builder.date;
 		this.id = builder.id;
 	}
@@ -39,7 +41,7 @@ public class CashFlow {
 
 	public static final class Builder {
 		private double amount;
-		private CashFlowType type;
+		private CashFlowType cashFlowType;
 		private DateTime date;
 		private Integer id;
 
@@ -48,8 +50,8 @@ public class CashFlow {
 			return this;
 		}
 
-		public Builder withType(CashFlowType type) {
-			this.type = type;
+		public Builder withType(CashFlowType cashFlowType) {
+			this.cashFlowType = cashFlowType;
 			return this;
 		}
 
