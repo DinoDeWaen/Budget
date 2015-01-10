@@ -14,11 +14,13 @@ import category.Category;
 
 
 public class AddCashFlow {
-
+	
+	private static final double ACCURACY = 0.00001;
+	
 	private static CashflowServices cashFlowService;
 	private static CashFlowDTO cashFlowDTO;
-	private static CashFlow cashFlow;
-	private static final double ACCURACY = 0.00001;	
+	private static CashFlow cashFlow;	
+	
 	private static final double amount = 155.47;
 	private static final DateTime date = new DateTime(2015, 1, 10, 0, 0);	
 	private static boolean incomeCashFlow;
@@ -38,29 +40,40 @@ public class AddCashFlow {
 	public void addCashFlowIncome_CanBeRetrieved(){
 		incomeCashFlow = true;
 		
-		cashFlowId = addCashFlow();
+		addAndRetreiveCashFlow();
 		
-		cashFlow = BudgetDataBase.budgetDataBase.getCashFlow(cashFlowId);
+		validateCashFlow();
 		
-		assertEquals(cashFlow.getAmount(), amount,ACCURACY);
-		assertEquals(cashFlow.getDate(), date);
 		assertEquals(cashFlow.getCashFlowAmount(), amount,ACCURACY);
 	}
+
 	@Test
 	public void addCashFlowExpense_CanBeRetrieved(){
+		incomeCashFlow = false;
+		
+		addAndRetreiveCashFlow();
+		
+		validateCashFlow();
+		
+		assertEquals(cashFlow.getCashFlowAmount(), amount * -1,ACCURACY);
+	}
+	
+	private void validateCashFlow() {
+		assertEquals(cashFlow.getAmount(), amount,ACCURACY);
+		assertEquals(cashFlow.getDate(), date);
+	}
+	
+	private void addAndRetreiveCashFlow() {
 		cashFlowId = addCashFlow();
 		
 		cashFlow = BudgetDataBase.budgetDataBase.getCashFlow(cashFlowId);
-		
-		assertEquals(cashFlow.getAmount(), amount,ACCURACY);
-		assertEquals(cashFlow.getDate(), date);
-		assertEquals(cashFlow.getCashFlowAmount(), amount * -1,ACCURACY);
 	}
-	private Integer addCashFlow (){
+	private Integer addCashFlow(){
         cashFlowDTO = buildCashFlowDTO();	
 		
 		return cashFlowService.addCashFlow(cashFlowDTO);	
 	}
+	
 	private CashFlowDTO buildCashFlowDTO() {
 		return CashFlowDTO.newBuilder()
 				      .withAmount(amount)
