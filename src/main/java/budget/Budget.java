@@ -1,9 +1,13 @@
 package budget;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.joda.time.Period;
 
+import cashFlow.CashFlow;
 import category.Category;
 
 /**
@@ -13,13 +17,15 @@ public class Budget {
     private Integer id;
     private String name;    
     private BudgetLine budgetLine;
-	private Category category;    
+	private Category category;  
+	private List<CashFlow> cashFlows;
 
     private Budget(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.budgetLine = builder.budgetLine;      
         this.category = builder.category;
+        this.cashFlows = builder.cashFlows;
     }
 
     public Integer getId() {
@@ -53,6 +59,9 @@ public class Budget {
     public double getBudgetAmount(Interval interval) {
     	return budgetLine.getBudgetAmountInInterval(interval) ;
 	}
+	public void  addCashFlow(CashFlow cashFlow) {
+		cashFlows.add(cashFlow);
+	}    
     
     public static Builder newBuilder() {
         return new Builder();
@@ -63,10 +72,11 @@ public class Budget {
         private String name;		
     	private BudgetLine budgetLine;    	
         private Category category = Category.emptyCategory;
-
+        private List<CashFlow> cashFlows = new ArrayList<CashFlow>();
 
         private Builder() {
         }
+        
         public Builder withId(Integer id) {
             this.id = id;
             return this;
