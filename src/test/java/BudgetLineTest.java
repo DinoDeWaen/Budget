@@ -1,31 +1,31 @@
-import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import budget.BudgetLine;
+import static org.junit.Assert.assertEquals;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import budget.BudgetLine;
 import cashFlowTypes.CashFlowType;
 import cashFlowTypes.Expense;
 import cashFlowTypes.Income;
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 
 
 @RunWith(HierarchicalContextRunner.class)
 public class BudgetLineTest {
-    private static final double ACCURACY = 0.00001;
+	
+	private static BudgetLine budgetLine;
+	private static final double ACCURACY = 0.00001;
     private static final double amount = 2000;
     private static final DateTime beginDate = new DateTime(2014, 1, 1, 0, 0);
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
-    private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);  
-	
+    private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);  	
     private static int numberOfMonthsBetweenDueDates;  
-    private static BudgetLine budgetLine;
+    
+    
     private static CashFlowType type;
     private static int sign;
     
@@ -337,5 +337,4 @@ public class BudgetLineTest {
 	        }
         } 
     }
-
 }

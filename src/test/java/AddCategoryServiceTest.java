@@ -1,26 +1,26 @@
+import static org.junit.Assert.assertEquals;
 import gateway.BudgetDataBase;
-import category.Category;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import category.CategoryDTO;
 import category.AddCategoryService;
+import category.Category;
+import category.CategoryDTO;
 import category.CategoryServices;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dino on 11/11/14.
  */
-public class AddCategoryTest {
-    private CategoryServices categoryTransactions;
+public class AddCategoryServiceTest {
+    private CategoryServices categoryService;
     private CategoryDTO categoryDTO;
 
     private static final String CategoryName = "CategoryName";
 
     @Before
     public void setUp() throws Exception {
-        categoryTransactions = new AddCategoryService();
+        categoryService = new AddCategoryService();
     }
 
     @Test
@@ -33,7 +33,7 @@ public class AddCategoryTest {
     }
     private Integer  addCategory() {
         categoryDTO = buildCategoryDTO();
-        return categoryTransactions.addCategory(categoryDTO);
+        return categoryService.addCategory(categoryDTO);
     }
     private void validateCategory(Category category) {
         assertEquals(CategoryName, category.getName());
