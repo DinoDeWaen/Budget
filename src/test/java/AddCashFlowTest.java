@@ -10,10 +10,9 @@ import cashFlow.AddCashFlowService;
 import cashFlow.CashFlow;
 import cashFlow.CashFlowDTO;
 import cashFlow.CashflowServices;
-import category.Category;
 
 
-public class AddCashFlow {
+public class AddCashFlowTest {
 	
 	private static final double ACCURACY = 0.00001;
 	
