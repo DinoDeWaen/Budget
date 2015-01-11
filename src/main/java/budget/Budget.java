@@ -59,10 +59,17 @@ public class Budget {
     public double getBudgetAmount(Interval interval) {
     	return budgetLine.getBudgetAmountInInterval(interval) ;
 	}
+	public double getBalance() {
+		double result = 0.0;
+		for (CashFlow cf: cashFlows){
+			result += cf.getCashFlowAmount();
+		}
+		return result;
+	}
+    
 	public void  addCashFlow(CashFlow cashFlow) {
 		cashFlows.add(cashFlow);
-	}    
-    
+	}  
     public static Builder newBuilder() {
         return new Builder();
     }    
@@ -100,5 +107,5 @@ public class Budget {
         public Budget build() {
             return new Budget(this);
         }
-    }
+	}
 }

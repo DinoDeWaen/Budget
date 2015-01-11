@@ -1,8 +1,6 @@
 package budget;
 import gateway.BudgetDataBase;
 import cashFlowTypes.CashFlowType;
-import cashFlowTypes.Expense;
-import cashFlowTypes.Income;
 import category.Category;
 
 /**

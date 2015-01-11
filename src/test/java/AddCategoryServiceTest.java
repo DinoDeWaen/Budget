@@ -12,7 +12,7 @@ import category.CategoryServices;
 /**
  * Created by dino on 11/11/14.
  */
-public class AddCategoryTest {
+public class AddCategoryServiceTest {
     private CategoryServices categoryService;
     private CategoryDTO categoryDTO;
 

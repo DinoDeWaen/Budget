@@ -12,7 +12,7 @@ import cashFlow.CashFlowDTO;
 import cashFlow.CashflowServices;
 
 
-public class AddCashFlowTest {
+public class AddCashFlowServiceTest {
 	
 	private static final double ACCURACY = 0.00001;
 	

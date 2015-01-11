@@ -16,14 +16,9 @@ public class CashFlow {
 	public double getCashFlowAmount() {
 		return cashFlowType.addSignToCashFlowAmount(getAmount());
 	}
-	public CashFlowType getCashFlowType() {
-		return cashFlowType;
-	}
-
 	public DateTime getDate() {
 		return date;
 	}
-
 	public Integer getId() {
 		return id;
 	}

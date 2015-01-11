@@ -1,5 +1,8 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.Arrays;
+
 import gateway.BudgetDataBase;
 
 import org.joda.time.DateTime;
@@ -12,6 +15,10 @@ import budget.AddBudgetService;
 import budget.Budget;
 import budget.BudgetDTO;
 import budget.BudgetServices;
+import cashFlow.CashFlow;
+import cashFlowTypes.CashFlowType;
+import cashFlowTypes.Expense;
+import cashFlowTypes.Income;
 import category.Category;
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
@@ -145,4 +152,50 @@ public class AddBudgetServiceTest {
 	        }	
     	}    	
     }
+    
+    public class AddMultipleCashFlowContext{
+    	private final double [] incomeAmounts = {2000.00, 99.9, 200.34, 43.98};
+    	private final double [] expenseAmounts = {1000.00, 69.9,20.34, 96.02};
+    	
+    	
+    	@Test
+    	public void testSumOffCashFlows(){
+			 Integer id = addBudget();
+				
+			 Budget budget = loadBudget(id);
+			 
+			 addCashFlows(budget);	 
+			 
+			 assertEquals(Arrays.stream(incomeAmounts).sum() - Arrays.stream(expenseAmounts).sum(), budget.getBalance(), ACCURACY);
+    	}
+
+		private void addCashFlows(Budget budget) {
+			addIncomeCashFlow(budget, incomeAmounts);
+			addExpenseCashFlow(budget, expenseAmounts);			 
+		}
+
+		private void addIncomeCashFlow(Budget budget, double [] list ) {
+			addCashFlow(budget, list, new Income() );
+		}
+		
+		private void addExpenseCashFlow(Budget budget, double [] list ) {
+			addCashFlow(budget, list, new Expense() );
+		}
+		
+		private void addCashFlow(Budget budget, double[] list, CashFlowType type) {
+			for (int i = 0; i < list.length; i++){
+			     budget.addCashFlow(buildCashFlow(list[i], type));
+			 }
+		}
+		
+		private CashFlow buildCashFlow(Double cashFlowAmount, CashFlowType type) {
+			return cashFlow.CashFlow.newBuilder()
+		                             .withAmount(cashFlowAmount)
+		                             .withType(type)
+		                             .withDate(new DateTime())
+		                             .build();
+		}
+    	
+    }
+    
 }
