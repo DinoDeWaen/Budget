@@ -2,8 +2,6 @@ package cashFlow;
 
 import org.joda.time.DateTime;
 
-import category.CategoryDTO.Builder;
-
 public class CashFlowDTO {
 	private double amount;
 	private boolean incomeCashFlow;

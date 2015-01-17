@@ -1,7 +1,6 @@
 package cashFlow;
 
 import cashFlowTypes.CashFlowType;
-import budget.Budget;
 import gateway.BudgetDataBase;
 
 public class AddCashFlowService implements CashflowServices {
