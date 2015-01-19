@@ -164,37 +164,10 @@ public class AddBudgetServiceTest {
 				
 			 Budget budget = loadBudget(id);
 			 
-			 addCashFlows(budget);	 
+			 Utilities.addCashFlows(budget, incomeAmounts, expenseAmounts);	 
 			 
 			 assertEquals(Arrays.stream(incomeAmounts).sum() - Arrays.stream(expenseAmounts).sum(), budget.getBalance(), ACCURACY);
     	}
-
-		private void addCashFlows(Budget budget) {
-			addIncomeCashFlow(budget, incomeAmounts);
-			addExpenseCashFlow(budget, expenseAmounts);			 
-		}
-
-		private void addIncomeCashFlow(Budget budget, double [] list ) {
-			addCashFlow(budget, list, new Income() );
-		}
-		
-		private void addExpenseCashFlow(Budget budget, double [] list ) {
-			addCashFlow(budget, list, new Expense() );
-		}
-		
-		private void addCashFlow(Budget budget, double[] list, CashFlowType type) {
-			for (int i = 0; i < list.length; i++){
-			     budget.addCashFlow(buildCashFlow(list[i], type));
-			 }
-		}
-		
-		private CashFlow buildCashFlow(Double cashFlowAmount, CashFlowType type) {
-			return cashFlow.CashFlow.newBuilder()
-		                             .withAmount(cashFlowAmount)
-		                             .withType(type)
-		                             .withDate(new DateTime())
-		                             .build();
-		}
     	
     }
     
