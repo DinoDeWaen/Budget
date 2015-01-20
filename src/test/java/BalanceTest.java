@@ -2,8 +2,6 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
-import gateway.BudgetDataBase;
-
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
