@@ -30,11 +30,11 @@ public class BalanceTest {
 	private final double [] incomeAmounts = {2000.00, 99.9, 200.34, 43.98};
 	private final double [] expenseAmounts = {1000.00, 69.9,20.34, 96.02};	
 	
-	private static Budget incomeBudget = Budget.newBuilder().withName("income").withCategory(incomeCategory).build();
-	private static Budget expenseBudget = Budget.newBuilder().withName("income").withCategory(expenseCategory).build();
+	private static Budget incomeBudget = Budget.newBuilder().withName("income").withCategory(incomeCategory).withBudgetLine(buildIncomeBudgetLine()).build();
+	private static Budget expenseBudget = Budget.newBuilder().withName("income").withCategory(expenseCategory).withBudgetLine(buildExpenseBudgetLine()).build();
 	private static final double ACCURACY = 0.00001;
 	
-    private BudgetLine buildIncomeBudgetLine() {
+    private static BudgetLine buildIncomeBudgetLine() {
 	    return BudgetLine.newBuilder()
 	    		.withBudgetAmount(incomeAmount)
 	    		.withBeginDate(beginDate)
@@ -44,7 +44,7 @@ public class BalanceTest {
 	            .withNumberOfMonthsBetweenDueDates(numberOfMonthsBetweenDueDates) 
 	            .build();
     }
-    private BudgetLine buildExpenseBudgetLine() {
+    private static BudgetLine buildExpenseBudgetLine() {
 	    return BudgetLine.newBuilder()
 	    		.withBudgetAmount(expenseAmount)
 	    		.withBeginDate(beginDate)
@@ -58,8 +58,11 @@ public class BalanceTest {
 	@Before
 	public void setUp ()
 	{
-
-
+	    Utilities.addIncomeCashFlow(incomeBudget, incomeAmounts);
+	    Utilities.addExpenseCashFlow(expenseBudget, expenseAmounts);
+	    
+	    BudgetDataBase.budgetDataBase.addBudget(incomeBudget);
+	    BudgetDataBase.budgetDataBase.addBudget(expenseBudget);
 	}
 	
 	@Test

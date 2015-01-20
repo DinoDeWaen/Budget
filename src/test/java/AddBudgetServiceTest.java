@@ -15,10 +15,6 @@ import budget.AddBudgetService;
 import budget.Budget;
 import budget.BudgetDTO;
 import budget.BudgetServices;
-import cashFlow.CashFlow;
-import cashFlowTypes.CashFlowType;
-import cashFlowTypes.Expense;
-import cashFlowTypes.Income;
 import category.Category;
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
