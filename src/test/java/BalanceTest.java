@@ -35,7 +35,7 @@ public class BalanceTest {
 	
 	private static Budget incomeBudget = Budget.newBuilder().withName("income").withCategory(incomeCategory).withBudgetLine(buildIncomeBudgetLine()).build();
 	private static Budget expenseBudget = Budget.newBuilder().withName("income").withCategory(expenseCategory).withBudgetLine(buildExpenseBudgetLine()).build();
-	private static final double ACCURACY = 0.00001;
+	private static final double ACCURACY = 0.0001;
 	
     private static BudgetLine buildIncomeBudgetLine() {
 	    return BudgetLine.newBuilder()
@@ -63,17 +63,17 @@ public class BalanceTest {
 	{
 	    Utilities.addIncomeCashFlow(incomeBudget, incomeAmounts);
 	    Utilities.addExpenseCashFlow(expenseBudget, expenseAmounts);
-	    
-	    BudgetDataBase.budgetDataBase.addBudget(incomeBudget);
-	    BudgetDataBase.budgetDataBase.addBudget(expenseBudget);
 	}
 	
 	@Test
 	public void createBalanceTest(){
 		balance = new Balance ();
-		assertEquals(balance.getTotalBudgetIncome(), 2000.00, ACCURACY);
-		assertEquals(balance.getTotalBudgetExpense(), 1000.00, ACCURACY); 
+		balance.addBudget(incomeBudget);
+		balance.addBudget(expenseBudget);
+		
+		assertEquals(balance.getTotalBudgetIncome(), 3000.00, ACCURACY);
+		assertEquals(balance.getTotalBudgetExpense(), 1500.00, ACCURACY); 
 		assertEquals(balance.getTotalIncome(), Arrays.stream(incomeAmounts).sum(), ACCURACY);
-		assertEquals(balance.getTotalExpense(), Arrays.stream(expenseAmounts).sum(), ACCURACY); 		
+		assertEquals(balance.getTotalExpense(), Arrays.stream(expenseAmounts).sum() * -1.0, ACCURACY); 		
 	}	
 }

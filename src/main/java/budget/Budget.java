@@ -34,6 +34,10 @@ public class Budget {
     public String getName() {
         return name;
     }
+    public boolean isIncome ()
+    {  	
+    	return budgetLine.isIncome();
+    }
     public double getBudgetAmount() {
 		return budgetLine.getBudgetAmount();
 	} 

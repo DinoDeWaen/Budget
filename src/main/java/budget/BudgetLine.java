@@ -25,6 +25,9 @@ public class BudgetLine {
 		return budgetAmount;
 	}
 
+	public boolean isIncome() {
+		return cashFlowType.isIncome();
+	}
 	public Interval getBudgetInterval() {
 		return budgetInterval;
 	}

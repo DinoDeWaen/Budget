@@ -14,4 +14,10 @@ public class Expense implements CashFlowType {
 		return Color.RED;
 	}
 
+	@Override
+	public boolean isIncome() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

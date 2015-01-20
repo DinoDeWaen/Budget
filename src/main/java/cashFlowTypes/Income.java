@@ -13,4 +13,9 @@ public class Income implements CashFlowType  {
 	public Color getColor() {
 		return Color.GREEN;
 	}
+
+	@Override
+	public boolean isIncome() {
+		return true;
+	}
 }
