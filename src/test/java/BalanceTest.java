@@ -1,4 +1,7 @@
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
 import gateway.BudgetDataBase;
 
 import org.joda.time.DateTime;
@@ -18,8 +21,8 @@ public class BalanceTest {
     private static final DateTime beginDate = new DateTime(2014, 1, 1, 0, 0);
     private static final DateTime endDate = new DateTime(2015, 1, 1, 0, 0);
     private static final DateTime dueDate = new DateTime(2014, 1, 15, 0, 0);
-    private static final double incomeAmount  = 2000.00;  
-    private static final double expenseAmount = 1000.00;      
+    private static final double incomeAmount  = 3000.00;  
+    private static final double expenseAmount = 1500.00;      
     
     private static final int numberOfMonthsBetweenDueDates = 12;  
     
@@ -70,7 +73,7 @@ public class BalanceTest {
 		balance = new Balance ();
 		assertEquals(balance.getTotalBudgetIncome(), 2000.00, ACCURACY);
 		assertEquals(balance.getTotalBudgetExpense(), 1000.00, ACCURACY); 
-		assertEquals(balance.getTotalIncome(), 1582.55, ACCURACY);
-		assertEquals(balance.getTotalExpense(), 685.57, ACCURACY); 		
+		assertEquals(balance.getTotalIncome(), Arrays.stream(incomeAmounts).sum(), ACCURACY);
+		assertEquals(balance.getTotalExpense(), Arrays.stream(expenseAmounts).sum(), ACCURACY); 		
 	}	
 }
