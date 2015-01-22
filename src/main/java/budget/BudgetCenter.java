@@ -8,7 +8,6 @@ import org.joda.time.Interval;
 import org.joda.time.Period;
 
 import cashFlow.BudgetCashFlow;
-import cashFlow.MoneyCashFlow;
 import category.Category;
 
 /**

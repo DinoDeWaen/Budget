@@ -9,6 +9,7 @@ import org.junit.Test;
 import cashFlowTypes.CashFlowType;
 import category.Category;
 import balance.Balance;
+import balance.BalanceCalculator;
 import budget.Budget;
 import budget.BudgetCenter;
 import budget.BudgetLine;
@@ -66,12 +67,12 @@ public class BalanceTest {
 	
 	@Test
 	public void createBalanceTest(){
-		balance = new Balance ();
+		balance = new BalanceCalculator ();
 		balance.addBudget(incomeBudget);
 		balance.addBudget(expenseBudget);
 		
-		assertEquals(balance.calculateTotalBudgetIncome(), 3000.00, ACCURACY);
-		assertEquals(balance.calculateTotalBudgetExpense(), 1500.00, ACCURACY); 
+		assertEquals(balance.calculateTotalBudgetedIncome(), 3000.00, ACCURACY);
+		assertEquals(balance.calculateTotalBudgetedExpense(), 1500.00, ACCURACY); 
 		assertEquals(balance.calculateTotalIncome(), Arrays.stream(incomeAmounts).sum(), ACCURACY);
 		assertEquals(balance.calculateTotalExpense(), Arrays.stream(expenseAmounts).sum() * -1.0, ACCURACY); 		
 	}	
