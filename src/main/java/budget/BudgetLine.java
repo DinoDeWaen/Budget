@@ -40,31 +40,31 @@ public class BudgetLine {
 		return periodBetweenDueDates;
 	}
 
-	public double getMonthlyBudgetAmount() {
+	public double calculateMonthlyBudgetAmount() {
 		return budgetAmount / getPeriodBetweenDueDates().getMonths();
 	}
 
-	public double getYearlyBudgetAmount() {
+	public double calculateYearlyBudgetAmount() {
 		return budgetAmount * 12 / getPeriodBetweenDueDates().getMonths() ;
 	}
 
-	public double getBudgetAmountInInterval(Interval interval) {
-		return budgetAmount * getNumberOfDueDatesInInterval(interval);
+	public double calculateBudgetAmountInInterval(Interval interval) {
+		return budgetAmount * calculateNumberOfDueDatesInInterval(interval);
 	}
 	
-	public double getMonthlyCashFlowAmount() {
-		return cashFlowType.addSignToCashFlowAmount(getMonthlyBudgetAmount());
+	public double calculateMonthlySignedBudgetAmount() {
+		return cashFlowType.addSignToCashFlowAmount(calculateMonthlyBudgetAmount());
 	}
 
-	public double getYearlyCashFlowAmount() {
-		return cashFlowType.addSignToCashFlowAmount(getYearlyBudgetAmount());
+	public double calculateYearlySignedBudgetAmount() {
+		return cashFlowType.addSignToCashFlowAmount(calculateYearlyBudgetAmount());
 	}
 
-	public double getCashFlowAmountInInterval(Interval interval) {
-		return cashFlowType.addSignToCashFlowAmount(getBudgetAmountInInterval(interval));
+	public double calculateSignedBudgetAmountInInterval(Interval interval) {
+		return cashFlowType.addSignToCashFlowAmount(calculateBudgetAmountInInterval(interval));
 	}
 
-	private double getNumberOfDueDatesInInterval(Interval interval) {
+	private double calculateNumberOfDueDatesInInterval(Interval interval) {
 		int numberOfDueDates = 0;
 	    DateTime dd = dueDate;
 

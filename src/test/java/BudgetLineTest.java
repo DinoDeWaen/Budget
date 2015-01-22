@@ -66,15 +66,15 @@ public class BudgetLineTest {
         }
         
         private void validateYearlyBudgetLine(BudgetLine budgetLine) {
-            assertEquals(amount, budgetLine.getBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
-            assertEquals(amount / 12, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
-            assertEquals(amount, budgetLine.getYearlyBudgetAmount(), ACCURACY);
+            assertEquals(amount, budgetLine.calculateBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
+            assertEquals(amount / 12, budgetLine.calculateMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount, budgetLine.calculateYearlyBudgetAmount(), ACCURACY);
         }
         
         private void validateYearlyCashFlow(BudgetLine budgetLine) {
-            assertEquals(addSignToAmount(amount), budgetLine.getCashFlowAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
-            assertEquals(addSignToAmount(amount) / 12, budgetLine.getMonthlyCashFlowAmount(), ACCURACY);
-            assertEquals(addSignToAmount(amount), budgetLine.getYearlyCashFlowAmount(), ACCURACY);
+            assertEquals(addSignToAmount(amount), budgetLine.calculateSignedBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
+            assertEquals(addSignToAmount(amount) / 12, budgetLine.calculateMonthlySignedBudgetAmount(), ACCURACY);
+            assertEquals(addSignToAmount(amount), budgetLine.calculateYearlySignedBudgetAmount(), ACCURACY);
         }
         
         
@@ -124,15 +124,15 @@ public class BudgetLineTest {
         }
         
         private void validateHalfYearlyBudgetLine(BudgetLine budgetLine) {
-            assertEquals(amount * 2, budgetLine.getBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
-            assertEquals(amount / 6, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
-            assertEquals(amount * 2, budgetLine.getYearlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 2, budgetLine.calculateBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(amount / 6, budgetLine.calculateMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 2, budgetLine.calculateYearlyBudgetAmount(), ACCURACY);
         }
         
         private void validateHalfYearlyCashFlow(BudgetLine budgetLine) {
-            assertEquals(addSignToAmount(amount) * 2, budgetLine.getCashFlowAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
-            assertEquals(addSignToAmount(amount) / 6, budgetLine.getMonthlyCashFlowAmount(), ACCURACY);
-            assertEquals(addSignToAmount(amount) * 2, budgetLine.getYearlyCashFlowAmount(), ACCURACY);
+            assertEquals(addSignToAmount(amount) * 2, budgetLine.calculateSignedBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(addSignToAmount(amount) / 6, budgetLine.calculateMonthlySignedBudgetAmount(), ACCURACY);
+            assertEquals(addSignToAmount(amount) * 2, budgetLine.calculateYearlySignedBudgetAmount(), ACCURACY);
         }
         
         public class IncomeContext{
@@ -184,15 +184,15 @@ public class BudgetLineTest {
 
 
         private void validateTrimesterBudgetLine(BudgetLine budgetLine) {
-            assertEquals(amount * 3, budgetLine.getBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
-            assertEquals(amount / 4, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
-            assertEquals(amount * 3, budgetLine.getYearlyBudgetAmount(), ACCURACY);          
+            assertEquals(amount * 3, budgetLine.calculateBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(amount / 4, budgetLine.calculateMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 3, budgetLine.calculateYearlyBudgetAmount(), ACCURACY);          
         }
         
         private void validateTrimesterCashFlow(BudgetLine budgetLine) {        
-	        assertEquals(addSignToAmount(amount) * 3, budgetLine.getCashFlowAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
-	        assertEquals(addSignToAmount(amount) / 4, budgetLine.getMonthlyCashFlowAmount(), ACCURACY);
-	        assertEquals(addSignToAmount(amount) * 3, budgetLine.getYearlyCashFlowAmount(), ACCURACY); 
+	        assertEquals(addSignToAmount(amount) * 3, budgetLine.calculateSignedBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
+	        assertEquals(addSignToAmount(amount) / 4, budgetLine.calculateMonthlySignedBudgetAmount(), ACCURACY);
+	        assertEquals(addSignToAmount(amount) * 3, budgetLine.calculateYearlySignedBudgetAmount(), ACCURACY); 
         }
         
         public class IncomeContext{
@@ -243,15 +243,15 @@ public class BudgetLineTest {
 
 
         private void validateQuarterlyBudgetLine(BudgetLine budgetLine) {
-            assertEquals(amount * 4, budgetLine.getBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
-            assertEquals(amount / 3, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
-            assertEquals(amount * 4, budgetLine.getYearlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 4, budgetLine.calculateBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(amount / 3, budgetLine.calculateMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 4, budgetLine.calculateYearlyBudgetAmount(), ACCURACY);
         } 
         
         private void validateQuarterlyCashFlow(BudgetLine budgetLine) {
-	        assertEquals(addSignToAmount(amount) * 4, budgetLine.getCashFlowAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
-	        assertEquals(addSignToAmount(amount) / 3, budgetLine.getMonthlyCashFlowAmount(), ACCURACY);
-	        assertEquals(addSignToAmount(amount) * 4, budgetLine.getYearlyCashFlowAmount(), ACCURACY);
+	        assertEquals(addSignToAmount(amount) * 4, budgetLine.calculateSignedBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
+	        assertEquals(addSignToAmount(amount) / 3, budgetLine.calculateMonthlySignedBudgetAmount(), ACCURACY);
+	        assertEquals(addSignToAmount(amount) * 4, budgetLine.calculateYearlySignedBudgetAmount(), ACCURACY);
         }
         
         public class IncomeContext{
@@ -301,14 +301,14 @@ public class BudgetLineTest {
 
 
         private void validateMonthlyBudgetLine(BudgetLine budgetLine) {
-            assertEquals(amount * 12, budgetLine.getBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
-            assertEquals(amount, budgetLine.getMonthlyBudgetAmount(), ACCURACY);
-            assertEquals(amount * 12, budgetLine.getYearlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 12, budgetLine.calculateBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);
+            assertEquals(amount, budgetLine.calculateMonthlyBudgetAmount(), ACCURACY);
+            assertEquals(amount * 12, budgetLine.calculateYearlyBudgetAmount(), ACCURACY);
         }
         private void validateMonthlyCashFlow(BudgetLine budgetLine) {
-	        assertEquals(addSignToAmount(amount) * 12, budgetLine.getCashFlowAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
-	        assertEquals(addSignToAmount(amount), budgetLine.getMonthlyCashFlowAmount(), ACCURACY);
-	        assertEquals(addSignToAmount(amount) * 12, budgetLine.getYearlyCashFlowAmount(), ACCURACY);
+	        assertEquals(addSignToAmount(amount) * 12, budgetLine.calculateSignedBudgetAmountInInterval(new Interval(beginDate, endDate)), ACCURACY);	        	
+	        assertEquals(addSignToAmount(amount), budgetLine.calculateMonthlySignedBudgetAmount(), ACCURACY);
+	        assertEquals(addSignToAmount(amount) * 12, budgetLine.calculateYearlySignedBudgetAmount(), ACCURACY);
         }
         public class IncomeContext{
 	        @Before

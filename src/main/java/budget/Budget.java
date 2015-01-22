@@ -55,18 +55,18 @@ public class Budget {
         return category;
     } 
     public double getMonthlyBudgetAmount() {
-		return budgetLine.getMonthlyBudgetAmount();
+		return budgetLine.calculateMonthlyBudgetAmount();
 	}
     public double getYearlyBudgetAmount() {
-    	return budgetLine.getYearlyBudgetAmount();
+    	return budgetLine.calculateYearlyBudgetAmount();
 	}
     public double getBudgetAmount(Interval interval) {
-    	return budgetLine.getBudgetAmountInInterval(interval) ;
+    	return budgetLine.calculateBudgetAmountInInterval(interval) ;
 	}
-	public double getBalance() {
+	public double calculateCashFlowBalance() {
 		double result = 0.0;
 		for (CashFlow cf: cashFlows){
-			result += cf.getCashFlowAmount();
+			result += cf.calculateSignedCashFlowAmount();
 		}
 		return result;
 	}

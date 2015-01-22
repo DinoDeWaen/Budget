@@ -43,7 +43,7 @@ public class AddCashFlowServiceTest {
 		
 		validateCashFlow();
 		
-		assertEquals(cashFlow.getCashFlowAmount(), amount,ACCURACY);
+		assertEquals(cashFlow.calculateSignedCashFlowAmount(), amount,ACCURACY);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class AddCashFlowServiceTest {
 		
 		validateCashFlow();
 		
-		assertEquals(cashFlow.getCashFlowAmount(), amount * -1,ACCURACY);
+		assertEquals(cashFlow.calculateSignedCashFlowAmount(), amount * -1,ACCURACY);
 	}
 	
 	private void validateCashFlow() {

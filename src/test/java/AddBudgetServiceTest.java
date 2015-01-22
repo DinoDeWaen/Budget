@@ -162,7 +162,7 @@ public class AddBudgetServiceTest {
 			 
 			 Utilities.addCashFlows(budget, incomeAmounts, expenseAmounts);	 
 			 
-			 assertEquals(Arrays.stream(incomeAmounts).sum() - Arrays.stream(expenseAmounts).sum(), budget.getBalance(), ACCURACY);
+			 assertEquals(Arrays.stream(incomeAmounts).sum() - Arrays.stream(expenseAmounts).sum(), budget.calculateCashFlowBalance(), ACCURACY);
     	}
     	
     }

@@ -13,7 +13,7 @@ public class CashFlow {
 	public double getAmount() {
 		return amount;
 	}
-	public double getCashFlowAmount() {
+	public double calculateSignedCashFlowAmount() {
 		return cashFlowType.addSignToCashFlowAmount(getAmount());
 	}
 	public DateTime getDate() {

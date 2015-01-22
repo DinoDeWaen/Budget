@@ -69,9 +69,9 @@ public class BalanceTest {
 		balance.addBudget(incomeBudget);
 		balance.addBudget(expenseBudget);
 		
-		assertEquals(balance.getTotalBudgetIncome(), 3000.00, ACCURACY);
-		assertEquals(balance.getTotalBudgetExpense(), 1500.00, ACCURACY); 
-		assertEquals(balance.getTotalIncome(), Arrays.stream(incomeAmounts).sum(), ACCURACY);
-		assertEquals(balance.getTotalExpense(), Arrays.stream(expenseAmounts).sum() * -1.0, ACCURACY); 		
+		assertEquals(balance.calculateTotalBudgetIncome(), 3000.00, ACCURACY);
+		assertEquals(balance.calculateTotalBudgetExpense(), 1500.00, ACCURACY); 
+		assertEquals(balance.calculateTotalIncome(), Arrays.stream(incomeAmounts).sum(), ACCURACY);
+		assertEquals(balance.calculateTotalExpense(), Arrays.stream(expenseAmounts).sum() * -1.0, ACCURACY); 		
 	}	
 }
