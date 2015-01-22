@@ -5,9 +5,9 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import budget.Budget;
+import budget.BudgetCenter;
 import cashFlow.AddCashFlowService;
-import cashFlow.CashFlow;
+import cashFlow.MoneyCashFlow;
 import cashFlow.CashFlowDTO;
 import cashFlow.CashflowServices;
 
@@ -18,7 +18,7 @@ public class AddCashFlowServiceTest {
 	
 	private static CashflowServices cashFlowService;
 	private static CashFlowDTO cashFlowDTO;
-	private static CashFlow cashFlow;	
+	private static MoneyCashFlow cashFlow;	
 	
 	private static final double amount = 155.47;
 	private static final DateTime date = new DateTime(2015, 1, 10, 0, 0);	
@@ -26,7 +26,7 @@ public class AddCashFlowServiceTest {
 	private static Integer cashFlowId;
 
 	private static final String budgetName = "budgetName";
-	private static Budget budget = Budget.newBuilder().withName(budgetName).build();
+	private static BudgetCenter budget = BudgetCenter.newBuilder().withName(budgetName).build();
 	private static Integer budgetId;
 	
 	@Before

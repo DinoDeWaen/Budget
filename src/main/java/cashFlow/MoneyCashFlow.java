@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 import cashFlowTypes.CashFlowType;
 
-public class CashFlow {
+public class MoneyCashFlow implements BudgetCashFlow{
 	private Integer id;	
 	private double amount;
 	private CashFlowType cashFlowType;
@@ -16,6 +16,7 @@ public class CashFlow {
 	public double calculateSignedCashFlowAmount() {
 		return cashFlowType.addSignToCashFlowAmount(getAmount());
 	}
+	
 	public DateTime getDate() {
 		return date;
 	}
@@ -23,7 +24,7 @@ public class CashFlow {
 		return id;
 	}
 	
-	private CashFlow(Builder builder) {
+	private MoneyCashFlow(Builder builder) {
 		this.amount = builder.amount;
 		this.cashFlowType = builder.cashFlowType;
 		this.date = builder.date;
@@ -60,8 +61,8 @@ public class CashFlow {
 			return this;
 		}
 
-		public CashFlow build() {
-			return new CashFlow(this);
+		public MoneyCashFlow build() {
+			return new MoneyCashFlow(this);
 		}
 	}
 }

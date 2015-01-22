@@ -10,6 +10,7 @@ import cashFlowTypes.CashFlowType;
 import category.Category;
 import balance.Balance;
 import budget.Budget;
+import budget.BudgetCenter;
 import budget.BudgetLine;
 
 
@@ -31,8 +32,8 @@ public class BalanceTest {
 	private final double [] incomeAmounts = {2000.00, 99.9, 200.34, 43.98};
 	private final double [] expenseAmounts = {1000.00, 69.9,20.34, 96.02};	
 	
-	private static Budget incomeBudget = Budget.newBuilder().withName("income").withCategory(incomeCategory).withBudgetLine(buildIncomeBudgetLine()).build();
-	private static Budget expenseBudget = Budget.newBuilder().withName("income").withCategory(expenseCategory).withBudgetLine(buildExpenseBudgetLine()).build();
+	private static Budget incomeBudget = BudgetCenter.newBuilder().withName("income").withCategory(incomeCategory).withBudgetLine(buildIncomeBudgetLine()).build();
+	private static Budget expenseBudget = BudgetCenter.newBuilder().withName("income").withCategory(expenseCategory).withBudgetLine(buildExpenseBudgetLine()).build();
 	private static final double ACCURACY = 0.0001;
 	
     private static BudgetLine buildIncomeBudgetLine() {

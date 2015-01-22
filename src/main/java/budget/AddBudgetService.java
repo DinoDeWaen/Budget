@@ -9,11 +9,11 @@ import category.Category;
 public  class AddBudgetService implements BudgetServices {
 
     public Integer addBudget(BudgetDTO budgetDTO) {
-        final Budget budget = buildBudget(budgetDTO);
+        final BudgetCenter budget = buildBudget(budgetDTO);
         return BudgetDataBase.budgetDataBase.addBudget(budget);
     }
 
-    private Budget buildBudget(BudgetDTO budgetDTO) {
+    private BudgetCenter buildBudget(BudgetDTO budgetDTO) {
         final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
         final CashFlowType type = CashFlowType.getCashFlowType(budgetDTO.isIncomeCashFlow());
         final BudgetLine budgetLine = BudgetLine.newBuilder()
@@ -25,7 +25,7 @@ public  class AddBudgetService implements BudgetServices {
                 .withCashFlowType(type)
                 .build();
         
-        return Budget.newBuilder()
+        return BudgetCenter.newBuilder()
                 .withName(budgetDTO.getName())  
                 .withBudgetLine(budgetLine)
                 .withCategory(category)

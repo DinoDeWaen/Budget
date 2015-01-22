@@ -8,7 +8,7 @@ public class AddCashFlowService implements CashflowServices {
 	@Override
 	public Integer addCashFlow(CashFlowDTO cashFlowDTO) {
 		final CashFlowType type = CashFlowType.getCashFlowType(cashFlowDTO.isIncomeCashFlow());
-		final CashFlow cashFlow = CashFlow.newBuilder()
+		final MoneyCashFlow cashFlow = MoneyCashFlow.newBuilder()
 				                     .withAmount(cashFlowDTO.getAmount())
 				                     .withDate(cashFlowDTO.getDate())
 				                     .withType(type)

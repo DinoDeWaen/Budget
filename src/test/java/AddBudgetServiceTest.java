@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import budget.AddBudgetService;
-import budget.Budget;
+import budget.BudgetCenter;
 import budget.BudgetDTO;
 import budget.BudgetServices;
 import category.Category;
@@ -52,7 +52,7 @@ public class AddBudgetServiceTest {
         categoryId = BudgetDataBase.budgetDataBase.addCategory(category);
     }
     
-    private Budget loadBudget(Integer id) {
+    private BudgetCenter loadBudget(Integer id) {
         return BudgetDataBase.budgetDataBase.getBudget(id);
     }
     
@@ -78,12 +78,12 @@ public class AddBudgetServiceTest {
 	    public void addedIncomeBudget_canBeRetrieved() {
 	        Integer id = addBudget();
 	
-	        Budget budget = loadBudget(id);
+	        BudgetCenter budget = loadBudget(id);
 	
 	        validateBudgetContent(budget);
 	    }    
 	
-	    private void validateBudgetContent(Budget budget) {
+	    private void validateBudgetContent(BudgetCenter budget) {
 	        assertEquals(name, budget.getName());
 	        assertEquals(beginDate, budget.getBudgetInterval().getStart());
 	        assertEquals(endDate, budget.getBudgetInterval().getEnd());
@@ -103,7 +103,7 @@ public class AddBudgetServiceTest {
 	        public void addedBudgetWithoutCategory_canBeRetrieved() {
 	            Integer id = addBudgetWithoutCategory();
 	
-	            Budget budget = loadBudget(id);
+	            BudgetCenter budget = loadBudget(id);
 	
 	            validateEmptyCategoryContent(budget);
 	        }
@@ -123,7 +123,7 @@ public class AddBudgetServiceTest {
 	                    .build();
 	        }    	
 	    	
-	        private void validateEmptyCategoryContent(Budget budget) {
+	        private void validateEmptyCategoryContent(BudgetCenter budget) {
 	            assertNotNull("category is null", budget.getCategory());
 	
 	            assertEquals(Category.emptyCategory.getName(), budget.getCategory().getName());
@@ -136,12 +136,12 @@ public class AddBudgetServiceTest {
 	        public void addedBudgetWithCategory_canBeRetrieved() {
 	            Integer id = addBudget();
 	
-	            Budget budget = loadBudget(id);
+	            BudgetCenter budget = loadBudget(id);
 	
 	            validateCategoryContent(budget);
 	        }  	
 	    	
-	        private void validateCategoryContent(Budget budget) {
+	        private void validateCategoryContent(BudgetCenter budget) {
 	            assertNotNull("category is null", budget.getCategory());
 
 	            assertEquals(categoryName, budget.getCategory().getName());
@@ -158,7 +158,7 @@ public class AddBudgetServiceTest {
     	public void testSumOffCashFlows(){
 			 Integer id = addBudget();
 				
-			 Budget budget = loadBudget(id);
+			 BudgetCenter budget = loadBudget(id);
 			 
 			 Utilities.addCashFlows(budget, incomeAmounts, expenseAmounts);	 
 			 

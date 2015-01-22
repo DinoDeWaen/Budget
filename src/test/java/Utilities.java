@@ -1,7 +1,7 @@
 import org.joda.time.DateTime;
 
 import budget.Budget;
-import cashFlow.CashFlow;
+import cashFlow.BudgetCashFlow;
 import cashFlowTypes.CashFlowType;
 import cashFlowTypes.Expense;
 import cashFlowTypes.Income;
@@ -29,8 +29,8 @@ public class Utilities {
 		 }
 	}
 	
-	private static CashFlow buildCashFlow(Double cashFlowAmount, CashFlowType type) {
-		return cashFlow.CashFlow.newBuilder()
+	private static BudgetCashFlow buildCashFlow(Double cashFlowAmount, CashFlowType type) {
+		return cashFlow.MoneyCashFlow.newBuilder()
 	                             .withAmount(cashFlowAmount)
 	                             .withType(type)
 	                             .withDate(new DateTime())
