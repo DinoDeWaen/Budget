@@ -1,7 +1,10 @@
 package consoleapplication;
 
 public class BudgetTool {	
-	public static void main(String[] args) {
-		System.out.printf("hello world");	
+	private final static String prefix = "-";
+	
+	public static void main(String[] args) {		
+
+
 	}
 }

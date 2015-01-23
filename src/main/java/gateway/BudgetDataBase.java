@@ -15,9 +15,9 @@ public class BudgetDataBase {
     private static Integer categoryId = 0;
     private static Integer cashFlowId = 0;
 
-    private Map<Integer, BudgetCenter> budgets = new HashMap<Integer, BudgetCenter>();
-    private Map<Integer, Category> categories = new HashMap<Integer, Category >();
-    private Map<Integer, MoneyCashFlow> cashFlows = new HashMap<Integer, MoneyCashFlow >();
+    private final Map<Integer, BudgetCenter> budgets = new HashMap<Integer, BudgetCenter>();
+    private final Map<Integer, Category> categories = new HashMap<Integer, Category >();
+    private final Map<Integer, MoneyCashFlow> cashFlows = new HashMap<Integer, MoneyCashFlow >();
 
 
     public Integer addBudget(BudgetCenter budget){
