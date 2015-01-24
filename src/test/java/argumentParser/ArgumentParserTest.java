@@ -33,13 +33,13 @@ public class ArgumentParserTest {
 		final ArgumentList arguments = parser.parse(args, options);
 		
 		for(int i = 0; i<names.length;i++){
-			assertNotNull(arguments.getArgumentByName(names[i]));
+			assertTrue(arguments.hasArgument(names[i]));
 		}
 		
-		assertNull(arguments.getArgumentByName(unusedName));
+		assertFalse(arguments.hasArgument(unusedName));
 		
-		assertEquals(arguments.getArgumentByName(names[0]).getValue(), "");
-		assertEquals(arguments.getArgumentByName(names[1]).getValue(), "test");
-		assertEquals(arguments.getArgumentByName(names[2]).getValue(), "");		
+		assertEquals(arguments.getArgumentValue(names[0]), "");
+		assertEquals(arguments.getArgumentValue(names[1]), "test");
+		assertEquals(arguments.getArgumentValue(names[2]), "");		
 	}
 }

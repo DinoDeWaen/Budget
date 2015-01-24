@@ -16,11 +16,32 @@ public class ArgumentListTest {
 	
 	@Test
 	public void testRetrieveArgument(){
+		buildArguments();
+		
+		testRetreiveArguments();
+		
+		testRetreiveNotUsedArgument();
+		
+		validateValues();
+	}
+
+	private void testRetreiveNotUsedArgument() {
+		assertFalse(args.hasArgument("fake"));
+	}
+
+	private void validateValues() {
+		for (int i = 0; i<names.length;i++)
+		    assertEquals(args.getArgumentValue(names[i]), values[i]);
+	}
+
+	private void testRetreiveArguments() {
+		for (int i = 0; i<names.length;i++)
+			assertTrue(args.hasArgument(names[i]));
+	}
+
+	private void buildArguments() {
 		for (int i = 0; i<names.length;i++)
 	        args.addArgumentByName(names[i], Argument.newBuilder().withName(names[i]).withValue(values[i]).build());
-		
-		for (int i = 0; i<names.length;i++)
-		    assertEquals(args.getArgumentByName(names[i]).getValue(), values[i]);
 	}
 
 }
