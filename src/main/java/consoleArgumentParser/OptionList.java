@@ -1,4 +1,4 @@
-package ConsoleArgumentParser;
+package consoleArgumentParser;
 
 import java.util.HashMap;
 import java.util.Map;

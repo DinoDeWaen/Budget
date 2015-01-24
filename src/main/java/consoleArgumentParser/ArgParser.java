@@ -1,4 +1,4 @@
-package ConsoleArgumentParser;
+package consoleArgumentParser;
 
 
 public interface ArgParser {

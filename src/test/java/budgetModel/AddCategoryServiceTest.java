@@ -1,3 +1,4 @@
+package budgetModel;
 import static org.junit.Assert.assertEquals;
 import gateway.BudgetDataBase;
 

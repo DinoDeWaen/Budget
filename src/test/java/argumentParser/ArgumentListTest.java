@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import ConsoleArgumentParser.Argument;
-import ConsoleArgumentParser.ArgumentList;
+import consoleArgumentParser.Argument;
+import consoleArgumentParser.ArgumentList;
 
 
 public class ArgumentListTest {

@@ -1,7 +1,4 @@
-package ConsoleArgumentParser;
-
-import java.util.ArrayList;
-import java.util.List;
+package consoleArgumentParser;
 
 public class Argument {
 
@@ -28,7 +25,7 @@ public class Argument {
 
 	public static class Builder {
 		private String name;
-		private String value;
+		private String value = "";
 		
 		public Builder withName(String name) {
 			this.name = name;

@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import ConsoleArgumentParser.Option;
-import ConsoleArgumentParser.OptionType;
+import consoleArgumentParser.Option;
+import consoleArgumentParser.OptionType;
 
 public class OptionTest {
 	private final static String name = "optionName";

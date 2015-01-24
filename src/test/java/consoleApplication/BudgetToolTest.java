@@ -1,4 +1,4 @@
-package consoleapplication;
+package consoleApplication;
 
 import static org.junit.Assert.*;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
@@ -6,6 +6,8 @@ import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
+
+import consoleapplication.BudgetTool;
 
 public class BudgetToolTest {
 	

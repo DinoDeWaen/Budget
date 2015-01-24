@@ -1,3 +1,4 @@
+package budgetModel;
 import org.joda.time.DateTime;
 
 import budget.Budget;

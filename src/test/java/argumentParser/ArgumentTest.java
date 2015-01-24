@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import ConsoleArgumentParser.Argument;
+import consoleArgumentParser.Argument;
 
 public class ArgumentTest {
 	private final static String name = "argumentName";
