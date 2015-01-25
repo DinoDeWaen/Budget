@@ -2,6 +2,8 @@ package argumentParser;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
 
 import consoleArgumentParser.*;
@@ -25,11 +27,11 @@ public class ArgumentParserTest {
 		options.addOptionByName(names[2], OPTION_NAME3);
 		options.addOptionByName(unusedName, OPTION_NAME4);
 	}
-	
-	String[] args = {"-Option1","-Option2","test","-Option3"};
 
 	@Test
 	public void argumentParserTest(){
+		String[] args = {"-Option1","-Option2","test","-Option3"};
+		
 		final ArgumentList arguments = parser.parse(args, options);
 		
 		for(int i = 0; i<names.length;i++){
@@ -42,4 +44,22 @@ public class ArgumentParserTest {
 		assertEquals(arguments.getArgumentValue(names[1]), "test");
 		assertEquals(arguments.getArgumentValue(names[2]), "");		
 	}
+	
+	@Test
+	public void argumentParserTestOptionalAgrument(){
+		String[] args = {"-Option1","-Option2","-Option3"};
+		
+		final ArgumentList arguments = parser.parse(args, options);
+		
+		assertEquals(arguments.getArgumentValue(names[0]), "");
+		assertEquals(arguments.getArgumentValue(names[1]), "");
+		assertEquals(arguments.getArgumentValue(names[2]), "");		
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+	public void catchErrorTest(){
+		String[] incorrectArgs = {"-WrongArgument"};
+		final ArgumentList arguments = parser.parse(incorrectArgs, options);		
+	}
+
 }

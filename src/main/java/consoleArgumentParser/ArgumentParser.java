@@ -10,7 +10,7 @@ public class ArgumentParser implements ArgParser {
 	}
 
 	@Override
-	public ArgumentList parse(String[] args, OptionList options)  throws Error {
+	public ArgumentList parse(String[] args, OptionList options)  throws IllegalArgumentException {
 		return parseArgs(args, options);
 	}
 
@@ -23,16 +23,24 @@ public class ArgumentParser implements ArgParser {
 			final String current = removePrefix(args[offset]);
 			
 			if (! options.hasOption(current))
-				throw new Error();
+				throw new IllegalArgumentException(current + " is not an valid argument see help");
 			
 			result.addArgumentByName(current, Argument.newBuilder().withName(current).build());
 			
-			if (options.hasParameter(current))
-				result.addArgumentValue(current, (++offset < args.length)?args[offset]:"");
+			if (options.hasParameter(current) && nextArgumentExists(args, offset) && isValue(args, offset))
+				result.addArgumentValue(current, args[++offset]);
 			
 			offset++;
 		}
 		return result;
+	}
+
+	private boolean isValue(final String[] args, int offset) {
+		return ! args[offset+1].startsWith(prefix);
+	}
+
+	private boolean nextArgumentExists(final String[] args, int offset) {
+		return offset < args.length -1;
 	}
 	
 	private String removePrefix(final String id) {
