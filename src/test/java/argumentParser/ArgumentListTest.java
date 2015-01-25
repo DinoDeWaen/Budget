@@ -41,7 +41,7 @@ public class ArgumentListTest {
 
 	private void buildArguments() {
 		for (int i = 0; i<names.length;i++)
-	        args.addArgumentByName(names[i], Argument.newBuilder().withName(names[i]).withValue(values[i]).build());
+	        args.addArgument(names[i], Argument.newBuilder().withName(names[i]).withValue(values[i]).build());
 	}
 
 }

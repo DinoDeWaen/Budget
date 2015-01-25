@@ -25,7 +25,7 @@ public class ArgumentParser implements ArgParser {
 			if (! options.hasOption(current))
 				throw new IllegalArgumentException(current + " is not an valid argument see help");
 			
-			result.addArgumentByName(current, Argument.newBuilder().withName(current).build());
+			result.addArgument(current, Argument.newBuilder().withName(current).build());
 			
 			if (options.hasParameter(current) && nextArgumentExists(args, offset) && isValue(args, offset))
 				result.addArgumentValue(current, args[++offset]);

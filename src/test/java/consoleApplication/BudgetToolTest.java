@@ -22,10 +22,8 @@ public class BudgetToolTest {
 
   @Test
   public void testAddCategoryWithName() {
-    final String [] args = {"-addCategory"};
+    final String [] args = {"-addCategory", "test"};
     BudgetTool.main(args);
-    
-    assertEquals("add category",log.getLog());
   }
 
 }

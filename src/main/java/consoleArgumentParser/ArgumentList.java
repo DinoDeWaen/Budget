@@ -15,7 +15,7 @@ public class ArgumentList {
 	public boolean hasArgument(final String id) {
 		return arguments.containsKey(id);
 	}
-	public void addArgumentByName(final String id, final Argument arg){
+	public void addArgument(final String id, final Argument arg){
 		arguments.put(id,  arg);	
 	}
 }

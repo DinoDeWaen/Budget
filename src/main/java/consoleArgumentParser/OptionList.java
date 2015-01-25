@@ -13,7 +13,11 @@ public class OptionList {
 	public boolean hasParameter(final String id){
 		return options.get(id).hasParameter();
 	}
-	public void addOptionByName(final String id, final Option opt){
+	public void addOption(final String id, final Option opt){
 		options.put(id,  opt);	
+	}
+
+	public void addOption(String id, OptionType type) {
+		options.put(id, Option.newBuilder().withName(id).withType(type).build());	
 	}
 }
