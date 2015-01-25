@@ -28,7 +28,7 @@ public class ArgumentParser implements ArgParser {
 			result.addArgumentByName(current, Argument.newBuilder().withName(current).build());
 			
 			if (options.hasParameter(current))
-				result.addArgumentValue(current, args[++offset]);
+				result.addArgumentValue(current, (++offset < args.length)?args[offset]:"");
 			
 			offset++;
 		}
