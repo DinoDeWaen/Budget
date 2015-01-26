@@ -1,8 +1,11 @@
 package consoleApplication;
 
+import gateway.BudgetDataBase;
+
+import java.util.List;
 import java.util.Scanner;
 
-import category.AddCategoryService;
+import category.CategoryServiceImpl;
 import category.CategoryDTO;
 import category.CategoryServices;
 import consoleArgumentParser.ArgumentList;
@@ -13,12 +16,16 @@ import consoleArgumentParser.OptionType;
 public class BudgetTool {	
 	
 	private static final String ADD_CATEGORY = "addCategory";
+	private static final String GET_CATEGORIES = "getCategories";	
 	private static final OptionList options = new OptionList ();
 	static {
-		options.addOption("addCategory", OptionType.ONE_PARAMETER);
+		options.addOption(ADD_CATEGORY, OptionType.ONE_PARAMETER);
+		options.addOption(GET_CATEGORIES, OptionType.NO_PARAMETERS);		
 	}	
 	
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
+		startUpDB();
+		
 		final ArgumentList arguments = new ArgumentParser().parse(args, options);
 		
 		if (arguments.hasArgument(ADD_CATEGORY)){
@@ -28,12 +35,30 @@ public class BudgetTool {
 				System.out.println("Enter category name: ");
 			    String iCat = sc.nextLine();
 			}
-			CategoryServices categoryService =  new AddCategoryService();
+			CategoryServices categoryService =  new CategoryServiceImpl();
 			CategoryDTO categoryDTO = CategoryDTO.newBuilder()
 									             .withCategoryName(categoryName)
 									             .build();
 			
 	        int catId =  categoryService.addCategory(categoryDTO);
+	        System.out.println(String.format("added category with id %d", catId));
 		}
+		if (arguments.hasArgument(ADD_CATEGORY)){
+			CategoryServices categoryService =  new CategoryServiceImpl();
+			List <CategoryDTO> catList = categoryService.getCategories();
+			
+			for(CategoryDTO cDTO: catList){
+				System.out.println(String.format("category", cDTO.getName()));
+			}
+		}
+		powerDownDB();		
+	}
+
+	private static void powerDownDB() {
+		BudgetDataBase.budgetDataBase.save();
+	}
+
+	private static void startUpDB() {
+		BudgetDataBase.budgetDataBase.load();
 	}
 }

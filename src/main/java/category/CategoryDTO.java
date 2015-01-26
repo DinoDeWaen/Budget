@@ -3,9 +3,13 @@ package category;
  * Created by dino on 11/11/14.
  */
 public class CategoryDTO {
-    public final String name;
+    private final String name;
 
-    private CategoryDTO(Builder builder) {
+    public String getName() {
+		return name;
+	}
+
+	private CategoryDTO(Builder builder) {
         this.name = builder.name;
     }
 

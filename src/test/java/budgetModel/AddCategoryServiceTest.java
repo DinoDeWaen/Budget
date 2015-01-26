@@ -5,7 +5,7 @@ import gateway.BudgetDataBase;
 import org.junit.Before;
 import org.junit.Test;
 
-import category.AddCategoryService;
+import category.CategoryServiceImpl;
 import category.Category;
 import category.CategoryDTO;
 import category.CategoryServices;
@@ -21,7 +21,7 @@ public class AddCategoryServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        categoryService = new AddCategoryService();
+        categoryService = new CategoryServiceImpl();
     }
 
     @Test

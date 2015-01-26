@@ -9,6 +9,7 @@ import category.Category;
 public class gatewayTest {
 
 	private Integer catId1, catId2;
+	
 	@Test
 	public void test() {
 		catId1 = BudgetDataBase.budgetDataBase.addCategory(Category.newBuilder().withCategoryName("test").build());

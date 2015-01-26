@@ -1,5 +1,7 @@
 package category;
 
+import java.util.List;
+
 import category.CategoryDTO;
 
 /**
@@ -7,4 +9,5 @@ import category.CategoryDTO;
  */
 public interface CategoryServices {
     public Integer addCategory(CategoryDTO categoryDTO);
+    public List<CategoryDTO> getCategories ();
 }

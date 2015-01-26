@@ -24,6 +24,7 @@ public class BudgetToolTest {
   public void testAddCategoryWithName() {
     final String [] args = {"-addCategory", "test"};
     BudgetTool.main(args);
+    
   }
 
 }

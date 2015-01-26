@@ -6,12 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import budget.BudgetCenter;
 import cashFlow.MoneyCashFlow;
 import category.Category;
+import category.CategoryDTO;
 
 /**
  * Created by dino on 07/11/14.
@@ -60,8 +63,7 @@ public class BudgetDataBase implements java.io.Serializable{
 
 	public static void save() {
 		try {
-			if (! file.exists())
-				file.createNewFile();
+     		file.createNewFile();
 				
 			FileOutputStream fileOut = new FileOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -90,5 +92,9 @@ public class BudgetDataBase implements java.io.Serializable{
 			c.printStackTrace();
 			return;
 		}
+	}
+
+	public List<Category> getCategories() {
+		return  new ArrayList<Category> (categories.values());
 	}
 }
