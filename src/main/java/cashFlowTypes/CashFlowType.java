@@ -2,7 +2,7 @@ package cashFlowTypes;
 
 import java.awt.Color;
 
-public interface CashFlowType {
+public interface CashFlowType  {
 	double addSignToCashFlowAmount (double amount);
 	boolean isIncome ();	
 	Color getColor();

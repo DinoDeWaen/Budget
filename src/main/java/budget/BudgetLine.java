@@ -6,7 +6,7 @@ import org.joda.time.Period;
 
 import cashFlowTypes.CashFlowType;
 
-public class BudgetLine {
+public class BudgetLine implements java.io.Serializable {
 	private double budgetAmount;
 	private Interval budgetInterval;
 	private DateTime dueDate;

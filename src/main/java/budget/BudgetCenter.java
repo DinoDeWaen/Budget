@@ -13,7 +13,7 @@ import category.Category;
 /**
  * Created by dino on 07/11/14.
  */
-public class BudgetCenter implements Budget{
+public class BudgetCenter implements Budget, java.io.Serializable {
     private Integer id;
     private String name;    
     private BudgetLine budgetLine;

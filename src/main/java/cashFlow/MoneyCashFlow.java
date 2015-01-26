@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 import cashFlowTypes.CashFlowType;
 
-public class MoneyCashFlow implements BudgetCashFlow{
+public class MoneyCashFlow implements BudgetCashFlow, java.io.Serializable{
 	private Integer id;	
 	private double amount;
 	private CashFlowType cashFlowType;

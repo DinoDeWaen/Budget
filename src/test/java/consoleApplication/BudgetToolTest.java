@@ -9,10 +9,10 @@ import org.junit.contrib.java.lang.system.StandardErrorStreamLog;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
+import consoleApplication.BudgetTool;
 import consoleArgumentParser.Option;
 import consoleArgumentParser.OptionList;
 import consoleArgumentParser.OptionType;
-import consoleapplication.BudgetTool;
 
 public class BudgetToolTest {
   @Rule

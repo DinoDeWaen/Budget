@@ -2,7 +2,7 @@ package category;
 /**
  * Created by dino on 11/11/14.
  */
-public class Category {
+public class Category implements java.io.Serializable {
     private Integer id;
     private String name;
 

@@ -2,7 +2,7 @@ package budget;
 
 import cashFlow.BudgetCashFlow;
 
-public interface Budget {
+public interface Budget{
 	boolean isIncome ();
 	double getBudgetAmount();
 	double calculateCashFlowBalance();

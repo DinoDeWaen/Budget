@@ -2,7 +2,7 @@ package cashFlowTypes;
 
 import java.awt.Color;
 
-public class Expense implements CashFlowType {
+public class Expense implements CashFlowType, java.io.Serializable {
 
 	@Override
 	public double addSignToCashFlowAmount(double amount) {

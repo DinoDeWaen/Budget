@@ -1,4 +1,4 @@
-package consoleapplication;
+package consoleApplication;
 
 import java.util.Scanner;
 
