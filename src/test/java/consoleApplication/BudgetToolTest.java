@@ -17,8 +17,6 @@ import consoleArgumentParser.OptionType;
 public class BudgetToolTest {
   @Rule
   public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
-  @Rule
-  public final StandardOutputStreamLog log = new StandardOutputStreamLog();
 
   @Test
   public void testAddCategoryWithName() {

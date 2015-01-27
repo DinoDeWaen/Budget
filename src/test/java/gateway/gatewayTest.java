@@ -12,6 +12,7 @@ public class gatewayTest {
 	
 	@Test
 	public void test() {
+		BudgetDataBase.load();	
 		catId1 = BudgetDataBase.budgetDataBase.addCategory(Category.newBuilder().withCategoryName("test").build());
 		BudgetDataBase.save();
 		catId2 = BudgetDataBase.budgetDataBase.addCategory(Category.newBuilder().withCategoryName("test2").build());

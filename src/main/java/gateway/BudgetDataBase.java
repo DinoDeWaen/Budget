@@ -20,8 +20,13 @@ import category.CategoryDTO;
  * Created by dino on 07/11/14.
  */
 public class BudgetDataBase implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 606993467241197433L;
+	
 	public static BudgetDataBase budgetDataBase = new BudgetDataBase();
-	public static final File file = new File("c://temp/db.ser");
+	public static final File file = new File(".db.ser");
 	private static Integer budgetId = 0;
 	private static Integer categoryId = 0;
 	private static Integer cashFlowId = 0;
@@ -77,13 +82,15 @@ public class BudgetDataBase implements java.io.Serializable{
 	}
 
 	public static void load() {
-		budgetDataBase = null;
 		try {
-			FileInputStream fileIn = new FileInputStream(file);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			budgetDataBase = (BudgetDataBase) in.readObject();
-			in.close();
-			fileIn.close();
+			if (file.exists()){
+				budgetDataBase = null;
+				FileInputStream fileIn = new FileInputStream(file);
+				ObjectInputStream in = new ObjectInputStream(fileIn);
+				budgetDataBase = (BudgetDataBase) in.readObject();
+				in.close();
+				fileIn.close();
+			}
 		} catch (IOException i) {
 			i.printStackTrace();
 			return;
