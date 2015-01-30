@@ -23,7 +23,7 @@ public class ArgumentParser implements ArgParser {
 			final String current = removePrefix(args[offset]);
 			
 			if (! options.hasOption(current))
-				throw new RuntimeException(current + " is not an valid argument see help");
+				throw new RuntimeException(current + " is not an valid argument");
 			
 			result.addArgument(current, Argument.newBuilder().withName(current).build());
 			
