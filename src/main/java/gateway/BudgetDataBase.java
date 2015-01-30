@@ -2,6 +2,7 @@ package gateway;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -31,6 +32,7 @@ public class BudgetDataBase implements java.io.Serializable{
 	private int budgetId = 0;
 	private int categoryId = 0;
 	private int cashFlowId = 0;
+	private boolean dbChanged;
 
 	private final Map<Integer, BudgetCenter> budgets = new HashMap<Integer, BudgetCenter>();
 	private final Map<Integer, Category> categories = new HashMap<Integer, Category>();
@@ -43,6 +45,7 @@ public class BudgetDataBase implements java.io.Serializable{
 	}
 
 	public Integer addBudget(BudgetCenter budget) {
+		dbChanged = true;
 		this.budgets.put(++budgetId, budget);
 		return budgetId;
 	}
@@ -52,7 +55,7 @@ public class BudgetDataBase implements java.io.Serializable{
 	}
 
 	public Integer addCategory(Category category) {
-
+		dbChanged = true;
 		categories.put(++categoryId, category);
 		return categoryId;
 	}
@@ -60,8 +63,17 @@ public class BudgetDataBase implements java.io.Serializable{
 	public Category getCategory(Integer id) {
 		return categories.get(id);
 	}
+	public Category getCategory(String name) {
+		Category cat = null;
+		for (Category c : categories.values()){
+			if (c.getName().equals(name))
+				cat = c;
+		}
+		return cat;
+	}
 
 	public Integer addCashFlow(Integer parentId, MoneyCashFlow cashFlow) {
+		dbChanged = true;
 		cashFlows.put(++cashFlowId, cashFlow);
 		BudgetCenter budget = getBudget(parentId);
 		budget.addCashFlow(cashFlow);
@@ -75,36 +87,33 @@ public class BudgetDataBase implements java.io.Serializable{
 
 	public static void save() {
 		try {
-     		file.createNewFile();
-				
-			FileOutputStream fileOut = new FileOutputStream(file);
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(budgetDataBase);
-			out.close();
-			fileOut.close();
-			System.out.printf("Serialized data is saved in " + file.getAbsolutePath());
+     		saveDbToFile();
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
 	}
 
+	private static void saveDbToFile() throws IOException,FileNotFoundException {
+		file.createNewFile();
+		try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))){
+			out.writeObject(budgetDataBase);			
+		} 
+	}
+
 	public static void load() {
 		try {
 			if (file.exists()){
-				budgetDataBase = null;
-				FileInputStream fileIn = new FileInputStream(file);
-				ObjectInputStream in = new ObjectInputStream(fileIn);
-				budgetDataBase = (BudgetDataBase) in.readObject();
-				in.close();
-				fileIn.close();
+				loadDbFromFile();
 			}
-		} catch (IOException i) {
-			i.printStackTrace();
-			return;
-		} catch (ClassNotFoundException c) {
+		} catch (Exception e)  {
 			System.out.println("db class not found");
-			c.printStackTrace();
-			return;
+		}
+	}
+
+	private static void loadDbFromFile() throws IOException, ClassNotFoundException {
+		budgetDataBase = null;
+		try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))){
+			budgetDataBase = (BudgetDataBase) in.readObject();
 		}
 	}
 

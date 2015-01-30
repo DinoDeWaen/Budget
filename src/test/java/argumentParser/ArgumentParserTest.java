@@ -51,7 +51,7 @@ public class ArgumentParserTest {
 		assertEquals(arguments.getArgumentValue(names[2]), "");		
 	}
 	
-	@Test(expected = IllegalArgumentException.class) 
+	@Test(expected = Exception.class) 
 	public void catchErrorTest(){
 		String[] incorrectArgs = {"-WrongArgument"};
 		final ArgumentList arguments = parser.parse(incorrectArgs, options);		
