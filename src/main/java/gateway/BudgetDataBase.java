@@ -25,15 +25,22 @@ public class BudgetDataBase implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = 606993467241197433L;
 	
-	public static BudgetDataBase budgetDataBase = new BudgetDataBase();
+	private static BudgetDataBase budgetDataBase = null;
 	public static final File file = new File(".db.ser");
-	private static Integer budgetId = 0;
-	private static Integer categoryId = 0;
-	private static Integer cashFlowId = 0;
+	
+	private int budgetId = 0;
+	private int categoryId = 0;
+	private int cashFlowId = 0;
 
 	private final Map<Integer, BudgetCenter> budgets = new HashMap<Integer, BudgetCenter>();
 	private final Map<Integer, Category> categories = new HashMap<Integer, Category>();
 	private final Map<Integer, MoneyCashFlow> cashFlows = new HashMap<Integer, MoneyCashFlow>();
+	
+	public static synchronized BudgetDataBase getDB(){
+		if (budgetDataBase == null)
+			budgetDataBase= new BudgetDataBase();
+		return budgetDataBase;
+	}
 
 	public Integer addBudget(BudgetCenter budget) {
 		this.budgets.put(++budgetId, budget);

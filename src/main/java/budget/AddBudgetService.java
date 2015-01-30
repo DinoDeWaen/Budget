@@ -10,11 +10,11 @@ public  class AddBudgetService implements BudgetServices {
 
     public Integer addBudget(BudgetDTO budgetDTO) {
         final BudgetCenter budget = buildBudget(budgetDTO);
-        return BudgetDataBase.budgetDataBase.addBudget(budget);
+        return BudgetDataBase.getDB().addBudget(budget);
     }
 
     private BudgetCenter buildBudget(BudgetDTO budgetDTO) {
-        final Category category = BudgetDataBase.budgetDataBase.getCategory(budgetDTO.getCategoryId()); 
+        final Category category = BudgetDataBase.getDB().getCategory(budgetDTO.getCategoryId()); 
         final CashFlowType type = CashFlowType.getCashFlowType(budgetDTO.isIncomeCashFlow());
         final BudgetLine budgetLine = BudgetLine.newBuilder()
         		.withBudgetAmount(budgetDTO.getAmount())

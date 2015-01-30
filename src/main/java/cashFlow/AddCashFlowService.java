@@ -13,6 +13,6 @@ public class AddCashFlowService implements CashflowServices {
 				                     .withDate(cashFlowDTO.getDate())
 				                     .withType(type)
 				                     .build();
-		return BudgetDataBase.budgetDataBase.addCashFlow(cashFlowDTO.getBudgetId(), cashFlow);
+		return BudgetDataBase.getDB().addCashFlow(cashFlowDTO.getBudgetId(), cashFlow);
 	}
 }

@@ -41,7 +41,7 @@ public class AddCategoryServiceTest {
     }
 
     private Category loadCategory(Integer id) {
-        return BudgetDataBase.budgetDataBase.getCategory(id);
+        return BudgetDataBase.getDB().getCategory(id);
     }
 
 

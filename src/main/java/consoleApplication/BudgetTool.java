@@ -39,10 +39,10 @@ public class BudgetTool {
 	}
 
 	private static void powerDownDB() {
-		BudgetDataBase.budgetDataBase.save();
+		BudgetDataBase.save();
 	}
 
 	private static void startUpDB() {
-		BudgetDataBase.budgetDataBase.load();
+		BudgetDataBase.load();
 	}
 }

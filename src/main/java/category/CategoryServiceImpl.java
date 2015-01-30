@@ -11,7 +11,7 @@ public class CategoryServiceImpl implements CategoryServices {
     @Override
     public Integer addCategory(CategoryDTO categoryDTO) {
         final Category category = buildCategory(categoryDTO);
-        return BudgetDataBase.budgetDataBase.addCategory(category);
+        return BudgetDataBase.getDB().addCategory(category);
     }
 
     private Category buildCategory(CategoryDTO categoryDTO) {
@@ -23,7 +23,7 @@ public class CategoryServiceImpl implements CategoryServices {
 	@Override
 	public List<CategoryDTO> getCategories() {
 		final List<CategoryDTO> catDTOList = new ArrayList <CategoryDTO> ();
-		List<Category> cats = BudgetDataBase.budgetDataBase.getCategories();
+		List<Category> cats = BudgetDataBase.getDB().getCategories();
 		for (Category c:cats){
 			final CategoryDTO catDTO = CategoryDTO.newBuilder().withCategoryName(c.getName()).build();
 			catDTOList.add(catDTO);			

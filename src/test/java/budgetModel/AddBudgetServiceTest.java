@@ -50,11 +50,11 @@ public class AddBudgetServiceTest {
     public void setUp () throws Exception{
         addBudgetService = new AddBudgetService();
 
-        categoryId = BudgetDataBase.budgetDataBase.addCategory(category);
+        categoryId = BudgetDataBase.getDB().addCategory(category);
     }
     
     private BudgetCenter loadBudget(Integer id) {
-        return BudgetDataBase.budgetDataBase.getBudget(id);
+        return BudgetDataBase.getDB().getBudget(id);
     }
     
     private Integer addBudget() {

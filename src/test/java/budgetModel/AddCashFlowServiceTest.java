@@ -33,7 +33,7 @@ public class AddCashFlowServiceTest {
 	@Before
 	public void setUp(){
 		cashFlowService = new AddCashFlowService();	
-		budgetId = BudgetDataBase.budgetDataBase.addBudget(budget);
+		budgetId = BudgetDataBase.getDB().addBudget(budget);
 	}
 	
 	@Test
@@ -66,7 +66,7 @@ public class AddCashFlowServiceTest {
 	private void addAndRetreiveCashFlow() {
 		cashFlowId = addCashFlow();
 		
-		cashFlow = BudgetDataBase.budgetDataBase.getCashFlow(cashFlowId);
+		cashFlow = BudgetDataBase.getDB().getCashFlow(cashFlowId);
 	}
 	private Integer addCashFlow(){
         cashFlowDTO = buildCashFlowDTO();	
