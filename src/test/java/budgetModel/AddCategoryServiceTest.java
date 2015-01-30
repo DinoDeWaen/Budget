@@ -17,21 +17,29 @@ public class AddCategoryServiceTest {
     private CategoryServices categoryService;
     private CategoryDTO categoryDTO;
 
-    private static final String CategoryName = "CategoryName";
+    private static String CategoryName;
 
     @Before
     public void setUp() throws Exception {
         categoryService = new CategoryServiceImpl();
     }
+    @Test (expected = Exception.class) 
+    public void testDubbleNameCategory() {
+    	CategoryName= "name";
+        Integer id = addCategory();
+        Integer id2 = addCategory();
+    }
 
     @Test
     public void testCategoryBuilderAndFactory() {
+    	CategoryName = "cat name";
         Integer id = addCategory();
 
         Category category = loadCategory(id);
 
         validateCategory(category);
-    }
+    }  
+    
     private Integer  addCategory() {
         categoryDTO = buildCategoryDTO();
         return categoryService.addCategory(categoryDTO);

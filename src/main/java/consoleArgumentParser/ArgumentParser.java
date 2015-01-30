@@ -10,11 +10,11 @@ public class ArgumentParser implements ArgParser {
 	}
 
 	@Override
-	public ArgumentList parse(String[] args, OptionList options)  throws IllegalArgumentException {
+	public ArgumentList parse(String[] args, OptionList options) {
 		return parseArgs(args, options);
 	}
 
-	private ArgumentList parseArgs(final String[] args, final OptionList options)  throws Error {
+	private ArgumentList parseArgs(final String[] args, final OptionList options)  {
 		final ArgumentList result = new ArgumentList();
 		
 		int offset = 0;
@@ -23,7 +23,7 @@ public class ArgumentParser implements ArgParser {
 			final String current = removePrefix(args[offset]);
 			
 			if (! options.hasOption(current))
-				throw new IllegalArgumentException(current + " is not an valid argument see help");
+				throw new RuntimeException(current + " is not an valid argument see help");
 			
 			result.addArgument(current, Argument.newBuilder().withName(current).build());
 			

@@ -11,8 +11,14 @@ public class CategoryServiceImpl implements CategoryServices {
     @Override
     public Integer addCategory(CategoryDTO categoryDTO) {
         final Category category = buildCategory(categoryDTO);
+        if (categoryExists(categoryDTO))
+        	throw new RuntimeException ("Category already exists");
         return BudgetDataBase.getDB().addCategory(category);
     }
+
+	private boolean categoryExists(CategoryDTO categoryDTO) {
+		return BudgetDataBase.getDB().getCategory(categoryDTO.getName()) != null;
+	}
 
     private Category buildCategory(CategoryDTO categoryDTO) {
         return Category.newBuilder()

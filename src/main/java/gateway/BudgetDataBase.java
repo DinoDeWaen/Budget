@@ -60,6 +60,14 @@ public class BudgetDataBase implements java.io.Serializable{
 	public Category getCategory(Integer id) {
 		return categories.get(id);
 	}
+	public Category getCategory(String name) {
+		Category cat = null;
+		for (Category c : categories.values()){
+			if (c.getName().equals(name))
+				cat = c;
+		}
+		return cat;
+	}
 
 	public Integer addCashFlow(Integer parentId, MoneyCashFlow cashFlow) {
 		cashFlows.put(++cashFlowId, cashFlow);
