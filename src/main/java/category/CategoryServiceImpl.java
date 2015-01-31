@@ -36,4 +36,9 @@ public class CategoryServiceImpl implements CategoryServices {
 		}
 		return catDTOList;
 	}
+
+	@Override
+	public void deleteCategory(CategoryDTO categoryDTO) {
+		
+	}
 }

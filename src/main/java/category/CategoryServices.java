@@ -10,4 +10,5 @@ import category.CategoryDTO;
 public interface CategoryServices {
     public Integer addCategory(CategoryDTO categoryDTO);
     public List<CategoryDTO> getCategories ();
+	public void deleteCategory(CategoryDTO categoryDTO);
 }

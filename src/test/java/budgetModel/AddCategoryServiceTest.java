@@ -40,7 +40,26 @@ public class AddCategoryServiceTest {
         validateCategory(category);
     }  
     
-    private Integer  addCategory() {
+    @Test
+    public void deleteCategoryTest(){
+    	CategoryName = "delete category";
+        Integer id = addCategory();	
+        
+        Category category = loadCategory(id);
+
+        validateCategory(category);
+        
+        deleteCategory(CategoryName);
+        
+        category = loadCategory(id);
+    }
+    
+    private void deleteCategory(String categoryName2) {
+    	categoryDTO = buildCategoryDTO();
+        categoryService.deleteCategory(categoryDTO);
+	}
+    
+	private Integer  addCategory() {
         categoryDTO = buildCategoryDTO();
         return categoryService.addCategory(categoryDTO);
     }
