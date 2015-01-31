@@ -6,7 +6,7 @@ import java.util.List;
 import budget.Budget;
 
 
-public class BalanceCalculator  implements Balance, java.io.Serializable  {
+public class BalanceCalculator  implements Balance  {
     private List<Budget> budgets = new ArrayList<Budget>();  
 
 	public double calculateTotalBudgetedIncome() {

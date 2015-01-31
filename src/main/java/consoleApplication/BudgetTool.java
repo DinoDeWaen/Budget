@@ -1,13 +1,6 @@
 package consoleApplication;
 
 import gateway.BudgetDataBase;
-
-import java.util.List;
-import java.util.Scanner;
-
-import category.CategoryServiceImpl;
-import category.CategoryDTO;
-import category.CategoryServices;
 import consoleArgumentParser.ArgumentList;
 import consoleArgumentParser.ArgumentParser;
 import consoleArgumentParser.OptionList;

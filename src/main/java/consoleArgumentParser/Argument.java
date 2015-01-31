@@ -3,10 +3,7 @@ package consoleArgumentParser;
 public class Argument {
 
 	private String value;
-	private String name;
-
 	private Argument(Builder builder) {
-		this.name = builder.name;
 		this.value = builder.value;		
 	}
 
@@ -24,11 +21,9 @@ public class Argument {
 	}
 
 	public static class Builder {
-		private String name;
 		private String value = "";
 		
 		public Builder withName(String name) {
-			this.name = name;
 			return this;
 		}
 		public Builder withValue(String value) {

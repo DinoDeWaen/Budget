@@ -6,7 +6,6 @@ import java.util.Scanner;
 import category.CategoryDTO;
 import category.CategoryServiceImpl;
 import category.CategoryServices;
-import consoleArgumentParser.ArgumentList;
 
 public class CategoryMenu{
 

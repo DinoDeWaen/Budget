@@ -26,8 +26,8 @@ public class AddCategoryServiceTest {
     @Test (expected = Exception.class) 
     public void testDubbleNameCategory() {
     	CategoryName= "name";
-        Integer id = addCategory();
-        Integer id2 = addCategory();
+        addCategory();
+        addCategory();
     }
 
     @Test
@@ -52,6 +52,8 @@ public class AddCategoryServiceTest {
         deleteCategory(CategoryName);
         
         category = loadCategory(id);
+        
+        
     }
     
     private void deleteCategory(String categoryName2) {

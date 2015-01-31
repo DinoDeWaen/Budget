@@ -15,7 +15,6 @@ import java.util.Map;
 import budget.BudgetCenter;
 import cashFlow.MoneyCashFlow;
 import category.Category;
-import category.CategoryDTO;
 
 /**
  * Created by dino on 07/11/14.
@@ -86,6 +85,11 @@ public class BudgetDataBase implements java.io.Serializable{
 	}
 
 	public static void save() {
+		if (budgetDataBase.dbChanged)
+			trySave();
+	}
+
+	private static void trySave() {
 		try {
      		saveDbToFile();
 		} catch (IOException i) {
@@ -101,10 +105,13 @@ public class BudgetDataBase implements java.io.Serializable{
 	}
 
 	public static void load() {
+		if (file.exists())
+			tryLoad();
+	}
+
+	private static void tryLoad() {
 		try {
-			if (file.exists()){
-				loadDbFromFile();
-			}
+			loadDbFromFile();
 		} catch (Exception e)  {
 			System.out.println("db class not found");
 		}

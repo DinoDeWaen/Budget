@@ -2,8 +2,6 @@ package argumentParser;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-
 import org.junit.Test;
 
 import consoleArgumentParser.*;
@@ -54,7 +52,7 @@ public class ArgumentParserTest {
 	@Test(expected = Exception.class) 
 	public void catchErrorTest(){
 		String[] incorrectArgs = {"-WrongArgument"};
-		final ArgumentList arguments = parser.parse(incorrectArgs, options);		
+		parser.parse(incorrectArgs, options);		
 	}
 
 }
