@@ -39,6 +39,8 @@ public class CategoryServiceImpl implements CategoryServices {
 
 	@Override
 	public void deleteCategory(CategoryDTO categoryDTO) {
-		
+        if (! categoryExists(categoryDTO))
+        	throw new RuntimeException ("Category doesn't exists");
+		BudgetDataBase.getDB().deleteCategory(categoryDTO.getName());
 	}
 }

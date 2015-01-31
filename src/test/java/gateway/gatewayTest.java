@@ -33,6 +33,8 @@ public class gatewayTest {
 		assertEquals(BudgetDataBase.getDB().getCategory(catId1).getName(), TEST1);		
 		assertEquals(BudgetDataBase.getDB().getCategory(catId2).getName(), TEST2);
 		assertNull(BudgetDataBase.getDB().getCategory(catId3));
+		BudgetDataBase.clear();
+		BudgetDataBase.save();
 	}
 
 }

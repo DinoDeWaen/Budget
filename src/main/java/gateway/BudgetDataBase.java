@@ -58,6 +58,10 @@ public class BudgetDataBase implements java.io.Serializable{
 		categories.put(++categoryId, category);
 		return categoryId;
 	}
+	public void deleteCategory (String name){
+		dbChanged = true;
+		categories.remove(getCategoryId(name));
+	}
 
 	public Category getCategory(Integer id) {
 		return categories.get(id);
@@ -70,7 +74,15 @@ public class BudgetDataBase implements java.io.Serializable{
 		}
 		return cat;
 	}
-
+	public int getCategoryId(String name) {
+		int id = -1;
+		for (Map.Entry<Integer, Category> entry : categories.entrySet()){
+			if (entry.getValue().getName().equals(name))
+				id = entry.getKey();
+		}
+		return id;
+	}
+	
 	public Integer addCashFlow(Integer parentId, MoneyCashFlow cashFlow) {
 		dbChanged = true;
 		cashFlows.put(++cashFlowId, cashFlow);
@@ -126,5 +138,8 @@ public class BudgetDataBase implements java.io.Serializable{
 
 	public List<Category> getCategories() {
 		return  new ArrayList<Category> (categories.values());
+	}
+	public static void clear() {
+		budgetDataBase = new BudgetDataBase ();
 	}
 }

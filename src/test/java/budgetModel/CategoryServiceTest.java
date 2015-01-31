@@ -1,6 +1,5 @@
 package budgetModel;
-import static org.junit.Assert.assertEquals;
-import gateway.BudgetDataBase;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,10 +9,12 @@ import category.Category;
 import category.CategoryDTO;
 import category.CategoryServices;
 
+import gateway.BudgetDataBase;
+
 /**
  * Created by dino on 11/11/14.
  */
-public class AddCategoryServiceTest {
+public class CategoryServiceTest {
     private CategoryServices categoryService;
     private CategoryDTO categoryDTO;
 
@@ -53,7 +54,7 @@ public class AddCategoryServiceTest {
         
         category = loadCategory(id);
         
-        
+        assertNull(category);    
     }
     
     private void deleteCategory(String categoryName2) {
