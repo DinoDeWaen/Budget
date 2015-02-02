@@ -23,18 +23,18 @@ public class BudgetTool {
 				.parse(args, options);
 		if (arguments.hasArgument(ADD_CATEGORY)) {
 			if (options.hasParameter(ADD_CATEGORY) && !arguments.getArgumentValue(ADD_CATEGORY).isEmpty())
-				new CategoryMenu().addCategory(arguments.getArgumentValue(ADD_CATEGORY));
+				new CategoryMenu( new ConsoleUserInterface ()).addCategory(arguments.getArgumentValue(ADD_CATEGORY));
 			else
-				new CategoryMenu().addCategory();
+				new CategoryMenu( new ConsoleUserInterface ()).addCategory();
 		}
 		if (arguments.hasArgument(PRINT_CATEGORIES)) {
-			new CategoryMenu().printAllCategories();
+			new CategoryMenu( new ConsoleUserInterface ()).printAllCategories();
 		}
 		if (arguments.hasArgument(DELETE_CATEGORY)) {
 			if (options.hasParameter(DELETE_CATEGORY) && !arguments.getArgumentValue(DELETE_CATEGORY).isEmpty())
-				new CategoryMenu().deleteCategory(arguments.getArgumentValue(DELETE_CATEGORY));
+				new CategoryMenu( new ConsoleUserInterface ()).deleteCategory(arguments.getArgumentValue(DELETE_CATEGORY));
 			else
-				new CategoryMenu().deleteCategory();
+				new CategoryMenu( new ConsoleUserInterface ()).deleteCategory();
 		}
 		powerDownDB();
 	}

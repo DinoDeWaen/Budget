@@ -1,6 +1,12 @@
 package consoleApplication;
 
 public class CategoryMenuTest {
-	//no clue to how to test this...
+	private static UserInterface ui = new ConsoleUserInterface ();
+	private static CategoryMenu menu = new CategoryMenu (ui);
+	
+	public void addCategoryMenuTest(){
+		
+		
+	}
 
 }
