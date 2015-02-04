@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import category.Category;
 
-public class gatewayTest {
+public class GatewayTest {
 
 	private Integer catId1, catId2, catId3;
 	private final String TEST1 = "test1";
